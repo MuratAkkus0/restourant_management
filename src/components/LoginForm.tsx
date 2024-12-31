@@ -10,7 +10,6 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import { GrFormView, GrFormViewHide } from 'react-icons/gr';
 import { LoginFormSchema } from '../schemas/LoginFormSchema';
-import GoogleLogin from './GoogleLogin';
 import { FontSizes, LogoSizes } from '../types/models/LogoModels';
 
 function LoginForm() {

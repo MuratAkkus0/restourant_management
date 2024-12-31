@@ -89,9 +89,11 @@ export const authProcesses = createSlice({
   name: 'authProcesses',
   initialState,
   reducers: {
-    setUserData: (state, action: { payload: UserData }) => {
-      const data = { ...action.payload };
-      state = data;
+    setUserData: (state, action: PayloadAction<UserData>) => {
+      state.email = action.payload.email;
+      state.pass = action.payload.pass;
+      state.errMessage = action.payload.errMessage;
+      state.loading = action.payload.loading;
     },
   },
   extraReducers: (builder) => {
