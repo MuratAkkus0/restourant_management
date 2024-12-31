@@ -2,6 +2,9 @@ import { useState } from 'react';
 import HeroImage from '../assets/images/hero_img.jpg';
 import AdvantagesCard from '../components/AdvantagesCard';
 import Logo from '../components/Logo';
+import { FaMinus, FaPlus } from 'react-icons/fa6';
+import { FaRegQuestionCircle } from 'react-icons/fa';
+
 function HomeView() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -43,7 +46,7 @@ function HomeView() {
   return (
     <div className="flex flex-col items-center md:container md:mx-auto bg-white">
       <section className="w-full bg-primary text-accent py-16 px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+        <div className="w-full flex flex-col gap-4 md:flex-row items-center">
           <div className="md:w-1/2 text-center md:text-left space-y-6">
             <h1 className="p-2 text-4xl md:text-6xl font-bold text-transparent bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text font-Poppins">
               Take Your Business to the Future!
@@ -60,16 +63,16 @@ function HomeView() {
               management, real-time stock tracking, and advanced reporting
               tools.
             </p>
-            <div className="flex justify-evenly space-x-4">
+            <div className="flex justify-evenly lg:justify-center lg:gap-4 xl:gap-6 space-x-4">
               <a
                 href="/signup"
-                className=" text-white bg-gradient-to-r from-orange-500 to-red-600 py-2 px-5 rounded-lg shadow-lg hover:bg-accent"
+                className=" text-white bg-gradient-to-r from-orange-500 to-red-600 py-2 px-5 lg:text-lg 2xl:text-xl rounded-lg shadow-lg hover:bg-accent"
               >
                 Try It for Free
               </a>
               <a
                 href="/features"
-                className="text-white bg-gradient-to-r from-orange-500 to-red-600 py-2 px-5 rounded-lg shadow-lg hover:bg-neutralDark"
+                className="text-white bg-gradient-to-r from-orange-500 to-red-600 py-2 px-5 lg:text-lg 2xl:text-xl rounded-lg shadow-lg hover:bg-neutralDark"
               >
                 Discover More
               </a>
@@ -128,21 +131,27 @@ function HomeView() {
       </section>
       <section className="w-full bg-neutralLight py-12">
         <div className="w-full mx-auto px-4">
-          <h2 className="text-3xl font-semibold text-neutralDark text-center mb-8">
+          <h2 className="flex justify-center items-center gap-1 text-2xl sm:text-3xl xl:text-4xl font-semibold text-neutralDark text-center mb-2">
             Frequently Asked Questions
+            <span className="">
+              <FaRegQuestionCircle className="inline-block text-xl sm:text-2xl xl:text-3xl" />
+            </span>
           </h2>
+          <div className="w-10/12 sm:w-8/12 lg:w-1/3 border border-black rounded-md mx-auto mb-6"></div>
           <div className="w-full space-y-4">
             {faqs.map((faq, index) => (
               <div key={index} className="w-full bg-white shadow-lg rounded-lg">
                 <button
                   onClick={() => toggleAccordion(index)}
-                  className="w-full text-left flex justify-between items-center p-4 font-medium text-neutralDark"
+                  className="w-full text-left lg:text-base xl:text-lg flex justify-between items-center p-4 font-medium"
                 >
                   {faq.question}
-                  <span>{activeIndex === index ? '-' : '+'}</span>
+                  <span>
+                    {activeIndex === index ? <FaMinus /> : <FaPlus />}
+                  </span>
                 </button>
                 {activeIndex === index && (
-                  <div className="p-4 text-neutralDark border-t border-neutralLight">
+                  <div className="p-4 xl:text-base border-t border-neutralLight">
                     {faq.answer}
                   </div>
                 )}

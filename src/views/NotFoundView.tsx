@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 function NotFoundView() {
   return (
-    <section className="flex items-center justify-center min-h-screen bg-primary text-center text-neutralDark">
+    <section className="flex items-center justify-center min-h-screen bg-primary text-center">
       <div className="max-w-md mx-auto">
-        <h1 className="text-6xl font-bold text-accent mb-4">404</h1>
+        <h1 className="text-6xl font-bold mb-4">404</h1>
         <h2 className="text-2xl md:text-3xl font-semibold mb-4">
           Oops! Page not found.
         </h2>
