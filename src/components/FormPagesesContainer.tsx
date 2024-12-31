@@ -19,7 +19,9 @@ const FormPagesesContainer: FC<{ children: ReactNode }> = ({ children }) => {
             </Link>
           </div>
 
-          {children}
+          <div className="h-full overflow-y-auto flex justify-center items-center">
+            {children}
+          </div>
 
           <div className="flex justify-between px-4 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl container lg:border bg-white p-2 text-base md:text-lg">
             <span className="font-medium">
