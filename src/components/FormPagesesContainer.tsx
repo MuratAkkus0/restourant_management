@@ -7,8 +7,8 @@ const FormPagesesContainer: FC<{ children: ReactNode }> = ({ children }) => {
   const [width] = useWindowSizes();
   return (
     <>
-      <div className=" w-full h-svh flex justify-center bg-gray-50 tracking-wider">
-        <div className="h-svh flex-1 flex flex-col items-center justify-between lg:px-2 lg:gap-4 lg:py-10 overflow-y-auto ">
+      <div className=" w-full h-full flex justify-center bg-gray-50 tracking-wider">
+        <div className="h-full flex-1 flex flex-col items-center justify-between lg:px-2 lg:gap-4 lg:py-10 overflow-y-auto ">
           <div className="max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl container lg:border bg-white p-2">
             <Link
               to="/"
@@ -36,7 +36,7 @@ const FormPagesesContainer: FC<{ children: ReactNode }> = ({ children }) => {
           </div>
         </div>
         {width >= 1024 ? (
-          <div className="hidden lg:block lg:sticky h-svh flex-1 overflow-y-hidden">
+          <div className="hidden lg:block lg:sticky h-full flex-1 overflow-y-hidden">
             <img
               src={SideImage}
               alt="restaurant image"

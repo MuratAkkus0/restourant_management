@@ -79,7 +79,7 @@ function ConfirmAccess() {
         </h2>
       </div>
       <div className="w-full flex flex-col items-center gap-5 md:gap-4">
-        <p className="text-md text-gray-500 leading-4 lg:leading-normal">
+        <p className="text-md text-black leading-5 lg:leading-normal">
           <span className="text-red-600 font-medium">*</span> Please enter the
           access key given to you by the admin in the field below.
         </p>
