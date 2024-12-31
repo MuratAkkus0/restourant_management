@@ -60,7 +60,7 @@ function HomeView() {
               management, real-time stock tracking, and advanced reporting
               tools.
             </p>
-            <div className="flex justify-between space-x-4">
+            <div className="flex justify-evenly space-x-4">
               <a
                 href="/signup"
                 className=" text-white bg-gradient-to-r from-orange-500 to-red-600 py-2 px-5 rounded-lg shadow-lg hover:bg-accent"
