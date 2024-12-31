@@ -21,10 +21,9 @@ function Router() {
         </Route>
 
         <Route path="/confirm-access" element={<ConfirmAccessView />} />
+        <Route path="/login" element={<LoginView />} />
 
-        <Route path="/personal">
-          <Route path="login" element={<LoginView />} />
-        </Route>
+        <Route path="/personal"></Route>
 
         <Route path="/admin" element={<AdminPanel />}>
           <Route path="dashboard" element={<AdminDashboardView />} />
