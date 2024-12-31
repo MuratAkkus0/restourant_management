@@ -42,7 +42,7 @@ function HomeView() {
   ];
   return (
     <div className="flex flex-col items-center md:container md:mx-auto bg-white">
-      <section className="bg-primary text-accent py-16 px-8">
+      <section className="w-full bg-primary text-accent py-16 px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 text-center md:text-left space-y-6">
             <h1 className="p-2 text-4xl md:text-6xl font-bold text-transparent bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text font-Poppins">
@@ -85,7 +85,7 @@ function HomeView() {
         </div>
       </section>
 
-      <section className="text-white bg-gradient-to-r from-orange-500 to-red-600 py-12 px-8">
+      <section className="w-full text-white bg-gradient-to-r from-orange-500 to-red-600 py-12 px-8">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6 font-Poppins flex gap-2 justify-center">
             Why{' '}
