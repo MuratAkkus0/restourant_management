@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   FontSizes,
   LogoProperties,
@@ -7,8 +8,10 @@ import { IoRestaurantOutline } from 'react-icons/io5';
 
 function Logo(props: LogoProperties) {
   const { FontSize = FontSizes.normal, LogoSize = LogoSizes.normal } = props;
+  const navigate = useNavigate();
   return (
     <div
+      onClick={() => navigate('/')}
       className={`w-fit h-fit border border-red-600 select-none  
          flex justify-center items-center bg-white rounded-md ${FontSize} text-accent`}
     >
