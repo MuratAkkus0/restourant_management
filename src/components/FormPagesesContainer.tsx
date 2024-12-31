@@ -19,7 +19,7 @@ const FormPagesesContainer: FC<{ children: ReactNode }> = ({ children }) => {
             </Link>
           </div>
 
-          <div className="h-full overflow-y-auto flex justify-center items-center">
+          <div className="h-full w-full overflow-y-auto flex justify-center items-center">
             {children}
           </div>
 
