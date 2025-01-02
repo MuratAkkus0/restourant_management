@@ -137,7 +137,9 @@ function HomeView() {
               <FaRegQuestionCircle className="inline-block text-xl sm:text-2xl xl:text-3xl" />
             </span>
           </h2>
+          {/* FAQ Underline */}
           <div className="w-10/12 sm:w-8/12 lg:w-1/3 border border-black rounded-md mx-auto mb-6"></div>
+          {/* Accordion */}
           <div className="w-full space-y-4">
             {faqs.map((faq, index) => (
               <div key={index} className="w-full bg-white shadow-lg rounded-lg">

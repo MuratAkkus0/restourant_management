@@ -1,11 +1,9 @@
-import { EmailAuthInputObj, UserRole } from '../types/models/AuthModels';
+import { EmailAuthInputObj } from '../types/models/AuthModels';
 import Logo from './Logo';
 import { AppDispatch } from '../store/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { emailLogin } from '../store/slices/authProcesses';
 import { Link, useNavigate } from 'react-router-dom';
-import { PropagateLoader } from 'react-spinners';
-import { RootState } from '../store/store';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { GrFormView, GrFormViewHide } from 'react-icons/gr';
@@ -14,9 +12,6 @@ import { FontSizes, LogoSizes } from '../types/models/LogoModels';
 
 function LoginForm() {
   const [showPass, setShowPass] = useState(false);
-  const isLoading = useSelector(
-    (store: RootState) => store.authProcess.loading
-  );
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -37,8 +32,6 @@ function LoginForm() {
     onSubmit: onSubmit,
   });
 
-  const role: string = 'personal';
-
   function onSubmit({ email, pass }: { email: string; pass: string }) {
     const userData: EmailAuthInputObj = {
       email,
@@ -50,13 +43,6 @@ function LoginForm() {
 
   return (
     <>
-      {isLoading ? (
-        <div className="absolute w-full h-full bg-[#00000037] z-10 flex justify-center items-center">
-          <PropagateLoader />
-        </div>
-      ) : (
-        ''
-      )}
       <form
         onSubmit={handleSubmit}
         className="container max-w-md lg:rounded-lg px-4 py-8 flex flex-col gap-2 justify-evenly text-lg bg-white lg:border lg:shadow-md sm:max-w-lg md:max-w-xl lg:max-w-3xl lg:py-8 xl:py-10 lg:gap-8"
@@ -70,7 +56,7 @@ function LoginForm() {
         </div>
         <div className="flex flex-col flex-shrink-0 flex-1 gap-2">
           <h3 className="mx-auto text-2xl font-medium font-Phenomena sm:text-3xl">
-            {role === UserRole.admin ? 'Admin' : 'Personal'} Login
+            Login
           </h3>
           <div className="flex flex-col gap-2 flex-shrink-0">
             <label
@@ -135,7 +121,7 @@ function LoginForm() {
           <p className="w-full h-2 text-sm sm:text-sm md:text-base">
             Don't have an account yet?{' '}
             <Link
-              to="/personal/register"
+              to="/register"
               className="underline underline-offset-1 text-blue-500"
             >
               Register with email
@@ -143,7 +129,7 @@ function LoginForm() {
           </p>
           <div className="flex flex-col items-center gap-5 mt-6">
             <button
-              className={`${isSubmitting ? 'bg-red-400' : 'bg-red-600'} text-white px-10 py-1 leading-8 rounded-md cursor-pointer hover:scale-[1.01] active:scale-[.99] shadow-sm lg:text-xl lg:py-2`}
+              className={`${isSubmitting ? 'bg-red-400' : 'bg-gradient-to-r from-orange-500 to-red-600'} text-white px-10 py-1 leading-8 rounded-md cursor-pointer hover:scale-[1.01] active:scale-[.99] shadow-sm lg:text-xl lg:py-2`}
               type="submit"
             >
               Login

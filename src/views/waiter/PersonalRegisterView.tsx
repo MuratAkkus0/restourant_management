@@ -1,10 +1,11 @@
-import RegisterForm from '../../components/RegisterForm';
+import FormPagesesContainer from '../../components/FormPagesesContainer';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
 function PersonalRegisterView() {
   return (
-    <div>
+    <FormPagesesContainer>
       <RegisterForm />
-    </div>
+    </FormPagesesContainer>
   );
 }
 

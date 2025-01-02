@@ -3,6 +3,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase/useFirebase';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import AccessKeyCard from './AccessKeyCard';
 
 function GenerateAccessKey() {
   const [accessKey, setAccessKey] = useState('');
@@ -33,21 +34,16 @@ function GenerateAccessKey() {
     }
   }
   return (
-    <div className="w-full h-full">
-      <input
-        value={accessKey}
-        onChange={(e) => setAccessKey(e.target.value)}
-        className="border outline-none"
-        type="text"
-        placeholder="Access Token..."
+    <>
+      <AccessKeyCard
+        inputVal={accessKey}
+        isInputReadOnly={true}
+        btnOnClick={generateAccessKey}
+        btnText="Generate Access Key"
+        cardTitle="Generate New Access Key"
+        descText="Click on the Generate button below for create new access key."
       />
-      <button
-        onClick={generateAccessKey}
-        className="w-36 h-8 border-none rounded-lg shadow-sm cursor-pointer bg-gray-300"
-      >
-        Generate Access Key
-      </button>
-    </div>
+    </>
   );
 }
 

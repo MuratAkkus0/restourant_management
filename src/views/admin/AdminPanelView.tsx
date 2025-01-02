@@ -1,7 +1,12 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import DashMenu from '../../components/adminPanel/DashMenu';
+import { useEffect } from 'react';
 
-function AdminPanel() {
+function AdminPanelView() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate('dashboard');
+  }, []);
   return (
     <div className="w-full h-full flex">
       <DashMenu />
@@ -10,4 +15,4 @@ function AdminPanel() {
   );
 }
 
-export default AdminPanel;
+export default AdminPanelView;

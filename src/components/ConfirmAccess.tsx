@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { setAccess } from '../store/slices/registerAccess';
 import Logo from './Logo';
 import { FontSizes, LogoSizes } from '../types/models/LogoModels';
+import AccessKeyCard from './AccessKeyCard';
 function ConfirmAccess() {
   const [inputVal, setInputVal] = useState('');
   const dispatch = useDispatch();
@@ -68,36 +69,17 @@ function ConfirmAccess() {
   };
 
   return (
-    <div className="max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl container py-10 px-6 border flex flex-col items-center justify-center lg:rounded-lg shadow-sm gap-5 p-2 bg-white">
-      <div className="w-full flex flex-col items-center gap-4">
-        <Logo
-          FontSize={FontSizes.semiRegular}
-          LogoSize={LogoSizes.semiRegular}
-        />
-        <h2 className="border-b font-medium text-xl sm:text-2xl xl:text-3xl">
-          Confirm Your Access
-        </h2>
-      </div>
-      <div className="w-full flex flex-col items-center gap-5 md:gap-4">
-        <p className="text-md text-black leading-5 lg:leading-normal">
-          <span className="text-red-600 font-medium">*</span> Please enter the
-          access key given to you by the admin in the field below.
-        </p>
-        <input
-          value={inputVal}
-          onChange={(e) => setInputVal(e.target.value)}
-          placeholder="Your access key here..."
-          type="text"
-          className="w-full h-8 border-b outline-none focus:border-b-black focus:border-gray-300 p-2 text-md sm:text-base lg:text-xl placeholder:text-md"
-        />
-        <button
-          onClick={verifyAccessKey}
-          className="px-10 py-1 rounded-lg bg-red-600 text-white text-base lg:text-xl hover:scale-[1.02] active:scale-[.98]"
-        >
-          Get Access
-        </button>
-      </div>
-    </div>
+    <>
+      <AccessKeyCard
+        cardTitle="Confirm Your Access Key"
+        descText="Please enter the access key given to you by the admin in the field below."
+        btnText="Get Access"
+        btnOnClick={verifyAccessKey}
+        inputVal={inputVal}
+        setInputVal={setInputVal}
+        placeholder="Your access key here..."
+      />
+    </>
   );
 }
 

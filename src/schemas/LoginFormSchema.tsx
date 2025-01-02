@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 const reqMes = 'This field is required!';
-const passwordRules: RegExp =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?.,&])[A-Za-z\d@$!%*?.,&]{8,}$/;
+const passwordRules: RegExp = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?.,&-_]{8,}$/;
 export const LoginFormSchema = yup.object().shape({
   email: yup.string().email().required(reqMes),
   pass: yup
@@ -10,7 +9,7 @@ export const LoginFormSchema = yup.object().shape({
     .max(18, 'Password have to be max. 18 character.')
     .matches(
       passwordRules,
-      'Password must have min 1 upper case letter, 1 lower case letter, 1 numeric digit and 1 special character (!@$!%*?.,&) '
+      'Password must have min 1 lower case letter and 1 numeric digit !'
     )
     .required(reqMes),
 });
