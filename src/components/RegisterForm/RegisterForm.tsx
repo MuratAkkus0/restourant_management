@@ -32,11 +32,11 @@ const RegisterForm = () => {
       postalCode: '',
       city: '',
     },
-    validationSchema: null,
+    validationSchema: RegisterFormSchema,
     onSubmit: onSubmit,
   });
 
-  function onSubmit(data) {
+  function onSubmit(data: any) {
     // submitted
     data.country = countryVal;
     console.log(data);
@@ -246,8 +246,6 @@ const RegisterForm = () => {
               setCountryVal={setCountryVal}
               handleChange={handleChange}
               handleBlur={handleBlur}
-              countryVal={values.country}
-              streetVal={values.street}
               houseNoVal={values.houseNo}
               stateVal={values.state}
               postalCodeVal={values.postalCode}

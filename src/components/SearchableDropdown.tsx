@@ -43,7 +43,7 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
     }
   }, [query, countryList]);
 
-  const handleSelectCountry = (country) => {
+  const handleSelectCountry = (country: { name: string; code: string }) => {
     setSelectedCountry(country.name);
     setQuery('');
     setDropdownOpen(false);
