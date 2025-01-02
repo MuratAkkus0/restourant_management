@@ -12,8 +12,6 @@ import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setAccess } from '../store/slices/registerAccess';
-import Logo from './Logo';
-import { FontSizes, LogoSizes } from '../types/models/LogoModels';
 import AccessKeyCard from './AccessKeyCard';
 function ConfirmAccess() {
   const [inputVal, setInputVal] = useState('');
