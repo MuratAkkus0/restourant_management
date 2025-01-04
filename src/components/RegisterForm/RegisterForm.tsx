@@ -52,7 +52,7 @@ const RegisterForm = () => {
     if (step >= totalFormStep.current) return;
     parentDivRef.current?.classList.add(
       'transition-transform',
-      '-translate-x-full',
+      '-translate-x-[120%]',
       'duration-300'
     );
     parentDivRef.current?.scrollIntoView({
@@ -67,7 +67,7 @@ const RegisterForm = () => {
     if (step < 1) return;
     parentDivRef.current?.classList.add(
       'transition-transform',
-      'translate-x-full',
+      'translate-x-[120%]',
       'duration-300'
     );
     parentDivRef.current?.scrollIntoView({
