@@ -54,7 +54,7 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
     <div className="relative w-full mx-auto bg-white" ref={dropdownRef}>
       {/* Dropdown Trigger */}
       <div
-        className={`p-3 border ${isDropdownOpen ? 'border-black' : 'border-gray-300'} rounded-lg cursor-pointer flex items-center justify-between`}
+        className={`p-2 sm:p-3 border ${isDropdownOpen ? 'border-black' : 'border-gray-300'} rounded-lg cursor-pointer flex items-center justify-between`}
         onClick={() => setDropdownOpen(!isDropdownOpen)}
       >
         <span className="text-gray-700">
@@ -91,7 +91,7 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
                 <li
                   key={country.code}
                   onClick={() => handleSelectCountry(country)}
-                  className="p-3 hover:bg-gray-200 cursor-pointer"
+                  className="p-2 sm:p-3 hover:bg-gray-200 cursor-pointer border-b border-gray-100 shadow-sm"
                 >
                   {country.name}
                 </li>

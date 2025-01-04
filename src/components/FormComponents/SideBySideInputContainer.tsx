@@ -1,0 +1,29 @@
+import {
+  SideBySideInputContainerProps,
+  SideBySideInputContainerSlotWidths,
+} from '@/types/models/ComponentPromptModels';
+
+function SideBySideInputContainer({
+  right,
+  left,
+  slotType = SideBySideInputContainerSlotWidths.equalSlots,
+}: SideBySideInputContainerProps) {
+  return (
+    <>
+      <div className="max-md:grid md:flex md:flex-col md:justify-center grid-rows-1 grid-cols-12 gap-2 md:grid-rows-2 md:grid-cols-1 md:gap-2">
+        <div
+          className={`max-md:col-start-1 max-md:col-end-${slotType + 1} md:col-span-12 flex flex-col gap-2 flex-shrink-0`}
+        >
+          {right}
+        </div>
+        <div
+          className={`col-start-${slotType + 1} col-end-13 md:col-span-12 flex flex-col gap-2 flex-shrink-0`}
+        >
+          {left}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default SideBySideInputContainer;

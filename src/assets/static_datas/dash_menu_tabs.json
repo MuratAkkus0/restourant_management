@@ -1,0 +1,249 @@
+[
+  {
+    "label": "Overview",
+    "route": "overview",
+    "icon": "MdDashboard",
+    "subMenu": [
+      {
+        "label": "Today's Orders",
+        "route": "todays-orders",
+        "icon": "MdToday"
+      },
+      {
+        "label": "Monthly Reports",
+        "route": "monthly-reports",
+        "icon": "MdBarChart"
+      },
+      { "label": "Key Metrics", "route": "key-metrics", "icon": "MdInsights" }
+    ]
+  },
+  {
+    "label": "Orders",
+    "route": "orders",
+    "icon": "MdShoppingCart",
+    "subMenu": [
+      { "label": "All Orders", "route": "all-orders", "icon": "MdListAlt" },
+      {
+        "label": "Pending Orders",
+        "route": "pending-orders",
+        "icon": "MdPending"
+      },
+      {
+        "label": "Completed Orders",
+        "route": "completed-orders",
+        "icon": "MdDoneAll"
+      },
+      {
+        "label": "Order Details",
+        "route": "order-details",
+        "icon": "MdDescription"
+      }
+    ]
+  },
+  {
+    "label": "Staff Management",
+    "route": "staff-management",
+    "icon": "MdPeople",
+    "subMenu": [
+      { "label": "Staff List", "route": "staff-list", "icon": "MdList" },
+      {
+        "label": "Add New Staff",
+        "route": "add-new-staff",
+        "icon": "MdPersonAdd"
+      },
+      {
+        "label": "Assign Tasks",
+        "route": "assign-tasks",
+        "icon": "MdAssignment"
+      },
+      {
+        "label": "Performance Metrics",
+        "route": "performance-metrics",
+        "icon": "MdTrendingUp"
+      }
+    ]
+  },
+  {
+    "label": "Product Management",
+    "route": "product-management",
+    "icon": "MdInventory",
+    "subMenu": [
+      {
+        "label": "Product List",
+        "route": "product-list",
+        "icon": "MdViewList"
+      },
+      {
+        "label": "Add/Update Products",
+        "route": "add-update",
+        "icon": "MdAddBox"
+      },
+      {
+        "label": "Product Inventory",
+        "route": "product-inventory",
+        "icon": "MdInventory2"
+      },
+      {
+        "label": "Top-Selling Products",
+        "route": "top-selling",
+        "icon": "MdStar"
+      }
+    ]
+  },
+  {
+    "label": "Financials",
+    "route": "financials",
+    "icon": "MdAttachMoney",
+    "subMenu": [
+      {
+        "label": "Cash Register",
+        "route": "cash-register",
+        "icon": "MdPointOfSale"
+      },
+      {
+        "label": "Invoice Management",
+        "route": "invoice-management",
+        "icon": "MdReceipt"
+      },
+      {
+        "label": "Payment Methods",
+        "route": "payment-methods",
+        "icon": "MdPayment"
+      },
+      {
+        "label": "Revenue and Profit Analysis",
+        "route": "revenue-profit-analysis",
+        "icon": "MdShowChart"
+      }
+    ]
+  },
+  {
+    "label": "Reports",
+    "route": "reports",
+    "icon": "MdAssessment",
+    "subMenu": [
+      {
+        "label": "Sales Reports",
+        "route": "sales-reports",
+        "icon": "MdPieChart"
+      },
+      {
+        "label": "Staff Performance",
+        "route": "staff-performance",
+        "icon": "MdBarChart"
+      },
+      {
+        "label": "Product Sales Analytics",
+        "route": "product-sales-analytics",
+        "icon": "MdInsights"
+      },
+      {
+        "label": "Custom Report Generation",
+        "route": "custom-report-generation",
+        "icon": "MdBuild"
+      }
+    ]
+  },
+  {
+    "label": "Customer Management",
+    "route": "customer-management",
+    "icon": "MdGroups",
+    "subMenu": [
+      {
+        "label": "Customer List",
+        "route": "customer-list",
+        "icon": "MdPeopleAlt"
+      },
+      {
+        "label": "Feedback & Reviews",
+        "route": "feedback-reviews",
+        "icon": "MdRateReview"
+      },
+      {
+        "label": "Customer Support Requests",
+        "route": "customer-support-requests",
+        "icon": "MdSupportAgent"
+      }
+    ]
+  },
+  {
+    "label": "Promotions",
+    "route": "promotions",
+    "icon": "MdLocalOffer",
+    "subMenu": [
+      {
+        "label": "Discounts and Offers",
+        "route": "discounts-offers",
+        "icon": "MdPriceChange"
+      },
+      {
+        "label": "Campaign Management",
+        "route": "campaign-management",
+        "icon": "MdCampaign"
+      }
+    ]
+  },
+  {
+    "label": "Table Management",
+    "route": "table-management",
+    "icon": "MdTableRestaurant",
+    "subMenu": [
+      {
+        "label": "Table Layout",
+        "route": "table-layout",
+        "icon": "MdViewComfy"
+      },
+      {
+        "label": "Reservations",
+        "route": "reservations",
+        "icon": "MdEventSeat"
+      },
+      {
+        "label": "Table Assignments",
+        "route": "table-assignments",
+        "icon": "MdFormatListBulleted"
+      }
+    ]
+  },
+  {
+    "label": "Settings",
+    "route": "settings",
+    "icon": "MdSettings",
+    "subMenu": [
+      {
+        "label": "Company Information",
+        "route": "company-information",
+        "icon": "MdInfo"
+      },
+      {
+        "label": "POS Integration",
+        "route": "pos-integration",
+        "icon": "MdDevicesOther"
+      },
+      {
+        "label": "Access Control & Permissions",
+        "route": "access-control-permissions",
+        "icon": "MdLock"
+      },
+      {
+        "label": "Notification Preferences",
+        "route": "notification-preferences",
+        "icon": "MdNotifications"
+      }
+    ]
+  },
+  {
+    "label": "Support",
+    "route": "support",
+    "icon": "MdHelp",
+    "subMenu": [
+      { "label": "Documentation", "route": "documentation", "icon": "MdBook" },
+      { "label": "FAQ", "route": "faq", "icon": "MdQuestionAnswer" },
+      {
+        "label": "Contact Support",
+        "route": "contact-support",
+        "icon": "MdSupport"
+      }
+    ]
+  }
+]

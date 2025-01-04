@@ -120,12 +120,12 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   };
 
   return (
-    <div className="relative w-full max-w-md mx-auto">
+    <div className="relative w-full max-w-md flex flex-col gap-3 mx-auto">
       {/* Select Country */}
-      <div className="mb-6">
+      <div className="">
         <label
           htmlFor="country"
-          className="block text-gray-700 font-medium mb-2"
+          className="block text-gray-700 font-normal sm:font-medium mb-2"
         >
           Select Country
         </label>
@@ -134,66 +134,68 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
           onCountrySelect={setSelectedCountry}
         />
       </div>
-
-      {/* Street Input */}
-      <div className="mb-6">
-        <label
-          htmlFor="street"
-          className="block text-gray-700 font-medium mb-2"
-        >
-          Street Address
-        </label>
-        <input
-          id="street"
-          type="text"
-          value={query}
-          onChange={handleStreetChange}
-          className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-black"
-          placeholder="Enter street name"
-        />
-
-        {/* Suggestions Dropdown */}
-        {suggestions.length > 0 && (
-          <ul
-            ref={suggestionListRef}
-            className="absolute left-0 right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto z-10"
+      <div className="flex gap-4">
+        {/* Street Input */}
+        <div className="flex-1">
+          <label
+            htmlFor="street"
+            className="block text-gray-700 font-normal sm:font-medium mb-2"
           >
-            {suggestions.map((suggestion: NominatimResponse, index) => (
-              <li
-                key={index}
-                onClick={() => handleSuggestionClick(suggestion)}
-                className="p-3 cursor-pointer hover:bg-gray-200"
-              >
-                {suggestion.display_name}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+            Street Address
+          </label>
+          <input
+            id="street"
+            type="text"
+            value={query}
+            onChange={handleStreetChange}
+            className="w-full py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
+            placeholder="Enter street name"
+          />
 
-      {/* No Input */}
-      <div className="mb-6">
-        <label
-          htmlFor="number"
-          className="block text-gray-700 font-medium mb-2"
-        >
-          House Number
-        </label>
-        <input
-          value={houseNoVal}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          id="houseNo"
-          ref={no}
-          type="text"
-          className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-black"
-          placeholder="Enter house number"
-        />
-      </div>
+          {/* Suggestions Dropdown */}
+          {suggestions.length > 0 && (
+            <ul
+              ref={suggestionListRef}
+              className="absolute left-0 right-0 mt-2 bg-white border-b border-gray-300  shadow-lg max-h-60 overflow-y-auto z-10"
+            >
+              {suggestions.map((suggestion: NominatimResponse, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleSuggestionClick(suggestion)}
+                  className="py-1 px-2 cursor-pointer hover:bg-gray-200"
+                >
+                  {suggestion.display_name}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
+        <div className="">
+          <label
+            htmlFor="number"
+            className="block text-gray-700 font-normal sm:font-medium mb-2"
+          >
+            House No.
+          </label>
+          <input
+            value={houseNoVal}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            id="houseNo"
+            ref={no}
+            type="text"
+            className="w-20 max-w-28 py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
+            placeholder="House no."
+          />
+        </div>
+      </div>
       {/* State Input */}
-      <div className="mb-6">
-        <label htmlFor="state" className="block text-gray-700 font-medium mb-2">
+      <div className="">
+        <label
+          htmlFor="state"
+          className="block text-gray-700 font-normal sm:font-medium mb-2"
+        >
           State
         </label>
         <input
@@ -203,16 +205,16 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
           id="state"
           ref={state}
           type="text"
-          className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-black"
+          className="w-full py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
           placeholder="Enter state or region"
         />
       </div>
 
       {/* Postal Code Input */}
-      <div className="mb-6">
+      <div className="">
         <label
           htmlFor="postalCode"
-          className="block text-gray-700 font-medium mb-2"
+          className="block text-gray-700 font-normal sm:font-medium mb-2"
         >
           Postal Code
         </label>
@@ -223,14 +225,17 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
           id="postalCode"
           ref={postalCode}
           type="text"
-          className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-black"
+          className="w-full py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
           placeholder="Enter postal code"
         />
       </div>
 
       {/* City Input */}
-      <div className="mb-6">
-        <label htmlFor="city" className="block text-gray-700 font-medium mb-2">
+      <div className="">
+        <label
+          htmlFor="city"
+          className="block text-gray-700 font-normal sm:font-medium mb-2"
+        >
           City
         </label>
         <input
@@ -240,7 +245,7 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
           id="city"
           ref={city}
           type="text"
-          className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-black"
+          className="w-full py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
           placeholder="Enter city name"
         />
       </div>

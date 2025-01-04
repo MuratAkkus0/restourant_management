@@ -12,7 +12,7 @@ function Logo(props: LogoProperties) {
   return (
     <div
       onClick={() => navigate('/')}
-      className={`w-fit h-fit border border-red-600 select-none  
+      className={`w-fit h-fit border border-red-600 select-none cursor-pointer 
          flex justify-center items-center bg-white rounded-md ${FontSize} text-accent`}
     >
       <IoRestaurantOutline className="text-red-600" size={LogoSize} />

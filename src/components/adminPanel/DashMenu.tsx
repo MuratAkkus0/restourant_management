@@ -1,13 +1,19 @@
+import * as Icons from 'react-icons/md';
+import { IoIosArrowUp } from 'react-icons/io';
 import { IoIosArrowBack } from 'react-icons/io';
 import { IoIosArrowForward } from 'react-icons/io';
-import { MdOutlineMonitor } from 'react-icons/md';
-import { BsFillPersonLinesFill } from 'react-icons/bs';
-import { BiSolidFoodMenu } from 'react-icons/bi';
-import { FaKey } from 'react-icons/fa6';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import menuTabs from '@/assets/static_datas/dash_menu_tabs.json';
+
 function DashMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
+  type MenuItem = {
+    label: string;
+    route: string;
+    icon: keyof typeof Icons;
+    subMenu?: MenuItem[];
+  };
 
   return (
     <>
@@ -58,66 +64,68 @@ function DashMenu() {
               Dash menu
             </p>
             <menu>
-              <li className=" text-sm sm:text-base cursor-pointer hover:bg-slate-800 text-gray-400 ">
-                <NavLink
-                  className={({ isActive }) =>
-                    `p-2 flex items-center justify-start gap-3 text-sm sm:text-base cursor-pointer hover:bg-slate-800  px-4 ${
-                      isActive ? 'bg-slate-800 text-white' : 'text-gray-400'
-                    }`
-                  }
-                  to="dashboard"
-                >
-                  <MdOutlineMonitor size="1.1rem" />
-                  <span className="font-Poppins font-light tracking-wider">
-                    Dashboard
-                  </span>
-                </NavLink>
-              </li>
-              <li className=" text-sm sm:text-base cursor-pointer hover:bg-slate-800 text-gray-400 ">
-                <NavLink
-                  className={({ isActive }) =>
-                    `p-2 flex items-center justify-start gap-3 text-sm sm:text-base cursor-pointer hover:bg-slate-800  px-4 ${
-                      isActive ? 'bg-slate-800 text-white' : 'text-gray-400'
-                    }`
-                  }
-                  to="personal-list"
-                >
-                  <BsFillPersonLinesFill size="1.1rem" />
-                  <span className="font-Poppins font-light tracking-wider">
-                    Personal List
-                  </span>
-                </NavLink>
-              </li>
-              <li className=" text-sm sm:text-base cursor-pointer hover:bg-slate-800 text-gray-400 ">
-                <NavLink
-                  className={({ isActive }) =>
-                    `p-2 flex items-center justify-start gap-3 text-sm sm:text-base cursor-pointer hover:bg-slate-800  px-4 ${
-                      isActive ? 'bg-slate-800 text-white' : 'text-gray-400'
-                    }`
-                  }
-                  to="menu"
-                >
-                  <BiSolidFoodMenu size="1.1rem" />
-                  <span className="font-Poppins font-light tracking-wider">
-                    Menu
-                  </span>
-                </NavLink>
-              </li>
-              <li className=" text-sm sm:text-base cursor-pointer hover:bg-slate-800 text-gray-400 ">
-                <NavLink
-                  className={({ isActive }) =>
-                    `p-2 flex items-center justify-start gap-3 text-sm sm:text-base cursor-pointer hover:bg-slate-800  px-4 ${
-                      isActive ? 'bg-slate-800 text-white' : 'text-gray-400'
-                    }`
-                  }
-                  to="access-keys"
-                >
-                  <FaKey size="1.1rem" />
-                  <span className="font-Poppins font-light tracking-wider">
-                    Access Keys
-                  </span>
-                </NavLink>
-              </li>
+              {(menuTabs as MenuItem[]).map((tab, index) => {
+                // const IconComponent = ;
+                return (
+                  <li
+                    key={index}
+                    className=" text-sm sm:text-base cursor-pointer hover:bg-slate-800 text-gray-400 "
+                  >
+                    <div className="flex gap-2 justify-between pr-4">
+                      <NavLink
+                        className={({ isActive }) =>
+                          `p-2 flex items-center justify-start gap-3 text-sm sm:text-base cursor-pointer hover:bg-slate-800  px-4 ${
+                            isActive
+                              ? 'bg-slate-800 text-white'
+                              : 'text-gray-400'
+                          }`
+                        }
+                        to={tab.route}
+                      >
+                        {Icons[tab.icon] as unknown as ReactNode}
+                        <span className="font-Poppins font-light tracking-wider">
+                          {tab.label}
+                        </span>
+                      </NavLink>
+                      {tab.subMenu && (
+                        <div>
+                          <IoIosArrowUp />
+                        </div>
+                      )}
+                    </div>
+                    {tab.subMenu &&
+                      tab.subMenu.map((item, key) => {
+                        const SubIconComponent = Icons[item.icon];
+                        return (
+                          <ul className="min-w-full pl-5" key={key}>
+                            <li
+                              key={key}
+                              className=" text-sm sm:text-base cursor-pointer hover:bg-slate-800 text-gray-400 "
+                            >
+                              <NavLink
+                                className={({ isActive }) =>
+                                  `p-2 flex items-center justify-start gap-3 text-sm sm:text-base cursor-pointer hover:bg-slate-800  px-4 ${
+                                    isActive
+                                      ? 'bg-slate-800 text-white'
+                                      : 'text-gray-400'
+                                  }`
+                                }
+                                to={item.route}
+                              >
+                                {SubIconComponent && (
+                                  <SubIconComponent size="1.1rem" />
+                                )}
+                                <span className="font-Poppins font-light tracking-wider">
+                                  {item.label}
+                                </span>
+                              </NavLink>
+                            </li>
+                          </ul>
+                        );
+                      })}
+                  </li>
+                );
+              })}
             </menu>
           </div>
         </div>

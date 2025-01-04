@@ -5,6 +5,8 @@ import { FontSizes, LogoSizes } from '../../types/models/LogoModels';
 import { useRef, useState } from 'react';
 import { GrFormView, GrFormViewHide } from 'react-icons/gr';
 import AddressAutocomplete from '../AddressAutocomplete';
+import FormInputUnderlined from '../FormComponents/FormInputUnderlined';
+import SideBySideInputContainer from '../FormComponents/SideBySideInputContainer';
 
 const RegisterForm = () => {
   const [step, setStep] = useState(1);
@@ -49,7 +51,7 @@ const RegisterForm = () => {
     );
     setTimeout(() => {
       setStep(2);
-    }, 290);
+    }, 280);
   };
   const handlePrev = () => {
     if (step < 1) return;
@@ -61,6 +63,38 @@ const RegisterForm = () => {
     setTimeout(() => {
       setStep(step - 1);
     }, 310);
+  };
+  const formFields = {
+    name: {
+      labelText: 'Name',
+      inputValue: values.name,
+      inputId: 'name',
+      inputPlaceHolder: 'Please enter your name...',
+    },
+    surname: {
+      labelText: 'Name',
+      inputValue: values.name,
+      inputId: 'name',
+      inputPlaceHolder: 'Please enter your name...',
+    },
+    email: {
+      labelText: 'Name',
+      inputValue: values.name,
+      inputId: 'name',
+      inputPlaceHolder: 'Please enter your name...',
+    },
+    pass: {
+      labelText: 'Name',
+      inputValue: values.name,
+      inputId: 'name',
+      inputPlaceHolder: 'Please enter your name...',
+    },
+    passConfirm: {
+      labelText: 'Name',
+      inputValue: values.name,
+      inputId: 'name',
+      inputPlaceHolder: 'Please enter your name...',
+    },
   };
   return (
     <>
@@ -81,104 +115,60 @@ const RegisterForm = () => {
         {step === 1 ? (
           <div
             ref={parentDivRef}
-            className="flex flex-col flex-shrink-0 flex-1 gap-2 md:gap-3 lg:gap-4"
+            className="flex flex-col flex-shrink-0 flex-[1] gap-2 md:gap-3 lg:gap-4 w-full max-w-lg mx-auto"
           >
-            <div className="flex flex-col gap-2 flex-shrink-0 md:flex-row md:gap-14">
-              <div className="flex-1 flex flex-col gap-2 flex-shrink-0">
-                <label
-                  className="flex flex-col gap-2 text-base md:text-lg font-normal sm:font-medium "
-                  htmlFor="email"
-                >
-                  Name :
-                </label>
-                <input
-                  value={values.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  id="name"
-                  name="name"
-                  type="text"
-                  className={`w-full border-b py-1 px-2 placeholder:text-base focus:outline-none transition-[border-color] ${errors.name && touched.name ? 'border-b-red-600' : 'focus:border-gray-500 '}`}
-                  placeholder="Please enter your name..."
+            <SideBySideInputContainer
+              left={
+                <FormInputUnderlined
+                  labelText={'Name'}
+                  inputValue={values.name}
+                  onInputChange={handleChange}
+                  onInputBlur={handleBlur}
+                  inputId={'name'}
+                  inputPlaceHolder={'Please enter your name...'}
+                  errors={errors}
+                  touched={touched}
                 />
-                {errors.name && touched.name ? (
-                  <p className="text-red-600 text-sm font-medium first-letter:uppercase">
-                    {errors.name}
-                  </p>
-                ) : (
-                  ''
-                )}
-              </div>
-              <div className="flex-1 flex flex-col gap-2 flex-shrink-0">
-                <label
-                  className="flex flex-col gap-2 text-base md:text-lg font-normal sm:font-medium "
-                  htmlFor="email"
-                >
-                  Surname :
-                </label>
-                <input
-                  value={values.surname}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  id="surname"
-                  name="surname"
-                  type="text"
-                  className={`w-full border-b py-1 px-2 placeholder:text-base focus:outline-none transition-[border-color] ${errors.surname && touched.surname ? 'border-b-red-600' : 'focus:border-gray-500 '}`}
-                  placeholder="Please enter your surname..."
+              }
+              right={
+                <FormInputUnderlined
+                  labelText={'Surname'}
+                  inputValue={values.surname}
+                  onInputChange={handleChange}
+                  onInputBlur={handleBlur}
+                  inputId={'surname'}
+                  inputPlaceHolder={'Please enter your surname...'}
+                  errors={errors}
+                  touched={touched}
                 />
-                {errors.surname && touched.surname ? (
-                  <p className="text-red-600 text-sm font-medium first-letter:uppercase">
-                    {errors.surname}
-                  </p>
-                ) : (
-                  ''
-                )}
-              </div>
-            </div>
+              }
+            />
+            <FormInputUnderlined
+              labelText={'Email'}
+              inputValue={values.email}
+              onInputChange={handleChange}
+              onInputBlur={handleBlur}
+              inputId={'email'}
+              inputPlaceHolder={'Please enter your email...'}
+              errors={errors}
+              touched={touched}
+            />
+            <FormInputUnderlined
+              labelText={'Password'}
+              inputValue={values.pass}
+              inputType="password"
+              onInputChange={handleChange}
+              onInputBlur={handleBlur}
+              inputId={'pass'}
+              inputPlaceHolder={'Please enter your password...'}
+              errors={errors}
+              touched={touched}
+              hasIcon={true}
+              Icon={<GrFormViewHide />}
+            />
             <div className="flex flex-col gap-2 flex-shrink-0">
-              <label
-                className="flex flex-col gap-2 text-base md:text-lg font-normal sm:font-medium "
-                htmlFor="email"
-              >
-                Email :
-              </label>
-              <input
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                id="email"
-                name="email"
-                type="email"
-                className={`w-full border-b py-1 px-2 placeholder:text-base focus:outline-none transition-[border-color] ${errors.email && touched.email ? 'border-b-red-600' : 'focus:border-gray-500 '}`}
-                placeholder="Please enter your email..."
-              />
-              {errors.email && touched.email ? (
-                <p className="text-red-600 text-sm font-medium first-letter:uppercase">
-                  {errors.email}
-                </p>
-              ) : (
-                ''
-              )}
-            </div>
-            <div className="flex flex-col gap-2 flex-shrink-0">
-              <label
-                className="flex flex-col gap-2 text-base md:text-lg font-normal sm:font-medium "
-                htmlFor="pass"
-              >
-                Password :
-              </label>
-
               <div className="flex items-center relative">
-                <input
-                  value={values.pass}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  id="pass"
-                  name="pass"
-                  type={showPass ? 'text' : 'password'}
-                  className={`w-full border-b py-1 px-2 placeholder:text-base focus:outline-none transition-[border-color] ${errors.pass && touched.pass ? 'border-b-red-600' : 'focus:border-gray-500 '}`}
-                  placeholder="Please enter your password..."
-                />
+                <input />
                 <div className="absolute right-2 text-2xl w-8 h-8 flex items-center justify-center rounded-full cursor-pointer hover:bg-gray-50 transition-colors duration-300 active:scale-95">
                   {!showPass ? (
                     <GrFormViewHide
@@ -261,7 +251,7 @@ const RegisterForm = () => {
           {step !== 1 ? (
             <button
               onClick={handlePrev}
-              className={`${isSubmitting ? 'bg-red-400' : 'bg-gradient-to-r from-orange-500 to-red-600'} text-white px-10 py-1 leading-8 rounded-md cursor-pointer hover:scale-[1.01] active:scale-[.99] shadow-sm lg:text-lg lg:py-2 font-Poppins font-light`}
+              className={`${isSubmitting ? 'bg-red-400' : 'bg-gradient-to-r from-orange-500 to-red-600'} text-white w-28 md:w-32 h-9 md:h-10 lg:w-40 lg:h-12 rounded-md cursor-pointer hover:scale-[1.01] active:scale-[.99] shadow-sm text-base md:text-lg lg:py-2 font-Poppins font-light`}
               type="button"
             >
               Prev Step
@@ -271,7 +261,7 @@ const RegisterForm = () => {
           )}
           <button
             onClick={handleNext}
-            className={`${isSubmitting ? 'bg-red-400' : 'bg-gradient-to-r from-orange-500 to-red-600'} text-white px-10 py-1 leading-8 rounded-md cursor-pointer hover:scale-[1.01] active:scale-[.99] shadow-sm lg:text-lg lg:py-2 font-Poppins font-light`}
+            className={`${isSubmitting ? 'bg-red-400' : 'bg-gradient-to-r from-orange-500 to-red-600'} text-white w-28 md:w-32 h-9 md:h-10 lg:w-40 lg:h-12 rounded-md cursor-pointer hover:scale-[1.01] active:scale-[.99] shadow-sm md:text-lg lg:py-2 font-Poppins font-light`}
             type={step == 2 ? 'submit' : 'button'}
           >
             Next
