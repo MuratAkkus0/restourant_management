@@ -137,6 +137,7 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
                   errors={errors}
                   touched={touched}
                 />
+                {/* Suggestions Dropdown */}
                 {suggestions.length > 0 ? (
                   <ul
                     ref={suggestionListRef}
@@ -171,24 +172,6 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
             }
             slotType={SideBySideInputContainerSlotWidths.smallRightSlot}
           />
-
-          {/* Suggestions Dropdown */}
-          {/* {suggestions.length > 0 && (
-            <ul
-              ref={suggestionListRef}
-              className="absolute left-0 right-0 mt-2 bg-white border-b border-gray-300  shadow-lg max-h-60 overflow-y-auto z-10"
-            >
-              {suggestions.map((suggestion: NominatimResponse, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleSuggestionClick(suggestion)}
-                  className="py-1 px-2 shadow-sm cursor-pointer hover:bg-gray-50"
-                >
-                  {suggestion.display_name}
-                </li>
-              ))}
-            </ul>
-          )} */}
         </div>
       </div>
       {/* State Input */}
