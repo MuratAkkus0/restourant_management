@@ -42,7 +42,7 @@ function FormInputUnderlined(props: FormInputUnderlinedProps) {
           id={inputId}
           name={inputId}
           type={hasIcon ? (!changeIconByClick ? 'text' : inputType) : inputType}
-          className={`w-full border-b py-1 px-2 placeholder:text-base focus:outline-none transition-[border-color] ${errors && errorMessage && isTouched ? 'border-b-red-600' : 'focus:border-gray-500 '}`}
+          className={`w-full border-b py-1 px-2 focus:outline-none transition-[border-color] ${errors && errorMessage && isTouched ? 'border-b-red-600' : 'focus:border-gray-500 '}`}
           placeholder={inputPlaceHolder}
         />
         {hasIcon && (
