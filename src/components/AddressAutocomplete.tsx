@@ -1,34 +1,21 @@
 import axios from 'axios';
-import {
-  ChangeEvent,
-  ChangeEventHandler,
-  FocusEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NominatimResponse } from '../types/models/NominatimApiModels';
 import countryList from '../assets/static_datas/countries.json';
 import SearchableDropdown from './SearchableDropdown';
+import { FormikProps } from 'formik';
+import FormInputUnderlined from './FormComponents/FormInputUnderlined';
+import SideBySideInputContainer from './FormComponents/SideBySideInputContainer';
+import { SideBySideInputContainerSlotWidths } from '@/types/models/ComponentPromptModels';
 
 interface AddressAutocompleteProps {
   setCountryVal: CallableFunction;
-  handleChange: ChangeEventHandler<HTMLInputElement>;
-  handleBlur: FocusEventHandler<HTMLInputElement>;
-  houseNoVal: string;
-  stateVal: string;
-  postalCodeVal: string;
-  cityVal: string;
+  formik: FormikProps<any>;
 }
 
 const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   setCountryVal,
-  handleChange,
-  handleBlur,
-  houseNoVal,
-  stateVal,
-  postalCodeVal,
-  cityVal,
+  formik,
 }) => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState<NominatimResponse[]>([]);
@@ -37,10 +24,8 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   const [isSelecting, setIsSelecting] = useState(false);
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
   const suggestionListRef = useRef<HTMLUListElement>(null);
-  const postalCode = useRef<HTMLInputElement>(null);
-  const city = useRef<HTMLInputElement>(null);
-  const state = useRef<HTMLInputElement>(null);
-  const no = useRef<HTMLInputElement>(null);
+  const { values, handleChange, handleBlur, setFieldValue, errors, touched } =
+    formik;
 
   const handleOutsideClick = (e: MouseEvent) => {
     console.log('first');
@@ -96,33 +81,32 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   }, [selectedCountry]);
 
   const handleSuggestionClick = (suggestion: NominatimResponse) => {
-    setIsSelecting(true);
-    setQuery(suggestion.name);
+    console.log(suggestion);
     const address = suggestion.address;
-    if (city.current && postalCode.current && state.current) {
-      state.current.value = address.state || address.city || '';
-      city.current.value =
-        address.city ||
+
+    setFieldValue('street', suggestion.name);
+    setFieldValue('state', address.state || address.city || '');
+    setFieldValue('postalCode', address.postcode ?? '');
+    setFieldValue(
+      'city',
+      address.city ||
         address.city_district ||
         address.borough ||
         address.province ||
-        '';
-      postalCode.current.value = address.postcode ?? '';
-    }
+        ''
+    );
+
+    setIsSelecting(true);
+    setQuery(suggestion.name);
+
     setTimeout(() => setIsSelecting(false), 400);
     setSuggestions([]);
-  };
-
-  const handleStreetChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handleChange(e);
-    setQuery(e.target.value);
-    // setStreetVal(e.target.value)
   };
 
   return (
     <div className="relative w-full max-w-md flex flex-col gap-3 mx-auto">
       {/* Select Country */}
-      <div className="">
+      <div>
         <label
           htmlFor="country"
           className="block text-gray-700 font-normal sm:font-medium mb-2"
@@ -137,23 +121,59 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
       <div className="flex gap-4">
         {/* Street Input */}
         <div className="flex-1">
-          <label
-            htmlFor="street"
-            className="block text-gray-700 font-normal sm:font-medium mb-2"
-          >
-            Street Address
-          </label>
-          <input
-            id="street"
-            type="text"
-            value={query}
-            onChange={handleStreetChange}
-            className="w-full py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
-            placeholder="Enter street name"
+          <SideBySideInputContainer
+            left={
+              <>
+                <FormInputUnderlined
+                  labelText="Street Address"
+                  inputValue={values.street}
+                  onInputChange={(e) => {
+                    handleChange(e);
+                    setQuery(e.target.value);
+                  }}
+                  onInputBlur={handleBlur}
+                  inputId="street"
+                  inputPlaceHolder="Enter street name"
+                  errors={errors}
+                  touched={touched}
+                />
+                {suggestions.length > 0 ? (
+                  <ul
+                    ref={suggestionListRef}
+                    className="absolute top-full left-0 right-0 mt-2 bg-white border-b border-gray-300  shadow-lg max-h-60 overflow-y-auto z-10"
+                  >
+                    {suggestions.map((suggestion: NominatimResponse, index) => (
+                      <li
+                        key={index}
+                        onClick={() => handleSuggestionClick(suggestion)}
+                        className="py-1 px-2 shadow-sm cursor-pointer hover:bg-gray-50"
+                      >
+                        {suggestion.display_name}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div></div>
+                )}
+              </>
+            }
+            right={
+              <FormInputUnderlined
+                labelText="House No."
+                inputValue={values.houseNo}
+                onInputChange={handleChange}
+                onInputBlur={handleBlur}
+                inputId="houseNo"
+                inputPlaceHolder="House no."
+                errors={errors}
+                touched={touched}
+              />
+            }
+            slotType={SideBySideInputContainerSlotWidths.smallRightSlot}
           />
 
           {/* Suggestions Dropdown */}
-          {suggestions.length > 0 && (
+          {/* {suggestions.length > 0 && (
             <ul
               ref={suggestionListRef}
               className="absolute left-0 right-0 mt-2 bg-white border-b border-gray-300  shadow-lg max-h-60 overflow-y-auto z-10"
@@ -162,32 +182,13 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
                 <li
                   key={index}
                   onClick={() => handleSuggestionClick(suggestion)}
-                  className="py-1 px-2 cursor-pointer hover:bg-gray-200"
+                  className="py-1 px-2 shadow-sm cursor-pointer hover:bg-gray-50"
                 >
                   {suggestion.display_name}
                 </li>
               ))}
             </ul>
-          )}
-        </div>
-
-        <div className="">
-          <label
-            htmlFor="number"
-            className="block text-gray-700 font-normal sm:font-medium mb-2"
-          >
-            House No.
-          </label>
-          <input
-            value={houseNoVal}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            id="houseNo"
-            ref={no}
-            type="text"
-            className="w-20 max-w-28 py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
-            placeholder="House no."
-          />
+          )} */}
         </div>
       </div>
       {/* State Input */}
@@ -199,11 +200,10 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
           State
         </label>
         <input
-          value={stateVal}
+          value={values.state}
           onChange={handleChange}
           onBlur={handleBlur}
           id="state"
-          ref={state}
           type="text"
           className="w-full py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
           placeholder="Enter state or region"
@@ -219,11 +219,10 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
           Postal Code
         </label>
         <input
-          value={postalCodeVal}
+          value={values.postalCode}
           onChange={handleChange}
           onBlur={handleBlur}
           id="postalCode"
-          ref={postalCode}
           type="text"
           className="w-full py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
           placeholder="Enter postal code"
@@ -239,11 +238,10 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
           City
         </label>
         <input
-          value={cityVal}
+          value={values.city}
           onChange={handleChange}
           onBlur={handleBlur}
           id="city"
-          ref={city}
           type="text"
           className="w-full py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
           placeholder="Enter city name"
