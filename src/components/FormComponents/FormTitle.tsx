@@ -1,5 +1,4 @@
 import { FormTitleProps } from '@/types/models/ComponentPromptModels';
-import React from 'react';
 
 function FormTitle({ titleText }: FormTitleProps) {
   return (
