@@ -9,7 +9,7 @@ const FormPagesesContainer: FC<{ children: ReactNode }> = ({ children }) => {
     <>
       <div className=" w-full h-full flex justify-center bg-gray-50 tracking-wider">
         <div className="h-full flex-1 flex flex-col items-center justify-between lg:px-2 lg:gap-4 lg:py-10 overflow-y-auto ">
-          <div className="max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl container lg:border bg-white p-2">
+          <div className="max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl border-b border-gray-200 container bg-white p-2">
             <Link
               to="/"
               className="inline-flex text-base md:text-lg font-medium gap-1 items-center"
@@ -19,11 +19,11 @@ const FormPagesesContainer: FC<{ children: ReactNode }> = ({ children }) => {
             </Link>
           </div>
 
-          <div className="h-full w-full overflow-y-auto flex justify-center items-center">
+          <div className="h-full w-full overflow-hidden flex justify-center items-center">
             {children}
           </div>
 
-          <div className="flex justify-between px-4 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl container lg:border bg-white p-2 text-base md:text-lg">
+          <div className="flex justify-between px-4 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl border-t border-gray-200 container bg-white p-2 text-base md:text-lg">
             <span className="font-medium">
               ©{new Date().getFullYear()} Manegio
             </span>

@@ -1,14 +1,15 @@
 import * as yup from 'yup';
 const reqMes = 'This field is required!';
-const passwordRules: RegExp = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?.,&-_]{8,}$/;
+const passwordRules = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?.,&-_]{8,}$/;
+const nameRules = /^[A-Za-z]+$/;
 export const RegisterFormSchema = yup.object().shape({
   name: yup
     .string()
-    .matches(/^[A-Za-z]/, 'Name can have only characters !')
+    .matches(nameRules, 'Name can have only characters !')
     .required(reqMes),
   surname: yup
     .string()
-    .matches(/^[A-Za-z]/, 'Name can have only characters !')
+    .matches(nameRules, 'Name can have only characters !')
     .required(reqMes),
   email: yup.string().email().required(reqMes),
   pass: yup
