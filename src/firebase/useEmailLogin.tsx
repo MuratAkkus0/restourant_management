@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'sonner';
-import { auth } from './useFirebase';
+import { auth } from './FirebaseConfig';
 import { FirebaseError } from 'firebase/app';
 
 function useEmailLogin(email: string, pass: string) {

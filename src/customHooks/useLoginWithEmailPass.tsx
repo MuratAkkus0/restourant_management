@@ -1,4 +1,4 @@
-import { auth, db } from '@/firebase/useFirebase';
+import { auth, db } from '@/firebase/FirebaseConfig';
 import { setIsLoading } from '@/store/slices/appConfigSlice';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';

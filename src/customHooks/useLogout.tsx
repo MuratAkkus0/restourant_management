@@ -1,4 +1,4 @@
-import { auth } from '@/firebase/useFirebase';
+import { auth } from '@/firebase/FirebaseConfig';
 import { toast } from 'sonner';
 
 export const useLogout = () => {

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebase/useFirebase';
+import { db } from '../firebase/FirebaseConfig';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import AccessKeyCard from './AccessKeyCard';

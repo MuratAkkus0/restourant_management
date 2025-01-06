@@ -6,7 +6,7 @@ import {
   updateDoc,
   doc,
 } from 'firebase/firestore';
-import { db } from '../firebase/useFirebase';
+import { db } from '../firebase/FirebaseConfig';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';

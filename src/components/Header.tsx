@@ -5,7 +5,7 @@ import { IoMenu } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { setIsMenuOpen } from '../store/slices/appConfigSlice';
-import { useLogout } from '@/customHooks/useGoogleAuth';
+import { useLogout } from '@/customHooks/useLogout';
 function Header() {
   const dispatch = useDispatch();
   const isMenuOpen = useSelector(

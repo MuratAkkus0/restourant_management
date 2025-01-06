@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import LoginView from '../../views/LoginView';
 import HomeView from '../../views/HomeView';
-import PersonalRegisterView from '../../views/waiter/PersonalRegisterView';
 import AdminDashboardView from '../../views/admin/AdminDashboardView';
 import ProtectedRegisterAccess from './ProtectedRegisterAccess';
 import AdminPanelView from '../../views/admin/AdminPanelView';
@@ -12,6 +11,7 @@ import RootView from '../../views/RootView';
 import ConfirmAccessView from '../../views/ConfirmAccessView';
 import NotFoundView from '../../views/NotFoundView';
 import ProtectedAdminAccess from './ProtectedAdminAccess';
+import AdminRegisterView from '@/views/admin/AdminRegisterView';
 
 function Router() {
   return (
@@ -22,7 +22,7 @@ function Router() {
         </Route>
         <Route path="/about-us" element={<ConfirmAccessView />} />
 
-        <Route path="/register" element={<PersonalRegisterView />} />
+        <Route path="/register" element={<AdminRegisterView />} />
         <Route path="/confirm-access" element={<ConfirmAccessView />} />
         <Route path="/login" element={<LoginView />} />
 

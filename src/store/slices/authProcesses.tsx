@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { auth } from '../../firebase/useFirebase';
+import { auth } from '../../firebase/FirebaseConfig';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
