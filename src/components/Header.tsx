@@ -4,12 +4,14 @@ import { FontSizes, LogoSizes } from '../types/models/LogoModels';
 import { IoMenu } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-import { setIsMenuOpen } from '../store/slices/appConfig';
+import { setIsMenuOpen } from '../store/slices/appConfigSlice';
+import { useLogout } from '@/customHooks/useGoogleAuth';
 function Header() {
   const dispatch = useDispatch();
   const isMenuOpen = useSelector(
-    (store: RootState) => store.appConfig.isMenuOpen
+    (store: RootState) => store.appConfigSlice.isMenuOpen
   );
+  const logout = useLogout();
 
   return (
     <header className="w-full min-h-20 h-fit flex flex-wrap flex-shrink-0 items-center justify-between bg-primary relative border-b bg-white lg:px-16">
@@ -68,6 +70,12 @@ function Header() {
           >
             About Us
           </NavLink>
+        </li>
+        <li
+          onClick={logout}
+          className={`w-full lg:min-w-24 h-full lg:h-fit flex items-center lg:justify-center p-2 lg:py-0 border-b rounded border-gray-200 hover:cursor-pointer hover:tracking-wider transition-all text-lg border-b-red-600`}
+        >
+          Logout
         </li>
       </menu>
     </header>

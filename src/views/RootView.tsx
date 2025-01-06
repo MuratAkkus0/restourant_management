@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsMenuOpen } from '../store/slices/appConfig';
+import { setIsMenuOpen } from '../store/slices/appConfigSlice';
 import { RootState } from '../store/store';
 
 function RootView() {
   const dispatch = useDispatch();
   const isMenuOpen = useSelector(
-    (store: RootState) => store.appConfig.isMenuOpen
+    (store: RootState) => store.appConfigSlice.isMenuOpen
   );
   const checkMenuStatus = () => {
     if (isMenuOpen) {

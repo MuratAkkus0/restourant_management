@@ -1,19 +1,18 @@
-import { EmailAuthInputObj } from '../types/models/AuthModels';
 import Logo from './Logo';
-import { AppDispatch } from '../store/store';
-import { useDispatch } from 'react-redux';
-import { emailLogin } from '../store/slices/authProcesses';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { GrFormView, GrFormViewHide } from 'react-icons/gr';
 import { LoginFormSchema } from '../schemas/LoginFormSchema';
 import { FontSizes, LogoSizes } from '../types/models/LogoModels';
+import { useLoginWithEmailPass } from '@/customHooks/useGoogleAuth';
+import { toast } from 'sonner';
+import { FirebaseError } from 'firebase/app';
+import { ErrorFactory } from '@firebase/util';
 
 function LoginForm() {
   const [showPass, setShowPass] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
+  const loginWithEmailPass = useLoginWithEmailPass();
 
   const {
     values,
@@ -23,22 +22,25 @@ function LoginForm() {
     touched,
     errors,
     isSubmitting,
+    setSubmitting,
   } = useFormik({
     initialValues: {
       email: '',
       pass: '',
     },
-    validationSchema: LoginFormSchema,
+    // validationSchema: LoginFormSchema,
     onSubmit: onSubmit,
   });
 
   function onSubmit({ email, pass }: { email: string; pass: string }) {
-    const userData: EmailAuthInputObj = {
-      email,
-      pass,
-      onSuccess: () => navigate('/'),
-    };
-    dispatch(emailLogin(userData));
+    try {
+      loginWithEmailPass(email, pass);
+    } catch (error: any) {
+      console.error(error);
+      toast.error(error.code);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (

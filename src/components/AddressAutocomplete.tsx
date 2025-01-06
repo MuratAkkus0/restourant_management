@@ -105,6 +105,16 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
 
   return (
     <div className="relative w-full max-w-md flex flex-col gap-3 mx-auto">
+      <FormInputUnderlined
+        labelText={'Business Name'}
+        inputValue={values.businessName}
+        onInputChange={handleChange}
+        onInputBlur={handleBlur}
+        inputId={'businessName'}
+        inputPlaceHolder={'Please enter your business name...'}
+        errors={errors}
+        touched={touched}
+      />
       {/* Select Country */}
       <div>
         <label
@@ -122,6 +132,7 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
         {/* Street Input */}
         <div className="flex-1">
           <SideBySideInputContainer
+            isByMdScreensInputsGrid={true}
             left={
               <>
                 <FormInputUnderlined

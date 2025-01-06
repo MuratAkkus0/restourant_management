@@ -3,9 +3,11 @@ import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
 function PersonalRegisterView() {
   return (
-    <FormPagesesContainer>
-      <RegisterForm />
-    </FormPagesesContainer>
+    <>
+      <FormPagesesContainer>
+        <RegisterForm />
+      </FormPagesesContainer>
+    </>
   );
 }
 

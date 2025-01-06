@@ -30,4 +30,5 @@ export const RegisterFormSchema = yup.object().shape({
   state: yup.string().required(reqMes),
   postalCode: yup.string().required(reqMes),
   city: yup.string().required(reqMes),
+  businessName: yup.string().required(reqMes),
 });

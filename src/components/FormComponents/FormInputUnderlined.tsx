@@ -1,5 +1,5 @@
 import { FormInputUnderlinedProps } from '@/types/models/ComponentPromptModels';
-import { useState } from 'react';
+import { MouseEventHandler, useRef, useState } from 'react';
 
 function FormInputUnderlined(props: FormInputUnderlinedProps) {
   const {
@@ -21,9 +21,15 @@ function FormInputUnderlined(props: FormInputUnderlinedProps) {
   const [changeIconByClick, setChangeIconByClick] = useState(showIcon);
   const errorMessage = errors[inputId];
   const isTouched = touched[inputId];
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleIconChange = () => {
-    setChangeIconByClick(!changeIconByClick);
+  const handleIconChange: MouseEventHandler<SVGAElement> = (e) => {
+    if (onClickIcon) {
+      onClickIcon(e);
+    } else {
+      setChangeIconByClick(!changeIconByClick);
+    }
+    inputRef.current?.focus();
   };
   return (
     <div className="flex flex-col gap-2 flex-shrink-0">
@@ -36,6 +42,7 @@ function FormInputUnderlined(props: FormInputUnderlinedProps) {
 
       <div className="flex items-center relative justify-between">
         <input
+          ref={inputRef}
           value={inputValue}
           onChange={onInputChange}
           onBlur={onInputBlur}
@@ -48,11 +55,9 @@ function FormInputUnderlined(props: FormInputUnderlinedProps) {
         {hasIcon && (
           <div className="absolute right-2 text-2xl w-8 h-8 flex items-center justify-center rounded-full cursor-pointer hover:bg-gray-50 transition-colors duration-300 active:scale-95">
             {changeIconByClick ? (
-              Icon && (
-                <Icon size={26} onClick={onClickIcon ?? handleIconChange} />
-              )
+              Icon && <Icon size={26} onClick={handleIconChange} />
             ) : SecondIcon ? (
-              <SecondIcon size={26} onClick={onClickIcon ?? handleIconChange} />
+              <SecondIcon size={26} onClick={handleIconChange} />
             ) : (
               Icon && <Icon size={26} />
             )}
