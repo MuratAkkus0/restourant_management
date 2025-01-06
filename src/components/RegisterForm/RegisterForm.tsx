@@ -10,12 +10,12 @@ import SideBySideInputContainer from '../FormComponents/SideBySideInputContainer
 import FormTitle from '../FormComponents/FormTitle';
 import { FormInputUnderlinedProps } from '@/types/models/ComponentPromptModels';
 import StepByStepFormContainer from '../FormComponents/StepByStepFormContainer';
-import { useRegisterWithEmailPass } from '@/customHooks/useGoogleAuth';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import Loading from '../Loading';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { useRegisterWithEmailPass } from '@/customHooks/useRegisterWithEmailPass';
 
 const RegisterForm = () => {
   const [countryVal, setCountryVal] = useState('');
@@ -34,7 +34,7 @@ const RegisterForm = () => {
       city: '',
       businessName: '',
     },
-    // validationSchema: RegisterFormSchema,
+    validationSchema: RegisterFormSchema,
     onSubmit: onSubmit,
   });
 

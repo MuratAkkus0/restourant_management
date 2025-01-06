@@ -5,10 +5,8 @@ import { useState } from 'react';
 import { GrFormView, GrFormViewHide } from 'react-icons/gr';
 import { LoginFormSchema } from '../schemas/LoginFormSchema';
 import { FontSizes, LogoSizes } from '../types/models/LogoModels';
-import { useLoginWithEmailPass } from '@/customHooks/useGoogleAuth';
 import { toast } from 'sonner';
-import { FirebaseError } from 'firebase/app';
-import { ErrorFactory } from '@firebase/util';
+import { useLoginWithEmailPass } from '@/customHooks/useLoginWithEmailPass';
 
 function LoginForm() {
   const [showPass, setShowPass] = useState(false);
@@ -28,7 +26,7 @@ function LoginForm() {
       email: '',
       pass: '',
     },
-    // validationSchema: LoginFormSchema,
+    validationSchema: LoginFormSchema,
     onSubmit: onSubmit,
   });
 
