@@ -27,7 +27,7 @@ export const useLoginWithEmailPass = () => {
       const userData = userCredential.user;
 
       // get user info from users collection
-      const userDocRef = doc(db, 'usersBusinesses', userData.uid);
+      const userDocRef = doc(db, 'usersCompanies', userData.uid);
       const userDocSnap = await getDoc(userDocRef);
 
       if (userDocSnap.exists()) {
