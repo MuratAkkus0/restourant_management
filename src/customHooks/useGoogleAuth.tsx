@@ -85,7 +85,7 @@ export const useRegisterWithEmailPass = () => {
       });
 
       // create admin record in users collection
-      const usersRef = doc(collection(db, 'usersBusinesses'), userData.uid);
+      const usersRef = doc(collection(db, 'usersCompanies'), userData.uid);
       await setDoc(usersRef, {
         businessId: companyRef.id,
         role: 'admin',
