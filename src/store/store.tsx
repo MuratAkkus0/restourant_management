@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authProcessReducer from './slices/authProcesses';
 import registerAccessReducer from './slices/registerAccess';
 import appConfigReducer from './slices/appConfigSlice';
-
+import onAuthChangeStateReducer from './slices/onAuthChangeState';
 const store = configureStore({
   reducer: {
     appConfigSlice: appConfigReducer,
-    authProcess: authProcessReducer,
+    onAuthChangeState: onAuthChangeStateReducer,
     registerAccess: registerAccessReducer,
   },
 });

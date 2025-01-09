@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import Loading from '../Loading';
 import { toast } from 'sonner';
-import { useNavigate } from 'react-router-dom';
 import { useRegisterWithEmailPass } from '@/customHooks/useRegisterWithEmailPass';
 
 const RegisterForm = () => {
@@ -32,7 +31,7 @@ const RegisterForm = () => {
       state: '',
       postalCode: '',
       city: '',
-      businessName: '',
+      companyName: '',
     },
     validationSchema: RegisterFormSchema,
     onSubmit: onSubmit,
@@ -40,7 +39,6 @@ const RegisterForm = () => {
 
   const {
     values,
-    handleSubmit,
     handleBlur,
     handleChange,
     touched,
@@ -48,15 +46,18 @@ const RegisterForm = () => {
     isSubmitting,
     setSubmitting,
   } = formik;
-  const navigate = useNavigate();
   const registerWithEmailPass = useRegisterWithEmailPass();
+
   function onSubmit(data: any) {
+    console.log('aktif');
     // submitted
     try {
+      data.name = `${(data.name.charAt(0).toUpperCase() + data.name.slice(1).toLowerCase()).trim()}`;
+      data.surname = `${(data.surname.charAt(0).toUpperCase() + data.surname.slice(1).toLowerCase()).trim()}`;
+      data.companyName = `${(data.companyName.charAt(0).toUpperCase() + data.companyName.slice(1)).trim()}`;
       data.country = countryVal;
       console.log(data);
       registerWithEmailPass({ ...values, country: countryVal });
-      navigate('/login');
     } catch (error: any) {
       console.log(error);
       toast.error(error.message);
@@ -179,8 +180,8 @@ const RegisterForm = () => {
         formTitle={<FormTitle titleText="Register" />}
         isSubmitting={isSubmitting}
         submitButtonText="Register"
-        handleSubmit={handleSubmit}
         formAllStepComponents={[step1, step2]}
+        formik={formik}
       />
     </>
   );

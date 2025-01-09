@@ -1,6 +1,8 @@
 import { ButtonDirections } from '@/types/models/ComponentPromptModels';
-import { FormEventHandler, useRef, useState } from 'react';
+import { FormEvent, MouseEvent, useRef, useState } from 'react';
 import FunctionalFormButton from './FunctionalFormButton';
+import { toast } from 'sonner';
+import { FormikProps } from 'formik';
 
 export interface StepByStepFormContainerProps {
   formLogo: React.ReactNode;
@@ -10,7 +12,7 @@ export interface StepByStepFormContainerProps {
   prevButtonText?: string;
   nextButtonText?: string;
   submitButtonText?: string;
-  handleSubmit: FormEventHandler<HTMLFormElement>;
+  formik: FormikProps<any>;
 }
 
 function StepByStepFormContainer({
@@ -21,11 +23,23 @@ function StepByStepFormContainer({
   prevButtonText = 'Prev',
   nextButtonText = 'Next',
   submitButtonText = 'Submit',
-  handleSubmit,
+  formik,
 }: StepByStepFormContainerProps) {
   const [currentFormStep, setCurrentFormStep] = useState(1);
   const parentDivRef = useRef<HTMLDivElement>(null);
   const totalFormSteps = useRef(formAllStepComponents.length);
+  const { handleSubmit } = formik;
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(Object.keys(formik.errors));
+    if (Object.keys(formik.errors).length >= 0) {
+      handleSubmit(e);
+    } else {
+      toast.error('Please ensure all fields are filled out correctly.');
+      handlePrev();
+    }
+  };
 
   const handleNext = () => {
     if (currentFormStep >= totalFormSteps.current) return;
@@ -42,7 +56,7 @@ function StepByStepFormContainer({
       setCurrentFormStep(currentFormStep + 1);
     }, 280);
   };
-  const handlePrev = () => {
+  const handlePrev = (e?: MouseEvent<HTMLButtonElement>) => {
     if (currentFormStep < 1) return;
     parentDivRef.current?.classList.add(
       'transition-transform',
@@ -54,13 +68,14 @@ function StepByStepFormContainer({
       behavior: 'smooth',
     });
     setTimeout(() => {
+      if (!e) setCurrentFormStep(1);
       setCurrentFormStep(currentFormStep - 1);
     }, 310);
   };
   return (
     <>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
         className="overflow-y-auto container h-full max-h-min max-w-md lg:rounded-lg px-4 py-8 flex flex-col gap-2 justify-evenly text-lg bg-white lg:border lg:shadow-sm 2xl:shadow-md sm:max-w-lg md:max-w-xl lg:max-w-3xl lg:py-8 xl:py-10 lg:gap-8"
         action="#"
       >

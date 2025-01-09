@@ -28,7 +28,6 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
     formik;
 
   const handleOutsideClick = (e: MouseEvent) => {
-    console.log('first');
     if (
       suggestionListRef.current &&
       !suggestionListRef.current.contains(e.target as Node)
@@ -81,7 +80,6 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   }, [selectedCountry]);
 
   const handleSuggestionClick = (suggestion: NominatimResponse) => {
-    console.log(suggestion);
     const address = suggestion.address;
 
     setFieldValue('street', suggestion.name);
@@ -106,12 +104,12 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   return (
     <div className="relative w-full max-w-md flex flex-col gap-3 mx-auto">
       <FormInputUnderlined
-        labelText={'Business Name'}
-        inputValue={values.businessName}
+        labelText={'Company Name'}
+        inputValue={values.companyName}
         onInputChange={handleChange}
         onInputBlur={handleBlur}
-        inputId={'businessName'}
-        inputPlaceHolder={'Please enter your business name...'}
+        inputId={'companyName'}
+        inputPlaceHolder={'Please enter your company name...'}
         errors={errors}
         touched={touched}
       />

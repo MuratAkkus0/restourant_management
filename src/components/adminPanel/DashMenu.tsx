@@ -2,7 +2,7 @@ import * as Icons from 'react-icons/md';
 import { IoIosArrowUp } from 'react-icons/io';
 import { IoIosArrowBack } from 'react-icons/io';
 import { IoIosArrowForward } from 'react-icons/io';
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import menuTabs from '@/assets/static_datas/dash_menu_tabs.json';
 
@@ -65,6 +65,7 @@ function DashMenu() {
             </p>
             <menu>
               {(menuTabs as MenuItem[]).map((tab, index) => {
+                const IconComponent = Icons[tab.icon];
                 // const IconComponent = ;
                 return (
                   <li
@@ -82,7 +83,7 @@ function DashMenu() {
                         }
                         to={tab.route}
                       >
-                        {Icons[tab.icon] as unknown as ReactNode}
+                        <IconComponent />
                         <span className="font-Poppins font-light tracking-wider">
                           {tab.label}
                         </span>

@@ -11,7 +11,7 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
   onCountrySelect,
 }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState<string>('');
+  const [selectedCountry, setSelectedCountry] = useState<string>('Germany');
   const [query, setQuery] = useState<string>('');
   const [filteredCountries, setFilteredCountries] = useState(countryList);
   const dropdownRef = useRef<HTMLDivElement>(null);

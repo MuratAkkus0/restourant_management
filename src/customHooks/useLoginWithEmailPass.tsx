@@ -1,5 +1,6 @@
 import { auth, db } from '@/firebase/FirebaseConfig';
 import { setIsLoading } from '@/store/slices/appConfigSlice';
+import { AppUserRoles } from '@/types/models/AuthModels';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
@@ -32,26 +33,27 @@ export const useLoginWithEmailPass = () => {
 
       if (userDocSnap.exists()) {
         const userInfo = userDocSnap.data();
-        const businessId = userInfo.businessId;
+        const companyId = userInfo.companyId;
 
         // get businness info
-        const businessDocRef = doc(db, 'companies', businessId);
-        const businessDocSnap = await getDoc(businessDocRef);
+        const companyDocRef = doc(db, 'companies', companyId);
+        const companyDocSnap = await getDoc(companyDocRef);
 
-        if (businessDocSnap.exists()) {
-          // const businessData = businessDocSnap.data();
+        if (companyDocSnap.exists()) {
+          // const companyData = companyDocSnap.data();
 
           // redirect user
-          if (userInfo.role === 'admin') {
-            navigate('/admin/dashboard');
+          if (userInfo.role === AppUserRoles.admin) {
+            navigate('/admin');
+            // navigate('/');
           } else {
             navigate('/personal/dashboard');
           }
-
+          console.log(userData);
           dispatch(setIsLoading(false));
           toast.success(`Login successful! Welcome ${userData.displayName}`);
         } else {
-          throw new Error('Business not found');
+          throw new Error('company not found');
         }
       } else {
         throw new Error('User not found');

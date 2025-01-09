@@ -10,8 +10,9 @@ import AdminAccessKeysView from '../../views/admin/AdminAccessKeysView';
 import RootView from '../../views/RootView';
 import ConfirmAccessView from '../../views/ConfirmAccessView';
 import NotFoundView from '../../views/NotFoundView';
-import ProtectedAdminAccess from './ProtectedAdminAccess';
 import AdminRegisterView from '@/views/admin/AdminRegisterView';
+import ProtectedRoutes from './ProtectedRoutes';
+import { AppUserRoles } from '@/types/models/AuthModels';
 
 function Router() {
   return (
@@ -28,7 +29,9 @@ function Router() {
 
         <Route path="/personal"></Route>
 
-        <Route element={<ProtectedAdminAccess />}>
+        <Route
+          element={<ProtectedRoutes allowedRoles={[AppUserRoles.admin]} />}
+        >
           <Route path="/admin" element={<AdminPanelView />}>
             <Route path="dashboard" element={<AdminDashboardView />}>
               <Route path="orders" element={<div>Orders Overview</div>} />{' '}

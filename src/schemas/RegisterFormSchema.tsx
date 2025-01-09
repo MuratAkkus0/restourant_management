@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 const reqMes = 'This field is required!';
 const passwordRules = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?.,&-_]{8,}$/;
-const nameRules = /^[A-Za-z]+$/;
+const nameRules = /^[A-Za-z ]+$/;
 export const RegisterFormSchema = yup.object().shape({
   name: yup
     .string()
@@ -30,5 +30,5 @@ export const RegisterFormSchema = yup.object().shape({
   state: yup.string().required(reqMes),
   postalCode: yup.string().required(reqMes),
   city: yup.string().required(reqMes),
-  businessName: yup.string().required(reqMes),
+  companyName: yup.string().required(reqMes),
 });

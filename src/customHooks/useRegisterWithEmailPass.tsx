@@ -1,5 +1,6 @@
 import { auth, db } from '@/firebase/FirebaseConfig';
 import { setIsLoading } from '@/store/slices/appConfigSlice';
+import { AppUserRoles } from '@/types/models/AuthModels';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import {
   addDoc,
@@ -9,6 +10,7 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 export interface registerData {
@@ -23,7 +25,7 @@ export interface registerData {
   postalCode: string;
   city: string;
   country: string;
-  businessName: string;
+  companyName: string;
 }
 
 export interface RegisterWithEmailPassProps {
@@ -32,6 +34,7 @@ export interface RegisterWithEmailPassProps {
 
 export const useRegisterWithEmailPass = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const registerWithEmailPass: RegisterWithEmailPassProps = async (data) => {
     try {
       dispatch(setIsLoading(true));
@@ -46,7 +49,7 @@ export const useRegisterWithEmailPass = () => {
 
       // Create Company Doc
       const companyRef = await addDoc(collection(db, 'companies'), {
-        name: data.businessName,
+        name: data.companyName,
         ownerId: userData.uid,
         country: data.country,
         state: data.state,
@@ -60,25 +63,29 @@ export const useRegisterWithEmailPass = () => {
         subscriptionExpiration: null,
       });
 
-      // save admin in business/admins
-      const adminRef = doc(
-        collection(db, 'companies', companyRef.id, 'admins'),
-        userData.uid
-      );
-      await setDoc(adminRef, {
-        name: data.name,
-        surname: data.surname,
-        email: userData.email,
-        role: 'admin',
-        status: 'active',
-        createdAt: serverTimestamp(),
-      });
+      // save admin in company/admins
+      // const adminRef = doc(
+      //   collection(db, 'companies', companyRef.id, 'admins'),
+      //   userData.uid
+      // );
+      // await setDoc(adminRef, {
+      //   name: data.name,
+      //   surname: data.surname,
+      //   email: userData.email,
+      //   role: 'admin',
+      //   status: 'active',
+      //   createdAt: serverTimestamp(),
+      // });
 
       // create admin record in users collection
       const usersRef = doc(collection(db, 'usersCompanies'), userData.uid);
       await setDoc(usersRef, {
-        businessId: companyRef.id,
-        role: 'admin',
+        companyId: companyRef.id,
+        name: data.name,
+        surname: data.surname,
+        role: AppUserRoles.admin,
+        email: userData.email,
+        status: 'active',
         createdAt: serverTimestamp(),
       });
 
@@ -87,8 +94,9 @@ export const useRegisterWithEmailPass = () => {
 
       dispatch(setIsLoading(false));
       toast.success(
-        `Register successful. Welcome ${data.name.charAt(0).toUpperCase() + data.name.slice(1)}`
+        `Register successful. Welcome ${data.name} ${data.surname}`
       );
+      navigate('/admin');
     } catch (err: any) {
       dispatch(setIsLoading(false));
       const errCode = err.code.charAt(0).toUpperCase() + err.code.slice(1);
