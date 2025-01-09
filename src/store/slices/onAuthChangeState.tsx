@@ -29,6 +29,9 @@ const onAuthChangeState = createSlice({
   name: 'onAuthChangeState',
   initialState,
   reducers: {
+    setIsLoading(state, action: PayloadAction<boolean>) {
+      state.loading = action.payload;
+    },
     setAuthState(state, action: PayloadAction<AuthState>) {
       state.user = action.payload.user;
       state.role = action.payload.role;
@@ -49,5 +52,5 @@ const onAuthChangeState = createSlice({
   },
 });
 
-export const { logout, setAuthState } = onAuthChangeState.actions;
+export const { logout, setAuthState, setIsLoading } = onAuthChangeState.actions;
 export default onAuthChangeState.reducer;

@@ -1,11 +1,11 @@
 import { Outlet, useNavigate } from 'react-router-dom';
-import DashMenu from '../../components/adminPanel/DashMenu';
+import DashMenu from '../../components/adminPanel/dashboard/DashMenu';
 import { useEffect } from 'react';
 
 function AdminPanelView() {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate('dashboard');
+    navigate('overview');
   }, []);
   return (
     <div className="w-full h-full flex">

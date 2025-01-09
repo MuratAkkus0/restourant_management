@@ -5,10 +5,13 @@ import { auth, db } from './firebase/FirebaseConfig.tsx';
 import { doc, getDoc } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { logout, setAuthState } from './store/slices/onAuthChangeState.tsx';
+import { setIsLoading } from './store/slices/onAuthChangeState.tsx';
 
 function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
+    dispatch(setIsLoading(true));
     const checkAuth = onAuthStateChanged(auth, async (currentUser) => {
       console.log(currentUser);
       if (currentUser) {
@@ -30,6 +33,7 @@ function App() {
               loading: false,
             })
           );
+          dispatch(setIsLoading(false));
         } else {
           dispatch(logout());
         }

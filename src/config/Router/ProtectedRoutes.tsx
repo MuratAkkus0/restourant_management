@@ -7,9 +7,8 @@ const ProtectedRoutes: React.FC<ProtectedRoutesProps> = ({ allowedRoles }) => {
   const userData = useSelector((store: RootState) => store.onAuthChangeState);
   console.log(userData);
   if (
-    !userData.user ||
-    !allowedRoles ||
-    !allowedRoles.includes(userData.role)
+    !userData.loading &&
+    (!userData.user || !allowedRoles || !allowedRoles.includes(userData.role))
   ) {
     return <Navigate to="/login" />;
   } else return <Outlet />;

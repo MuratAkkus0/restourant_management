@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import LoginView from '../../views/LoginView';
 import HomeView from '../../views/HomeView';
-import AdminDashboardView from '../../views/admin/AdminDashboardView';
+import AdminOverviewView from '../../views/admin/AdminOverviewView';
 import ProtectedRegisterAccess from './ProtectedRegisterAccess';
 import AdminPanelView from '../../views/admin/AdminPanelView';
 import AdminPersonalListView from '../../views/admin/AdminPersonalListView';
@@ -33,7 +33,7 @@ function Router() {
           element={<ProtectedRoutes allowedRoles={[AppUserRoles.admin]} />}
         >
           <Route path="/admin" element={<AdminPanelView />}>
-            <Route path="dashboard" element={<AdminDashboardView />}>
+            <Route path="overview" element={<AdminOverviewView />}>
               <Route path="orders" element={<div>Orders Overview</div>} />{' '}
               {/* Orders Overview */}
               <Route
