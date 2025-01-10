@@ -1,10 +1,7 @@
+import { SearchableDropdownProps } from '@/types/models/ComponentPromptModels';
 import React, { useState, useRef, useEffect } from 'react';
 
 // Props tipi
-interface SearchableDropdownProps {
-  countryList: { name: string; code: string }[];
-  onCountrySelect: (country: string) => void;
-}
 
 const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
   countryList,

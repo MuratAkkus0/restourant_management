@@ -3,15 +3,12 @@ import { useEffect, useRef, useState } from 'react';
 import { NominatimResponse } from '../types/models/NominatimApiModels';
 import countryList from '../assets/static_datas/countries.json';
 import SearchableDropdown from './SearchableDropdown';
-import { FormikProps } from 'formik';
 import FormInputUnderlined from './FormComponents/FormInputUnderlined';
 import SideBySideInputContainer from './FormComponents/SideBySideInputContainer';
-import { SideBySideInputContainerSlotWidths } from '@/types/models/ComponentPromptModels';
-
-interface AddressAutocompleteProps {
-  setCountryVal: CallableFunction;
-  formik: FormikProps<any>;
-}
+import {
+  AddressAutocompleteProps,
+  SideBySideInputContainerSlotWidths,
+} from '@/types/models/ComponentPromptModels';
 
 const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   setCountryVal,

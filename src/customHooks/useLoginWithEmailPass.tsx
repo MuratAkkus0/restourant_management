@@ -1,15 +1,13 @@
 import { auth, db } from '@/firebase/FirebaseConfig';
 import { setIsLoading } from '@/store/slices/appConfigSlice';
 import { AppUserRoles } from '@/types/models/AuthModels';
+import { LoginWithEmailPassProps } from '@/types/models/ComponentPromptModels';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
-export interface LoginWithEmailPassProps {
-  (email: string, pass: string): void;
-}
 //Login With Email and Password
 export const useLoginWithEmailPass = () => {
   const dispatch = useDispatch();

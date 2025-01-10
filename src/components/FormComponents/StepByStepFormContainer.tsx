@@ -1,19 +1,10 @@
-import { ButtonDirections } from '@/types/models/ComponentPromptModels';
+import {
+  ButtonDirections,
+  StepByStepFormContainerProps,
+} from '@/types/models/ComponentPromptModels';
 import { FormEvent, MouseEvent, useRef, useState } from 'react';
 import FunctionalFormButton from './FunctionalFormButton';
 import { toast } from 'sonner';
-import { FormikProps } from 'formik';
-
-export interface StepByStepFormContainerProps {
-  formLogo: React.ReactNode;
-  formTitle: React.ReactNode;
-  formAllStepComponents: React.ReactNode[];
-  isSubmitting: boolean;
-  prevButtonText?: string;
-  nextButtonText?: string;
-  submitButtonText?: string;
-  formik: FormikProps<any>;
-}
 
 function StepByStepFormContainer({
   formLogo,

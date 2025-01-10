@@ -1,6 +1,7 @@
 import { auth, db } from '@/firebase/FirebaseConfig';
 import { setIsLoading } from '@/store/slices/onAuthChangeState';
 import { AppUserRoles } from '@/types/models/AuthModels';
+import { RegisterWithEmailPassProps } from '@/types/models/ComponentPromptModels';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import {
   addDoc,
@@ -12,25 +13,6 @@ import {
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-
-export interface registerData {
-  name: string;
-  surname: string;
-  email: string;
-  pass: string;
-  passConfirm: string;
-  street: string;
-  houseNo: string;
-  state: string;
-  postalCode: string;
-  city: string;
-  country: string;
-  companyName: string;
-}
-
-export interface RegisterWithEmailPassProps {
-  (data: registerData): void;
-}
 
 export const useRegisterWithEmailPass = () => {
   const dispatch = useDispatch();

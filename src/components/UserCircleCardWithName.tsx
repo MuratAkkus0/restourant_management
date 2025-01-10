@@ -1,8 +1,5 @@
-export interface UserCircleCardWithNameProps {
-  fullName: string;
-  imgUrl?: string;
-  greetingText?: string;
-}
+import { UserCircleCardWithNameProps } from '@/types/models/ComponentPromptModels';
+
 const UserCircleCardWithName: React.FC<UserCircleCardWithNameProps> = ({
   fullName,
   imgUrl = '',

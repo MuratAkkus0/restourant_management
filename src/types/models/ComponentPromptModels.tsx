@@ -1,4 +1,4 @@
-import { FormikErrors, FormikTouched } from 'formik';
+import { FormikErrors, FormikProps, FormikTouched } from 'formik';
 import {
   ChangeEventHandler,
   FocusEventHandler,
@@ -6,6 +6,14 @@ import {
 } from 'react';
 import { IconType } from 'react-icons';
 
+// Header Components Props
+export interface MenuListProps {
+  isMenuOpen: boolean;
+}
+export interface MenuItemProps {
+  menuName: string;
+  redirectTo: string;
+}
 // FormTitle Components Props
 export interface FormTitleProps {
   titleText: string;
@@ -78,4 +86,60 @@ export interface SideBySideInputContainerProps {
   left: React.ReactNode;
   isByMdScreensInputsGrid?: boolean;
   slotType?: SideBySideInputContainerSlotWidths;
+}
+
+// AddressAutocomplate Component Props
+export interface AddressAutocompleteProps {
+  setCountryVal: CallableFunction;
+  formik: FormikProps<any>;
+}
+
+// SearchableDropdown Component Props
+export interface SearchableDropdownProps {
+  countryList: { name: string; code: string }[];
+  onCountrySelect: (country: string) => void;
+}
+
+// UserCircleCardWithName Component Props
+export interface UserCircleCardWithNameProps {
+  fullName: string;
+  imgUrl?: string;
+  greetingText?: string;
+}
+
+// StepByStepFormContainer Component Props
+export interface StepByStepFormContainerProps {
+  formLogo: React.ReactNode;
+  formTitle: React.ReactNode;
+  formAllStepComponents: React.ReactNode[];
+  isSubmitting: boolean;
+  prevButtonText?: string;
+  nextButtonText?: string;
+  submitButtonText?: string;
+  formik: FormikProps<any>;
+}
+
+//LoginWithEmailPass Component Props
+export interface LoginWithEmailPassProps {
+  (email: string, pass: string): void;
+}
+
+export interface registerData {
+  name: string;
+  surname: string;
+  email: string;
+  pass: string;
+  passConfirm: string;
+  street: string;
+  houseNo: string;
+  state: string;
+  postalCode: string;
+  city: string;
+  country: string;
+  companyName: string;
+}
+
+// RegisterWithEmailPass Component Props
+export interface RegisterWithEmailPassProps {
+  (data: registerData): void;
 }
