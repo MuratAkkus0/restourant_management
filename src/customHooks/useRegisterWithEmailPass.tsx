@@ -12,7 +12,6 @@ import {
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { useLogout } from './useLogout';
 
 export interface registerData {
   name: string;
