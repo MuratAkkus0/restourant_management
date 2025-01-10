@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { NominatimResponse } from '../types/models/NominatimApiModels';
 import countryList from '../assets/static_datas/countries.json';
-import SearchableDropdown from './SearchableDropdown';
+import SearchableDropdown from './SearchableDropdown/SearchableDropdown';
 import FormInputUnderlined from './FormComponents/FormInputUnderlined';
 import SideBySideInputContainer from './FormComponents/SideBySideInputContainer';
 import { AddressAutocompleteProps } from '@/types/models/AddressAutocomplateModels';
