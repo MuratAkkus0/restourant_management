@@ -4,12 +4,15 @@ import UserCircleCardWithName from '../../UserCircleCardWithName';
 import MenuList from './MenuList';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import { TbLogout2 } from 'react-icons/tb';
+import { useLogout } from '@/customHooks/useLogout';
 
 function DashMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const userData = useSelector(
     (store: RootState) => store.onAuthChangeState.user
   );
+  const logout = useLogout();
 
   return (
     <>
@@ -37,12 +40,21 @@ function DashMenu() {
           )}
         </button>
 
-        <div className="h-full overflow-y-auto flex-shrink-0 flex flex-col gap-8 items-center">
+        <div className="h-full overflow-y-auto flex-shrink-0 flex flex-col justify-between gap-2 items-center">
           <UserCircleCardWithName
             fullName={userData.displayName ?? ''}
             imgUrl={userData.photoURL ?? ''}
           />
           <MenuList />
+          <div
+            onClick={() => logout()}
+            className="w-full flex justify-end items-center gap-1 text-md px-4 cursor-pointer"
+          >
+            <span className="flex items-center gap-1 cursor-pointer text-base md:text-xl">
+              <TbLogout2 className="text-xl md:text-2xl" />
+              Logout
+            </span>
+          </div>
         </div>
       </aside>
     </>

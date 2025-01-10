@@ -8,6 +8,7 @@ const UserCircleCardWithName: React.FC<UserCircleCardWithNameProps> = ({
   imgUrl = '',
   greetingText = 'Welcome!',
 }) => {
+  const nameArr = fullName.split(' ');
   return (
     <>
       <div className="w-full h-1/12 flex items-center gap-2 px-4">
@@ -18,7 +19,7 @@ const UserCircleCardWithName: React.FC<UserCircleCardWithNameProps> = ({
             </div>
           ) : (
             <div className="w-14 h-14 flex justify-center items-center bg-green-400 text-2xl font-Poppins font-semibold rounded-full">
-              MA
+              {`${nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0)}`}
             </div>
           )}
         </div>

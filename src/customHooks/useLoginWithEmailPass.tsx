@@ -45,7 +45,7 @@ export const useLoginWithEmailPass = () => {
           // redirect user
           if (userInfo.role === AppUserRoles.admin) {
             navigate('/admin');
-            // navigate('/');
+            console.log('aktive');
           } else {
             navigate('/personal/dashboard');
           }

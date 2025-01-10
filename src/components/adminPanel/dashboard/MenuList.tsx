@@ -7,7 +7,7 @@ const MenuList = () => {
 
   return (
     <nav
-      className="w-full h-full overflow-y-auto"
+      className="w-full h-full flex-[1] overflow-y-auto"
       style={{ scrollbarColor: '#ffffffe3 rgb(2,6,23)' }}
     >
       <p className="text-gray-400 px-4 text-sm sm:text-base">Dash menu</p>

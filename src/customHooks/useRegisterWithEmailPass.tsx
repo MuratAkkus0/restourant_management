@@ -1,5 +1,5 @@
 import { auth, db } from '@/firebase/FirebaseConfig';
-import { setIsLoading } from '@/store/slices/appConfigSlice';
+import { setIsLoading } from '@/store/slices/onAuthChangeState';
 import { AppUserRoles } from '@/types/models/AuthModels';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import {
@@ -12,6 +12,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { useLogout } from './useLogout';
 
 export interface registerData {
   name: string;
@@ -63,20 +64,6 @@ export const useRegisterWithEmailPass = () => {
         subscriptionExpiration: null,
       });
 
-      // save admin in company/admins
-      // const adminRef = doc(
-      //   collection(db, 'companies', companyRef.id, 'admins'),
-      //   userData.uid
-      // );
-      // await setDoc(adminRef, {
-      //   name: data.name,
-      //   surname: data.surname,
-      //   email: userData.email,
-      //   role: 'admin',
-      //   status: 'active',
-      //   createdAt: serverTimestamp(),
-      // });
-
       // create admin record in users collection
       const usersRef = doc(collection(db, 'usersCompanies'), userData.uid);
       await setDoc(usersRef, {
@@ -93,10 +80,10 @@ export const useRegisterWithEmailPass = () => {
       await updateUserInfos(data.name, data.surname);
 
       dispatch(setIsLoading(false));
-      toast.success(
-        `Register successful. Welcome ${data.name} ${data.surname}`
-      );
-      navigate('/admin');
+      toast.success(`Register successful! Please login with your new account.`);
+      navigate('/login');
+      // i used it instead of custom logout hook because i dont wanna show any notifications .
+      auth.signOut();
     } catch (err: any) {
       dispatch(setIsLoading(false));
       const errCode = err.code.charAt(0).toUpperCase() + err.code.slice(1);
