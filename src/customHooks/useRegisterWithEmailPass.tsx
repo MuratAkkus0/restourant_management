@@ -80,9 +80,9 @@ export const useRegisterWithEmailPass = () => {
 
       dispatch(setIsLoading(false));
       toast.success(`Register successful! Please login with your new account.`);
-      navigate('/login');
       // i used it instead of custom logout hook because i dont wanna show any notifications .
       auth.signOut();
+      navigate('/login');
     } catch (err: any) {
       dispatch(setIsLoading(false));
       const errCode = err.code.charAt(0).toUpperCase() + err.code.slice(1);

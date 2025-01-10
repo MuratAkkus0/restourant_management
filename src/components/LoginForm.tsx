@@ -7,6 +7,7 @@ import { LoginFormSchema } from '../schemas/LoginFormSchema';
 import { FontSizes, LogoSizes } from '../types/models/LogoModels';
 import { toast } from 'sonner';
 import { useLoginWithEmailPass } from '@/customHooks/useLoginWithEmailPass';
+import { auth } from '@/firebase/FirebaseConfig';
 
 function LoginForm() {
   const [showPass, setShowPass] = useState(false);
@@ -32,6 +33,7 @@ function LoginForm() {
 
   function onSubmit({ email, pass }: { email: string; pass: string }) {
     try {
+      console.log(auth.currentUser);
       loginWithEmailPass(email, pass);
     } catch (error: any) {
       console.error(error);
