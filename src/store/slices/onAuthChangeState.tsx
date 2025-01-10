@@ -22,7 +22,7 @@ const initialState: AuthState = {
   },
   role: AppUserRoles.unknown,
   companyId: null,
-  loading: false,
+  loading: true,
 };
 
 const onAuthChangeState = createSlice({

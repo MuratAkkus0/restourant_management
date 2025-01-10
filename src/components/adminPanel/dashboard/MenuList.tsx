@@ -6,8 +6,11 @@ const MenuList = () => {
   const menuData = menuTabs as MenuItem[];
 
   return (
-    <nav className="w-full">
-      <p className="mb-1 text-gray-400 px-4 text-sm sm:text-base">Dash menu</p>
+    <nav
+      className="w-full h-full overflow-y-auto"
+      style={{ scrollbarColor: '#ffffffe3 rgb(2,6,23)' }}
+    >
+      <p className="text-gray-400 px-4 text-sm sm:text-base">Dash menu</p>
       <ul>
         {menuData.map((tab, index) => (
           <MenuItemComponent key={index} tab={tab} />
