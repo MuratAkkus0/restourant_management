@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import HeroImage from '../assets/images/hero_img.jpg';
 import AdvantagesCard from '../components/AdvantagesCard';
 import Logo from '../components/Logo';
@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@/components/atoms/Button';
 import faqs from '@/assets/static_datas/faqs.json';
 import Pharagrapf from '@/components/atoms/Pharagrapf';
-import { PharagrapfTextSizes } from '@/types/enums/atoms/PharagrapfEnums';
 
 function HomeView() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
