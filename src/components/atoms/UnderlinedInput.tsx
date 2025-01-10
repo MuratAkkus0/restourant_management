@@ -1,7 +1,7 @@
-import { FormInputUnderlinedProps } from '@/types/models/FormInputUnderlinedModels';
+import { UnderlinedInputProps } from '@/types/models/UnderlinedInputModels';
 import { MouseEventHandler, useRef, useState } from 'react';
 
-function FormInputUnderlined(props: FormInputUnderlinedProps) {
+function UnderlinedInput(props: UnderlinedInputProps) {
   const {
     labelText,
     inputValue = '',
@@ -76,4 +76,4 @@ function FormInputUnderlined(props: FormInputUnderlinedProps) {
   );
 }
 
-export default FormInputUnderlined;
+export default UnderlinedInput;

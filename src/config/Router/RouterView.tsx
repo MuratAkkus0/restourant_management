@@ -13,6 +13,7 @@ import NotFoundView from '../../views/NotFoundView';
 import AdminRegisterView from '@/views/admin/AdminRegisterView';
 import ProtectedRoutes from './ProtectedRoutes';
 import { AppUserRoles } from '@/types/enums/AuthEnums';
+import AboutUsView from '@/views/AboutUsView';
 
 function Router() {
   return (
@@ -20,8 +21,8 @@ function Router() {
       <Routes>
         <Route element={<RootView />}>
           <Route index path="/" element={<HomeView />} />
+          <Route path="/about-us" element={<AboutUsView />} />
         </Route>
-        <Route path="/about-us" element={<ConfirmAccessView />} />
 
         <Route path="/register" element={<AdminRegisterView />} />
         <Route path="/confirm-access" element={<ConfirmAccessView />} />

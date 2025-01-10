@@ -4,7 +4,7 @@ import Logo from '../Logo';
 import { useState } from 'react';
 import { GrFormView, GrFormViewHide } from 'react-icons/gr';
 import AddressAutocomplete from '../AddressAutocomplete';
-import FormInputUnderlined from '../FormComponents/FormInputUnderlined';
+import UnderlinedInput from '../atoms/UnderlinedInput';
 import SideBySideInputContainer from '../FormComponents/SideBySideInputContainer';
 import FormTitle from '../FormComponents/FormTitle';
 import StepByStepFormContainer from '../FormComponents/StepByStepFormContainer';
@@ -13,7 +13,7 @@ import { RootState } from '@/store/store';
 import Loading from '../Loading';
 import { toast } from 'sonner';
 import { useRegisterWithEmailPass } from '@/customHooks/useRegisterWithEmailPass';
-import { FormInputUnderlinedProps } from '@/types/models/FormInputUnderlinedModels';
+import { UnderlinedInputProps } from '@/types/models/UnderlinedInputModels';
 import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
 
 const RegisterForm = () => {
@@ -66,7 +66,7 @@ const RegisterForm = () => {
     }
   }
 
-  const formFields: FormInputUnderlinedProps[] = [
+  const formFields: UnderlinedInputProps[] = [
     {
       labelText: 'Email',
       inputValue: values.email,
@@ -102,7 +102,7 @@ const RegisterForm = () => {
       <SideBySideInputContainer
         isByMdScreensInputsGrid={true}
         left={
-          <FormInputUnderlined
+          <UnderlinedInput
             labelText={'Name'}
             inputValue={values.name}
             onInputChange={handleChange}
@@ -114,7 +114,7 @@ const RegisterForm = () => {
           />
         }
         right={
-          <FormInputUnderlined
+          <UnderlinedInput
             labelText={'Surname'}
             inputValue={values.surname}
             onInputChange={handleChange}
@@ -128,7 +128,7 @@ const RegisterForm = () => {
       />
       {formFields.map((item, index) => {
         return item.hasIcon ? (
-          <FormInputUnderlined
+          <UnderlinedInput
             key={index}
             labelText={item.labelText}
             inputValue={item.inputValue}
@@ -144,7 +144,7 @@ const RegisterForm = () => {
             SecondIcon={item.SecondIcon}
           />
         ) : (
-          <FormInputUnderlined
+          <UnderlinedInput
             key={index}
             labelText={item.labelText}
             inputValue={item.inputValue}

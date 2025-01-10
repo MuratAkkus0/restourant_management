@@ -1,4 +1,4 @@
-export type FormInputUnderlinedBaseProps = {
+export type UnderlinedInputBaseProps = {
   labelText: string;
   inputId: string;
   inputValue?: string;
@@ -10,15 +10,15 @@ export type FormInputUnderlinedBaseProps = {
   touched?: FormikTouched<{ [key: string]: boolean }>;
 };
 
-export type FormInputUnderlinedProps =
-  | (FormInputUnderlinedBaseProps & {
+export type UnderlinedInputProps =
+  | (UnderlinedInputBaseProps & {
       hasIcon: true;
       showIcon?: boolean;
       onClickIcon?: MouseEventHandler<SVGAElement>;
       Icon: IconType;
       SecondIcon?: IconType;
     })
-  | (FormInputUnderlinedBaseProps & {
+  | (UnderlinedInputBaseProps & {
       hasIcon?: false;
       showIcon?: never;
       onClickIcon?: never;

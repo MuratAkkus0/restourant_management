@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { NominatimResponse } from '../types/models/NominatimApiModels';
 import countryList from '../assets/static_datas/countries.json';
 import SearchableDropdown from './SearchableDropdown/SearchableDropdown';
-import FormInputUnderlined from './FormComponents/FormInputUnderlined';
+import UnderlinedInput from './atoms/UnderlinedInput';
 import SideBySideInputContainer from './FormComponents/SideBySideInputContainer';
 import { AddressAutocompleteProps } from '@/types/models/AddressAutocomplateModels';
 import { SideBySideInputContainerSlotWidths } from '@/types/enums/SideBySideInputContainerEnums';
@@ -98,7 +98,7 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
 
   return (
     <div className="relative w-full max-w-md flex flex-col gap-3 mx-auto">
-      <FormInputUnderlined
+      <UnderlinedInput
         labelText={'Company Name'}
         inputValue={values.companyName}
         onInputChange={handleChange}
@@ -128,7 +128,7 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
             isByMdScreensInputsGrid={true}
             left={
               <>
-                <FormInputUnderlined
+                <UnderlinedInput
                   labelText="Street Address"
                   inputValue={values.street}
                   onInputChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -163,7 +163,7 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
               </>
             }
             right={
-              <FormInputUnderlined
+              <UnderlinedInput
                 labelText="House No."
                 inputValue={values.houseNo}
                 onInputChange={handleChange}
