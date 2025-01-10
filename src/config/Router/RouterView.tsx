@@ -12,7 +12,7 @@ import ConfirmAccessView from '../../views/ConfirmAccessView';
 import NotFoundView from '../../views/NotFoundView';
 import AdminRegisterView from '@/views/admin/AdminRegisterView';
 import ProtectedRoutes from './ProtectedRoutes';
-import { AppUserRoles } from '@/types/models/AuthModels';
+import { AppUserRoles } from '@/types/enums/AuthEnums';
 
 function Router() {
   return (

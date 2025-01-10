@@ -1,7 +1,5 @@
-import {
-  SideBySideInputContainerProps,
-  SideBySideInputContainerSlotWidths,
-} from '@/types/models/ComponentPromptModels';
+import { SideBySideInputContainerSlotWidths } from '@/types/enums/SideBySideInputContainerEnums';
+import { SideBySideInputContainerProps } from '@/types/models/SideBySideInputContainerModels';
 
 function SideBySideInputContainer({
   right,

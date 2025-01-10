@@ -1,17 +1,6 @@
-import { AppUserRoles } from '@/types/models/AuthModels';
+import { AppUserRoles } from '@/types/enums/AuthEnums';
+import { AuthState } from '@/types/models/AuthModels';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-export type AuthState = {
-  user: {
-    uid: string | null;
-    email: string | null;
-    displayName: string | null;
-    photoURL: string | null;
-  };
-  companyId: string | null;
-  loading: boolean;
-  role: AppUserRoles;
-};
 
 const initialState: AuthState = {
   user: {

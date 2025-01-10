@@ -1,7 +1,7 @@
-import { MenuListProps } from '@/types/models/ComponentPromptModels';
-import MenuItem from './MenuItem';
+import { HeaderMenuListProps } from '@/types/models/HeaderModels';
+import MenuItem from './HeaderMenuItem';
 
-const MenuList: React.FC<MenuListProps> = ({ isMenuOpen }) => {
+const HeaderMenuList: React.FC<HeaderMenuListProps> = ({ isMenuOpen }) => {
   const menuItems = [
     {
       menuName: 'Home',
@@ -37,4 +37,4 @@ const MenuList: React.FC<MenuListProps> = ({ isMenuOpen }) => {
   );
 };
 
-export default MenuList;
+export default HeaderMenuList;

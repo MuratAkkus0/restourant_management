@@ -1,14 +1,12 @@
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { NominatimResponse } from '../types/models/NominatimApiModels';
 import countryList from '../assets/static_datas/countries.json';
 import SearchableDropdown from './SearchableDropdown';
 import FormInputUnderlined from './FormComponents/FormInputUnderlined';
 import SideBySideInputContainer from './FormComponents/SideBySideInputContainer';
-import {
-  AddressAutocompleteProps,
-  SideBySideInputContainerSlotWidths,
-} from '@/types/models/ComponentPromptModels';
+import { AddressAutocompleteProps } from '@/types/models/AddressAutocomplateModels';
+import { SideBySideInputContainerSlotWidths } from '@/types/enums/SideBySideInputContainerEnums';
 
 const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   setCountryVal,
@@ -133,7 +131,7 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
                 <FormInputUnderlined
                   labelText="Street Address"
                   inputValue={values.street}
-                  onInputChange={(e) => {
+                  onInputChange={(e: ChangeEvent<HTMLInputElement>) => {
                     handleChange(e);
                     setQuery(e.target.value);
                   }}

@@ -1,6 +1,6 @@
 import menuTabs from '@/assets/static_datas/dash_menu_tabs.json';
-import { MenuItem } from '@/types/models/MenuItem';
 import MenuItemComponent from './MenuItem';
+import { MenuItem } from '@/types/models/AdminDashMenuModels';
 
 const MenuList = () => {
   const menuData = menuTabs as MenuItem[];

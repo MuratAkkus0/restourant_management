@@ -1,7 +1,7 @@
 import { auth, db } from '@/firebase/FirebaseConfig';
 import { setIsLoading } from '@/store/slices/appConfigSlice';
-import { AppUserRoles } from '@/types/models/AuthModels';
-import { LoginWithEmailPassProps } from '@/types/models/ComponentPromptModels';
+import { AppUserRoles } from '@/types/enums/AuthEnums';
+import { LoginWithEmailPassProps } from '@/types/models/AuthModels';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';

@@ -1,20 +1,20 @@
 import { useFormik } from 'formik';
 import { RegisterFormSchema } from '../../schemas/RegisterFormSchema';
 import Logo from '../Logo';
-import { FontSizes, LogoSizes } from '../../types/models/LogoModels';
 import { useState } from 'react';
 import { GrFormView, GrFormViewHide } from 'react-icons/gr';
 import AddressAutocomplete from '../AddressAutocomplete';
 import FormInputUnderlined from '../FormComponents/FormInputUnderlined';
 import SideBySideInputContainer from '../FormComponents/SideBySideInputContainer';
 import FormTitle from '../FormComponents/FormTitle';
-import { FormInputUnderlinedProps } from '@/types/models/ComponentPromptModels';
 import StepByStepFormContainer from '../FormComponents/StepByStepFormContainer';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import Loading from '../Loading';
 import { toast } from 'sonner';
 import { useRegisterWithEmailPass } from '@/customHooks/useRegisterWithEmailPass';
+import { FormInputUnderlinedProps } from '@/types/models/FormInputUnderlinedModels';
+import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
 
 const RegisterForm = () => {
   const [countryVal, setCountryVal] = useState('');

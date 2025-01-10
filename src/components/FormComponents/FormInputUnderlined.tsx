@@ -1,4 +1,4 @@
-import { FormInputUnderlinedProps } from '@/types/models/ComponentPromptModels';
+import { FormInputUnderlinedProps } from '@/types/models/FormInputUnderlinedModels';
 import { MouseEventHandler, useRef, useState } from 'react';
 
 function FormInputUnderlined(props: FormInputUnderlinedProps) {

@@ -1,7 +1,7 @@
 import { auth, db } from '@/firebase/FirebaseConfig';
 import { setIsLoading } from '@/store/slices/onAuthChangeState';
-import { AppUserRoles } from '@/types/models/AuthModels';
-import { RegisterWithEmailPassProps } from '@/types/models/ComponentPromptModels';
+import { AppUserRoles } from '@/types/enums/AuthEnums';
+import { RegisterWithEmailPassProps } from '@/types/models/AuthModels';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import {
   addDoc,

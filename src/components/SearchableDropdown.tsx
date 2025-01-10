@@ -1,4 +1,4 @@
-import { SearchableDropdownProps } from '@/types/models/ComponentPromptModels';
+import { SearchableDropdownProps } from '@/types/models/SearchableDropdownModels';
 import React, { useState, useRef, useEffect } from 'react';
 
 // Props tipi

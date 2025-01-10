@@ -1,4 +1,4 @@
-import { UserCircleCardWithNameProps } from '@/types/models/ComponentPromptModels';
+import { UserCircleCardWithNameProps } from '@/types/models/UserCircleCardWithNameModels';
 
 const UserCircleCardWithName: React.FC<UserCircleCardWithNameProps> = ({
   fullName,

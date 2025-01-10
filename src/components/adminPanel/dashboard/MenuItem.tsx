@@ -1,12 +1,8 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { MenuItem } from '@/types/models/MenuItem';
 import * as Icons from 'react-icons/md';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
-
-type MenuItemProps = {
-  tab: MenuItem;
-};
+import { MenuItemProps } from '@/types/models/AdminDashMenuModels';
 
 const MenuItemComponent: React.FC<MenuItemProps> = ({ tab }) => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);

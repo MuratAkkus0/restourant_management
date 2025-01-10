@@ -4,7 +4,3 @@ export enum AppUserRoles {
   'customer',
   'unknown',
 }
-
-export interface ProtectedRoutesProps {
-  allowedRoles: AppUserRoles[];
-}

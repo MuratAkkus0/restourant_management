@@ -1,7 +1,10 @@
-import { MenuItemProps } from '@/types/models/ComponentPromptModels';
+import { HeaderMenuItemProps } from '@/types/models/HeaderModels';
 import { NavLink } from 'react-router-dom';
 
-const MenuItem: React.FC<MenuItemProps> = ({ menuName, redirectTo }) => {
+const HeaderMenuItem: React.FC<HeaderMenuItemProps> = ({
+  menuName,
+  redirectTo,
+}) => {
   return (
     <li>
       <NavLink
@@ -16,4 +19,4 @@ const MenuItem: React.FC<MenuItemProps> = ({ menuName, redirectTo }) => {
   );
 };
 
-export default MenuItem;
+export default HeaderMenuItem;

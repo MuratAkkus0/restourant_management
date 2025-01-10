@@ -4,10 +4,10 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import { GrFormView, GrFormViewHide } from 'react-icons/gr';
 import { LoginFormSchema } from '../schemas/LoginFormSchema';
-import { FontSizes, LogoSizes } from '../types/models/LogoModels';
 import { toast } from 'sonner';
 import { useLoginWithEmailPass } from '@/customHooks/useLoginWithEmailPass';
 import { auth } from '@/firebase/FirebaseConfig';
+import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
 
 function LoginForm() {
   const [showPass, setShowPass] = useState(false);

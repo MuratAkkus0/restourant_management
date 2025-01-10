@@ -1,10 +1,10 @@
 import Logo from '../Logo';
-import { FontSizes, LogoSizes } from '../../types/models/LogoModels';
 import { IoMenu } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { setIsMenuOpen } from '../../store/slices/appConfigSlice';
-import MenuList from './MenuList';
+import HeaderMenuList from './HeaderMenuList';
+import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
 function Header() {
   const dispatch = useDispatch();
   const isMenuOpen = useSelector(
@@ -26,7 +26,7 @@ function Header() {
           className="hover:cursor-pointer hover:scale-105 "
         />
       </div>
-      <MenuList isMenuOpen={isMenuOpen} />
+      <HeaderMenuList isMenuOpen={isMenuOpen} />
     </header>
   );
 }

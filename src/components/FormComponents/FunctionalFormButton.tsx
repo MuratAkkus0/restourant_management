@@ -1,7 +1,5 @@
-import {
-  ButtonDirections,
-  FunctionalFormButtonProps,
-} from '@/types/models/ComponentPromptModels';
+import { ButtonDirections } from '@/types/enums/FunctionalFormButtonEnums';
+import { FunctionalFormButtonProps } from '@/types/models/FunctionalFormButtonModels';
 import { useEffect, useState } from 'react';
 
 function FunctionalFormButton(props: FunctionalFormButtonProps) {

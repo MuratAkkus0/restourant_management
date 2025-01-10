@@ -10,8 +10,3 @@ export enum LogoSizes {
   semiRegular = 30,
   big = 35,
 }
-
-export interface LogoProperties {
-  FontSize?: FontSizes;
-  LogoSize?: LogoSizes;
-}

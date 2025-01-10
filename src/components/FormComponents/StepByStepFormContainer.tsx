@@ -1,10 +1,8 @@
-import {
-  ButtonDirections,
-  StepByStepFormContainerProps,
-} from '@/types/models/ComponentPromptModels';
 import { FormEvent, MouseEvent, useRef, useState } from 'react';
 import FunctionalFormButton from './FunctionalFormButton';
 import { toast } from 'sonner';
+import { StepByStepFormContainerProps } from '@/types/models/StepByStepFormContainer';
+import { ButtonDirections } from '@/types/enums/FunctionalFormButtonEnums';
 
 function StepByStepFormContainer({
   formLogo,
