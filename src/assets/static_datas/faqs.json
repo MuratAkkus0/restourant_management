@@ -1,0 +1,26 @@
+[
+  {
+    "question": "How does the QR-based ordering system work?",
+    "answer": "Customers scan the QR code on their table to view the menu, place orders, and even make payments—all from their smartphones. It’s simple, fast, and hassle-free."
+  },
+  {
+    "question": "Can I customize the menu displayed to customers?",
+    "answer": "Yes! Admins can easily add, remove, or edit items in the menu via the dashboard, ensuring customers always see the latest options."
+  },
+  {
+    "question": "What kind of analytics does the dashboard provide?",
+    "answer": "The dashboard includes detailed reports on sales, revenue, top-performing items, and staff performance, presented with clear visualizations."
+  },
+  {
+    "question": "Is the system secure for customer data and transactions?",
+    "answer": "Absolutely. We use advanced encryption and secure authentication methods to protect all data and transactions."
+  },
+  {
+    "question": "Can I integrate this system with my existing POS?",
+    "answer": "Yes, our system supports integrations with popular POS platforms. Contact our support team for assistance with setup."
+  },
+  {
+    "question": "What happens if the internet goes down?",
+    "answer": "The system offers offline support for basic operations, ensuring your restaurant continues to function without interruptions."
+  }
+]

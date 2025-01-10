@@ -1,4 +1,5 @@
 import { UserCircleCardWithNameProps } from '@/types/models/UserCircleCardWithNameModels';
+import Pharagrapf from './atoms/Pharagrapf';
 
 const UserCircleCardWithName: React.FC<UserCircleCardWithNameProps> = ({
   fullName,
@@ -20,11 +21,20 @@ const UserCircleCardWithName: React.FC<UserCircleCardWithNameProps> = ({
             </div>
           )}
         </div>
-        <div className="text-white text-base sm:text-base lg:text-lg xl:text-xl leading-5">
-          <p className="font-Poppins font-normal">{fullName}</p>
-          <p className="font-Poppins text-xs font-extralight text-gray-400">
+        <div className="text-white lg:text-lg xl:text-xl leading-5">
+          <Pharagrapf
+            colorClassName="text-white"
+            className="font-Poppins font-normal"
+          >
+            {fullName}
+          </Pharagrapf>
+          <Pharagrapf
+            size="2xs"
+            colorClassName="text-gray-400"
+            className="font-Poppins font-extralight"
+          >
             {greetingText}
-          </p>
+          </Pharagrapf>
         </div>
       </div>
     </>

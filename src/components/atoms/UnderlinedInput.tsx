@@ -1,5 +1,6 @@
-import { UnderlinedInputProps } from '@/types/models/UnderlinedInputModels';
+import { UnderlinedInputProps } from '@/types/models/atoms/UnderlinedInputModels';
 import { MouseEventHandler, useRef, useState } from 'react';
+import Pharagrapf from './Pharagrapf';
 
 function UnderlinedInput(props: UnderlinedInputProps) {
   const {
@@ -66,9 +67,15 @@ function UnderlinedInput(props: UnderlinedInputProps) {
       </div>
 
       {errorMessage && isTouched ? (
-        <p className="text-red-600 text-sm font-medium first-letter:uppercase">
-          {errorMessage}
-        </p>
+        <>
+          <Pharagrapf
+            size="xs"
+            colorClassName="text-red-600"
+            className="font-medium first-letter:uppercase"
+          >
+            {errorMessage}
+          </Pharagrapf>
+        </>
       ) : (
         ''
       )}

@@ -13,7 +13,7 @@ import { RootState } from '@/store/store';
 import Loading from '../Loading';
 import { toast } from 'sonner';
 import { useRegisterWithEmailPass } from '@/customHooks/useRegisterWithEmailPass';
-import { UnderlinedInputProps } from '@/types/models/UnderlinedInputModels';
+import { UnderlinedInputProps } from '@/types/models/atoms/UnderlinedInputModels';
 import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
 
 const RegisterForm = () => {
