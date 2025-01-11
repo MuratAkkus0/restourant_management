@@ -1,5 +1,5 @@
-import FormPagesesContainer from '../../components/FormPagesesContainer';
-import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import FormPagesesContainer from '../../components/templates/FormPagesesContainer';
+import RegisterForm from '../../components/organisms/RegisterForm/RegisterForm';
 
 function PersonalRegisterView() {
   return (

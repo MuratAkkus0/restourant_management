@@ -1,5 +1,5 @@
 import { RootState } from '@/store/store';
-import { ProtectedRoutesProps } from '@/types/models/AuthModels';
+import { ProtectedRoutesProps } from '@/types/models/services/AuthModels';
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 

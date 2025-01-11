@@ -1,5 +1,5 @@
-import LoginForm from '../components/LoginForm';
-import FormPagesesContainer from '../components/FormPagesesContainer';
+import LoginForm from '../components/organisms/LoginForm';
+import FormPagesesContainer from '../components/templates/FormPagesesContainer';
 
 function LoginView() {
   return (

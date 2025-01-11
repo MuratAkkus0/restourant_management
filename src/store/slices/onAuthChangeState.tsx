@@ -1,5 +1,5 @@
 import { AppUserRoles } from '@/types/enums/AuthEnums';
-import { AuthState } from '@/types/models/AuthModels';
+import { AuthState } from '@/types/models/services/AuthModels';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: AuthState = {

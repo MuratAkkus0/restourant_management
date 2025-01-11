@@ -1,4 +1,4 @@
-import AdminPanelContainer from '../../components/adminPanel/AdminPanelContainer';
+import AdminPanelContainer from '../../components/templates/AdminPanelContainer';
 
 function AdminMenuView() {
   return <AdminPanelContainer>AdminMenuView</AdminPanelContainer>;

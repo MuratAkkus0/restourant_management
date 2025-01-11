@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import Header from '../components/headerMenu/Header';
+import Header from '../components/organisms/headerMenu/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsMenuOpen } from '../store/slices/appConfigSlice';
 import { RootState } from '../store/store';

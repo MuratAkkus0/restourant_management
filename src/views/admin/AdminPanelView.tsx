@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from 'react-router-dom';
-import DashMenu from '../../components/adminPanel/dashboard/DashMenu';
+import DashMenu from '../../components/organisms/dashboard/DashMenu';
 import { useEffect } from 'react';
 
 function AdminPanelView() {

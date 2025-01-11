@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import HeroImage from '../assets/images/hero_img.jpg';
-import AdvantagesCard from '../components/AdvantagesCard';
-import Logo from '../components/Logo';
+import AdvantagesCard from '../components/molecules/AdvantagesCard';
+import Logo from '../components/molecules/Logo';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';

@@ -4,7 +4,6 @@ import HomeView from '../../views/HomeView';
 import AdminOverviewView from '../../views/admin/AdminOverviewView';
 import ProtectedRegisterAccess from './ProtectedRegisterAccess';
 import AdminPanelView from '../../views/admin/AdminPanelView';
-import AdminPersonalListView from '../../views/admin/AdminPersonalListView';
 import AdminMenuView from '../../views/admin/AdminMenuView';
 import AdminAccessKeysView from '../../views/admin/AdminAccessKeysView';
 import RootView from '../../views/RootView';
@@ -46,19 +45,21 @@ function Router() {
               />
               <Route path="key-metrics" element={<div>Key Metrics</div>} />
             </Route>
+            {/* Orders Section */}
             <Route path="orders" element={<AdminOverviewView />}>
               <Route path="add-order" element={<div>Orders Overview</div>} />
             </Route>
 
-            {/* Admin Personal List Section */}
-            <Route path="personal-list" element={<AdminPersonalListView />}>
-              <Route path="add-staff" element={<div>Add New Staff</div>} />
-              <Route path="assign-tasks" element={<div>Assign Tasks</div>} />
-              <Route
-                path="performance-metrics"
-                element={<div>Staff Performance Metrics</div>}
-              />
+            {/* Staff Management Section */}
+            <Route
+              path="staff-management"
+              element={<div>Staff Management</div>}
+            >
+              <Route path="staff-list" element={<div>Staff List</div>} />
+              <Route path="assign-roles" element={<div>Assign Roles</div>} />
+              <Route path="attendance" element={<div>Attendance</div>} />
             </Route>
+
 
             {/* Admin Menu Section */}
             <Route path="menu" element={<AdminMenuView />}>
@@ -78,16 +79,6 @@ function Router() {
 
             {/* Admin Access Keys Section */}
             <Route path="access-keys" element={<AdminAccessKeysView />} />
-
-            {/* Staff Management Section */}
-            <Route
-              path="staff-management"
-              element={<div>Staff Management</div>}
-            >
-              <Route path="staff-list" element={<div>Staff List</div>} />
-              <Route path="assign-roles" element={<div>Assign Roles</div>} />
-              <Route path="attendance" element={<div>Attendance</div>} />
-            </Route>
 
             {/* Product Management Section */}
             <Route

@@ -1,4 +1,4 @@
-import AdminPanelContainer from '../../components/adminPanel/AdminPanelContainer';
+import AdminPanelContainer from '../../components/templates/AdminPanelContainer';
 import GenerateAccessKey from '../../components/GenerateAccessKey';
 
 function AdminAccessKeysView() {

@@ -1,5 +1,5 @@
 import ConfirmAccess from '../components/ConfirmAccess';
-import FormPagesesContainer from '../components/FormPagesesContainer';
+import FormPagesesContainer from '../components/templates/FormPagesesContainer';
 
 function ConfirmAccessView() {
   return (
