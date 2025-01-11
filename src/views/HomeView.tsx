@@ -1,48 +1,22 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import HeroImage from '../assets/images/hero_img.jpg';
 import AdvantagesCard from '../components/AdvantagesCard';
 import Logo from '../components/Logo';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { FaRegQuestionCircle } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import Button from '@/components/atoms/Button';
+import faqs from '@/assets/static_datas/faqs.json';
+import Pharagrapf from '@/components/atoms/Pharagrapf';
 
 function HomeView() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
+  const navigate = useNavigate();
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
-  const faqs = [
-    {
-      question: 'How does the QR-based ordering system work?',
-      answer:
-        'Customers scan the QR code on their table to view the menu, place orders, and even make payments—all from their smartphones. It’s simple, fast, and hassle-free.',
-    },
-    {
-      question: 'Can I customize the menu displayed to customers?',
-      answer:
-        'Yes! Admins can easily add, remove, or edit items in the menu via the dashboard, ensuring customers always see the latest options.',
-    },
-    {
-      question: 'What kind of analytics does the dashboard provide?',
-      answer:
-        'The dashboard includes detailed reports on sales, revenue, top-performing items, and staff performance, presented with clear visualizations.',
-    },
-    {
-      question: 'Is the system secure for customer data and transactions?',
-      answer:
-        'Absolutely. We use advanced encryption and secure authentication methods to protect all data and transactions.',
-    },
-    {
-      question: 'Can I integrate this system with my existing POS?',
-      answer:
-        'Yes, our system supports integrations with popular POS platforms. Contact our support team for assistance with setup.',
-    },
-    {
-      question: 'What happens if the internet goes down?',
-      answer:
-        'The system offers offline support for basic operations, ensuring your restaurant continues to function without interruptions.',
-    },
-  ];
+  const featuresRef = useRef<HTMLDivElement>(null);
+
   return (
     <div className="flex flex-col items-center md:container md:mx-auto bg-white">
       <section className="w-full bg-primary text-accent py-16 px-8">
@@ -51,31 +25,32 @@ function HomeView() {
             <h1 className="p-2 text-4xl md:text-6xl font-bold text-transparent bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text font-Poppins">
               Take Your Business to the Future!
             </h1>
-            <h2 className="text-xl md:text-2xl text-neutralDark">
+            <Pharagrapf size="xl">
               Enhance the customer experience with the QR code-based online menu
               and ordering system. Manage all your orders easily, improve
               customer satisfaction, and speed up your operations.
-            </h2>
-            <p className="text-lg text-neutralDark">
+            </Pharagrapf>
+            <Pharagrapf size="base">
               Our restaurant management app boosts your business's speed and
               efficiency with a QR code-based online menu and ordering system.
               Gain more customer satisfaction and revenue with easy order
               management, real-time stock tracking, and advanced reporting
               tools.
-            </p>
+            </Pharagrapf>
             <div className="flex justify-evenly lg:justify-center lg:gap-4 xl:gap-6 space-x-4">
-              <a
-                href="/signup"
-                className=" text-white bg-gradient-to-r from-orange-500 to-red-600 py-2 px-5 lg:text-lg 2xl:text-xl rounded-lg shadow-lg hover:bg-accent"
-              >
-                Try It for Free
-              </a>
-              <a
-                href="/features"
-                className="text-white bg-gradient-to-r from-orange-500 to-red-600 py-2 px-5 lg:text-lg 2xl:text-xl rounded-lg shadow-lg hover:bg-neutralDark"
-              >
-                Discover More
-              </a>
+              <Button
+                text="Try It for Free"
+                type="button"
+                onBtnClick={() => navigate('/register')}
+              />
+              <Button
+                text="Discover More"
+                type="button"
+                onBtnClick={() => {
+                  console.log('scroll');
+                  featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              />
             </div>
           </div>
           <div className="md:w-1/2 mt-8 md:mt-0">
@@ -87,8 +62,9 @@ function HomeView() {
           </div>
         </div>
       </section>
-
+      <div ref={featuresRef}></div>
       <section className="w-full text-white bg-gradient-to-r from-orange-500 to-red-600 py-12 px-8">
+        <a id="features"></a>
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6 font-Poppins flex gap-2 justify-center">
             Why{' '}
@@ -97,10 +73,11 @@ function HomeView() {
             </span>
             ?
           </h2>
-          <p className="text-lg text-neutralDark mb-8">
+
+          <Pharagrapf size="base" colorClassName="text-white" className="mb-8">
             Modernize your restaurant operations and enhance customer
             satisfaction. Here are our key benefits:
-          </p>
+          </Pharagrapf>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AdvantagesCard
               title="Fast Order Management"

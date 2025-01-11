@@ -1,19 +1,18 @@
-import { EmailAuthInputObj } from '../types/models/AuthModels';
 import Logo from './Logo';
-import { AppDispatch } from '../store/store';
-import { useDispatch } from 'react-redux';
-import { emailLogin } from '../store/slices/authProcesses';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { GrFormView, GrFormViewHide } from 'react-icons/gr';
 import { LoginFormSchema } from '../schemas/LoginFormSchema';
-import { FontSizes, LogoSizes } from '../types/models/LogoModels';
+import { toast } from 'sonner';
+import { useLoginWithEmailPass } from '@/customHooks/useLoginWithEmailPass';
+import { auth } from '@/firebase/FirebaseConfig';
+import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
+import Button from './atoms/Button';
 
 function LoginForm() {
   const [showPass, setShowPass] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
+  const loginWithEmailPass = useLoginWithEmailPass();
 
   const {
     values,
@@ -23,6 +22,7 @@ function LoginForm() {
     touched,
     errors,
     isSubmitting,
+    setSubmitting,
   } = useFormik({
     initialValues: {
       email: '',
@@ -33,12 +33,15 @@ function LoginForm() {
   });
 
   function onSubmit({ email, pass }: { email: string; pass: string }) {
-    const userData: EmailAuthInputObj = {
-      email,
-      pass,
-      onSuccess: () => navigate('/'),
-    };
-    dispatch(emailLogin(userData));
+    try {
+      console.log(auth.currentUser);
+      loginWithEmailPass(email, pass);
+    } catch (error: any) {
+      console.error(error);
+      toast.error(error.code);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -128,12 +131,12 @@ function LoginForm() {
             </Link>
           </p>
           <div className="flex flex-col items-center gap-5 mt-6">
-            <button
-              className={`${isSubmitting ? 'bg-red-400' : 'bg-gradient-to-r from-orange-500 to-red-600'} text-white px-10 py-1 leading-8 rounded-md cursor-pointer hover:scale-[1.01] active:scale-[.99] shadow-sm lg:text-xl lg:py-2`}
+            <Button
+              isSubmitInProgress={isSubmitting}
               type="submit"
-            >
-              Login
-            </button>
+              text="Login"
+            />
+
             {/* <div className="mx-auto w-full relative h-1 flex items-center px-16 sm:px-32 rounded-full select-none">
               <hr className="w-full " />
               <p className="w-7 text-center text-gray-500 text-sm absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-white">

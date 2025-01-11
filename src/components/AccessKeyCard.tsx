@@ -1,9 +1,9 @@
 import Logo from './Logo';
-import { FontSizes, LogoSizes } from '../types/models/LogoModels';
 import {
   AccessCardSizeProps,
   AccessKeyCardProps,
 } from '../types/models/AccessKeyModels';
+import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
 function AccessKeyCard(props: AccessKeyCardProps) {
   const {
     inputVal,

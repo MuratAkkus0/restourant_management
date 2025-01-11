@@ -1,10 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import {
-  FontSizes,
-  LogoProperties,
-  LogoSizes,
-} from '../types/models/LogoModels';
+
 import { IoRestaurantOutline } from 'react-icons/io5';
+import { LogoProperties } from '@/types/models/LogoModels';
+import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
 
 function Logo(props: LogoProperties) {
   const { FontSize = FontSizes.normal, LogoSize = LogoSizes.normal } = props;

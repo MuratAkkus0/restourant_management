@@ -1,7 +1,7 @@
 import AdminPanelContainer from '../../components/adminPanel/AdminPanelContainer';
 import { Chart } from 'react-google-charts';
 
-function AdminDashboardView() {
+function AdminOverviewView() {
   const data = [
     ['Personal', 'Complated Order', { role: 'style' }],
     ['Ali', 12, '#b87333'],
@@ -16,4 +16,4 @@ function AdminDashboardView() {
   );
 }
 
-export default AdminDashboardView;
+export default AdminOverviewView;

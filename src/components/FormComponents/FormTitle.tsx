@@ -1,4 +1,4 @@
-import { FormTitleProps } from '@/types/models/ComponentPromptModels';
+import { FormTitleProps } from '@/types/models/FormTitleProps';
 
 function FormTitle({ titleText }: FormTitleProps) {
   return (

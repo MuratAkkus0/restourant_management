@@ -7,7 +7,7 @@ import {
   query,
   where,
 } from 'firebase/firestore';
-import { db } from '../firebase/useFirebase';
+import { db } from '../firebase/FirebaseConfig';
 import { useEffect, useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
 

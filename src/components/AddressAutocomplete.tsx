@@ -1,17 +1,12 @@
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { NominatimResponse } from '../types/models/NominatimApiModels';
 import countryList from '../assets/static_datas/countries.json';
-import SearchableDropdown from './SearchableDropdown';
-import { FormikProps } from 'formik';
-import FormInputUnderlined from './FormComponents/FormInputUnderlined';
+import SearchableDropdown from './SearchableDropdown/SearchableDropdown';
+import UnderlinedInput from './atoms/UnderlinedInput';
 import SideBySideInputContainer from './FormComponents/SideBySideInputContainer';
-import { SideBySideInputContainerSlotWidths } from '@/types/models/ComponentPromptModels';
-
-interface AddressAutocompleteProps {
-  setCountryVal: CallableFunction;
-  formik: FormikProps<any>;
-}
+import { AddressAutocompleteProps } from '@/types/models/AddressAutocomplateModels';
+import { SideBySideInputContainerSlotWidths } from '@/types/enums/SideBySideInputContainerEnums';
 
 const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   setCountryVal,
@@ -28,7 +23,6 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
     formik;
 
   const handleOutsideClick = (e: MouseEvent) => {
-    console.log('first');
     if (
       suggestionListRef.current &&
       !suggestionListRef.current.contains(e.target as Node)
@@ -81,7 +75,6 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   }, [selectedCountry]);
 
   const handleSuggestionClick = (suggestion: NominatimResponse) => {
-    console.log(suggestion);
     const address = suggestion.address;
 
     setFieldValue('street', suggestion.name);
@@ -105,6 +98,16 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
 
   return (
     <div className="relative w-full max-w-md flex flex-col gap-3 mx-auto">
+      <UnderlinedInput
+        labelText={'Company Name'}
+        inputValue={values.companyName}
+        onInputChange={handleChange}
+        onInputBlur={handleBlur}
+        inputId={'companyName'}
+        inputPlaceHolder={'Please enter your company name...'}
+        errors={errors}
+        touched={touched}
+      />
       {/* Select Country */}
       <div>
         <label
@@ -122,12 +125,13 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
         {/* Street Input */}
         <div className="flex-1">
           <SideBySideInputContainer
+            isByMdScreensInputsGrid={true}
             left={
               <>
-                <FormInputUnderlined
+                <UnderlinedInput
                   labelText="Street Address"
                   inputValue={values.street}
-                  onInputChange={(e) => {
+                  onInputChange={(e: ChangeEvent<HTMLInputElement>) => {
                     handleChange(e);
                     setQuery(e.target.value);
                   }}
@@ -159,7 +163,7 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
               </>
             }
             right={
-              <FormInputUnderlined
+              <UnderlinedInput
                 labelText="House No."
                 inputValue={values.houseNo}
                 onInputChange={handleChange}
