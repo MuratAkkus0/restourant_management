@@ -8,7 +8,7 @@ export enum AccessCardSizeProps {
 }
 
 export interface AccessKeyCardProps {
-  inputVal: string | number;
+  inputVal: string;
   setInputVal?: CallableFunction;
   placeholder?: string;
   isInputReadOnly?: boolean;

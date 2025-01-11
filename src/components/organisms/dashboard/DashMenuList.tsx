@@ -1,10 +1,10 @@
 import menuTabs from '@/assets/static_datas/dash_menu_tabs.json';
-import MenuItemComponent from './MenuItem';
-import { MenuItem } from '@/types/models/organisms/AdminDashMenuModels';
 import Pharagrapf from '@/components/atoms/Pharagrapf';
+import DashMenuItem from './DashMenuItem';
+import { DashMenuItemType } from '@/types/models/organisms/AdminDashMenuModels';
 
-const MenuList = () => {
-  const menuData = menuTabs as MenuItem[];
+const DashMenuList = () => {
+  const menuData = menuTabs as DashMenuItemType[];
 
   return (
     <nav
@@ -20,11 +20,11 @@ const MenuList = () => {
       </Pharagrapf>
       <ul>
         {menuData.map((tab, index) => (
-          <MenuItemComponent key={index} tab={tab} />
+          <DashMenuItem key={index} tab={tab} />
         ))}
       </ul>
     </nav>
   );
 };
 
-export default MenuList;
+export default DashMenuList;

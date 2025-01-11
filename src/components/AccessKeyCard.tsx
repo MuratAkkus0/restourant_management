@@ -37,7 +37,7 @@ function AccessKeyCard(props: AccessKeyCardProps) {
           spellCheck="false"
           readOnly={isInputReadOnly}
           value={inputVal}
-          onChange={setInputVal ? (e) => setInputVal(e.target.value) : () => { }}
+          onChange={setInputVal ? (e) => setInputVal(e.target.value) : () => {}}
           placeholder={placeholder}
           type="text"
           className="w-full h-8 border-b outline-none focus:border-b-black focus:border-gray-300 p-2 text-md sm:text-base lg:text-xl placeholder:text-md"

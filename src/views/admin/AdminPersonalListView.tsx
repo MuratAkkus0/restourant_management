@@ -1,7 +1,7 @@
-import AdminPanelContainer from '../../components/templates/AdminPanelContainer';
+import AdminPanelsPagesContainer from '../../components/templates/AdminPanelsPagesContainer';
 
 function AdminPersonalListView() {
-  return <AdminPanelContainer>AdminPersonalView</AdminPanelContainer>;
+  return <AdminPanelsPagesContainer>AdminPersonalView</AdminPanelsPagesContainer>;
 }
 
 export default AdminPersonalListView;

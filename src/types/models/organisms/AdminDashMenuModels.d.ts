@@ -1,9 +1,9 @@
-export type MenuItemProps = {
-  tab: MenuItem;
+export type DashMenuItemProps = {
+  tab: DashMenuItemType;
 };
-export type MenuItem = {
+export type DashMenuItemType = {
   label: string;
   route: string;
   icon: string;
-  subMenu?: MenuItem[];
+  subMenu?: DashMenuItemType[];
 };

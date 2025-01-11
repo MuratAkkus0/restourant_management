@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as Icons from 'react-icons/md';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
-import { MenuItemProps } from '@/types/models/organisms/AdminDashMenuModels';
+import { DashMenuItemProps } from '@/types/models/organisms/AdminDashMenuModels';
 
-const MenuItemComponent: React.FC<MenuItemProps> = ({ tab }) => {
+const DashMenuItem: React.FC<DashMenuItemProps> = ({ tab }) => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const IconComponent = Icons[tab.icon as keyof typeof Icons];
 
@@ -63,4 +63,4 @@ const MenuItemComponent: React.FC<MenuItemProps> = ({ tab }) => {
   );
 };
 
-export default MenuItemComponent;
+export default DashMenuItem;

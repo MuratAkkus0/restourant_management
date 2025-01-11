@@ -1,11 +1,11 @@
-import AdminPanelContainer from '../../components/templates/AdminPanelContainer';
+import AdminPanelsPagesContainer from '../../components/templates/AdminPanelsPagesContainer';
 import GenerateAccessKey from '../../components/GenerateAccessKey';
 
 function AdminAccessKeysView() {
   return (
-    <AdminPanelContainer>
+    <AdminPanelsPagesContainer>
       <GenerateAccessKey />
-    </AdminPanelContainer>
+    </AdminPanelsPagesContainer>
   );
 }
 

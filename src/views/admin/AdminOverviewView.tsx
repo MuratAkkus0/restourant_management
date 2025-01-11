@@ -1,4 +1,4 @@
-import AdminPanelContainer from '../../components/templates/AdminPanelContainer';
+import AdminPanelsPagesContainer from '../../components/templates/AdminPanelsPagesContainer';
 import { Chart } from 'react-google-charts';
 
 function AdminOverviewView() {
@@ -10,9 +10,9 @@ function AdminOverviewView() {
     ['Cengiz', 29, 'color: #e5e4e2'],
   ];
   return (
-    <AdminPanelContainer>
+    <AdminPanelsPagesContainer>
       <Chart chartType="ColumnChart" width="80%" height="80%" data={data} />
-    </AdminPanelContainer>
+    </AdminPanelsPagesContainer>
   );
 }
 

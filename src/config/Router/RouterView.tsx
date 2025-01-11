@@ -13,6 +13,9 @@ import AdminRegisterView from '@/views/admin/AdminRegisterView';
 import ProtectedRoutes from './ProtectedRoutes';
 import { AppUserRoles } from '@/types/enums/AuthEnums';
 import AboutUsView from '@/views/AboutUsView';
+import AdminOrdersView from '@/views/admin/AdminOrdersView';
+import AdminStaffManagement from '@/views/admin/AdminStaffManagement';
+import PersonalRegister from '@/views/personal/PersonalRegister';
 
 function Router() {
   return (
@@ -28,6 +31,7 @@ function Router() {
         <Route path="/login" element={<LoginView />} />
 
         <Route path="/personal"></Route>
+        <Route path="/staff-register" element={<PersonalRegister />} />
 
         <Route
           element={<ProtectedRoutes allowedRoles={[AppUserRoles.admin]} />}
@@ -46,20 +50,16 @@ function Router() {
               <Route path="key-metrics" element={<div>Key Metrics</div>} />
             </Route>
             {/* Orders Section */}
-            <Route path="orders" element={<AdminOverviewView />}>
+            <Route path="orders" element={<AdminOrdersView />}>
               <Route path="add-order" element={<div>Orders Overview</div>} />
             </Route>
 
             {/* Staff Management Section */}
-            <Route
-              path="staff-management"
-              element={<div>Staff Management</div>}
-            >
+            <Route path="staff-management" element={<AdminStaffManagement />}>
               <Route path="staff-list" element={<div>Staff List</div>} />
               <Route path="assign-roles" element={<div>Assign Roles</div>} />
               <Route path="attendance" element={<div>Attendance</div>} />
             </Route>
-
 
             {/* Admin Menu Section */}
             <Route path="menu" element={<AdminMenuView />}>
