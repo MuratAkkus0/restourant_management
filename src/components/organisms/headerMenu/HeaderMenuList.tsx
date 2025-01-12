@@ -18,13 +18,13 @@ const HeaderMenuList: React.FC<HeaderMenuListProps> = ({ isMenuOpen }) => {
             (item.menuName === 'Login' || item.menuName === 'Register') &&
             userData.role !== AppUserRoles.unknown
           ) {
-            return <></>;
+            return;
           }
           if (
             item.menuName === 'Dashboard' &&
             userData.role === AppUserRoles.unknown
           ) {
-            return <></>;
+            return;
           }
           if (
             item.menuName === 'Dashboard' &&

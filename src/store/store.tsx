@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import registerAccessReducer from './slices/registerAccess';
 import appConfigReducer from './slices/appConfigSlice';
 import onAuthChangeStateReducer from './slices/onAuthChangeState';
+
 const store = configureStore({
   reducer: {
     appConfigSlice: appConfigReducer,

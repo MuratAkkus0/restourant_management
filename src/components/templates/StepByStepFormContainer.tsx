@@ -1,4 +1,11 @@
-import { FormEvent, MouseEvent, useRef, useState } from 'react';
+import {
+  FormEvent,
+  memo,
+  MouseEvent,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 import FunctionalFormButton from '../molecules/FunctionalFormButton';
 import { toast } from 'sonner';
 import { StepByStepFormContainerProps } from '@/types/models/templates/StepByStepFormContainer';
@@ -30,7 +37,7 @@ function StepByStepFormContainer({
     }
   };
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (currentFormStep >= totalFormSteps.current) return;
     parentDivRef.current?.classList.add(
       'transition-transform',
@@ -44,23 +51,26 @@ function StepByStepFormContainer({
     setTimeout(() => {
       setCurrentFormStep(currentFormStep + 1);
     }, 280);
-  };
-  const handlePrev = (e?: MouseEvent<HTMLButtonElement>) => {
-    if (currentFormStep < 1) return;
-    parentDivRef.current?.classList.add(
-      'transition-transform',
-      'translate-x-[120%]',
-      'duration-300'
-    );
-    parentDivRef.current?.scrollIntoView({
-      block: 'start',
-      behavior: 'smooth',
-    });
-    setTimeout(() => {
-      if (!e) setCurrentFormStep(1);
-      setCurrentFormStep(currentFormStep - 1);
-    }, 310);
-  };
+  }, [currentFormStep]);
+  const handlePrev = useCallback(
+    (e?: MouseEvent<HTMLButtonElement>) => {
+      if (currentFormStep < 1) return;
+      parentDivRef.current?.classList.add(
+        'transition-transform',
+        'translate-x-[120%]',
+        'duration-300'
+      );
+      parentDivRef.current?.scrollIntoView({
+        block: 'start',
+        behavior: 'smooth',
+      });
+      setTimeout(() => {
+        if (!e) setCurrentFormStep(1);
+        setCurrentFormStep(currentFormStep - 1);
+      }, 310);
+    },
+    [currentFormStep]
+  );
   return (
     <>
       <form

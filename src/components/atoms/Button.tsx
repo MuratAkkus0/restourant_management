@@ -1,4 +1,5 @@
 import { ButtonProps } from '@/types/models/atoms/Button';
+import { memo } from 'react';
 
 const Button: React.FC<ButtonProps> = ({
   text,
@@ -21,4 +22,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default memo(Button);

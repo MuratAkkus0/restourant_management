@@ -1,5 +1,5 @@
 import { auth, db } from '@/firebase/FirebaseConfig';
-import { setIsLoading } from '@/store/slices/appConfigSlice';
+import { setIsAppLoading } from '@/store/slices/appConfigSlice';
 import { AppUserRoles } from '@/types/enums/AuthEnums';
 import { LoginWithEmailPassProps } from '@/types/models/services/AuthModels';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -11,11 +11,11 @@ import { toast } from 'sonner';
 //Login With Email and Password
 export const useLoginWithEmailPass = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Navigate kullanarak yönlendirme yapacağız
+  const navigate = useNavigate();
 
   const loginWithEmailPass: LoginWithEmailPassProps = async (email, pass) => {
     try {
-      dispatch(setIsLoading(true));
+      dispatch(setIsAppLoading(true));
 
       // Firebase Authentication Login
       const userCredential = await signInWithEmailAndPassword(
@@ -48,7 +48,7 @@ export const useLoginWithEmailPass = () => {
             navigate('/personal/dashboard');
           }
           console.log(userData);
-          dispatch(setIsLoading(false));
+          dispatch(setIsAppLoading(false));
           toast.success(`Login successful! Welcome ${userData.displayName}`);
         } else {
           throw new Error('company not found');
@@ -57,7 +57,7 @@ export const useLoginWithEmailPass = () => {
         throw new Error('User not found');
       }
     } catch (err: any) {
-      dispatch(setIsLoading(false));
+      dispatch(setIsAppLoading(false));
       const errCode = err.code
         ? err.code.charAt(0).toUpperCase() + err.code.slice(1)
         : err.message;

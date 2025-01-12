@@ -8,16 +8,19 @@ import UnderlinedInput from '../../atoms/UnderlinedInput';
 import SideBySideInputContainer from '../../templates/SideBySideInputContainer';
 import FormTitle from '../../atoms/FormTitle';
 import StepByStepFormContainer from '../../templates/StepByStepFormContainer';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import Loading from '../../atoms/Loading';
 import { toast } from 'sonner';
 import { useRegisterWithEmailPass } from '@/customHooks/useRegisterWithEmailPass';
 import { UnderlinedInputProps } from '@/types/models/atoms/UnderlinedInputModels';
 import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
+import { setIsAppLoading } from '@/store/slices/appConfigSlice';
 
 const RegisterForm = () => {
   const [countryVal, setCountryVal] = useState('');
+  const registerWithEmailPass = useRegisterWithEmailPass();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -46,12 +49,12 @@ const RegisterForm = () => {
     isSubmitting,
     setSubmitting,
   } = formik;
-  const registerWithEmailPass = useRegisterWithEmailPass();
 
   function onSubmit(data: any) {
     console.log('aktif');
     // submitted
     try {
+      dispatch(setIsAppLoading(true));
       data.name = `${(data.name.charAt(0).toUpperCase() + data.name.slice(1).toLowerCase()).trim()}`;
       data.surname = `${(data.surname.charAt(0).toUpperCase() + data.surname.slice(1).toLowerCase()).trim()}`;
       data.companyName = `${(data.companyName.charAt(0).toUpperCase() + data.companyName.slice(1)).trim()}`;
@@ -63,6 +66,7 @@ const RegisterForm = () => {
       toast.error(error.message);
     } finally {
       setSubmitting(false);
+      dispatch(setIsAppLoading(false));
     }
   }
 
