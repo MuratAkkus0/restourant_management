@@ -1,11 +1,4 @@
-import {
-  FormEvent,
-  memo,
-  MouseEvent,
-  useCallback,
-  useRef,
-  useState,
-} from 'react';
+import { FormEvent, MouseEvent, useCallback, useRef, useState } from 'react';
 import FunctionalFormButton from '../molecules/FunctionalFormButton';
 import { toast } from 'sonner';
 import { StepByStepFormContainerProps } from '@/types/models/templates/StepByStepFormContainer';
@@ -19,17 +12,17 @@ function StepByStepFormContainer({
   prevButtonText = 'Prev',
   nextButtonText = 'Next',
   submitButtonText = 'Submit',
-  formik,
+  handleSubmit,
+  errors,
 }: StepByStepFormContainerProps) {
   const [currentFormStep, setCurrentFormStep] = useState(1);
   const parentDivRef = useRef<HTMLDivElement>(null);
   const totalFormSteps = useRef(formAllStepComponents.length);
-  const { handleSubmit } = formik;
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(Object.keys(formik.errors));
-    if (Object.keys(formik.errors).length >= 0) {
+    console.log(Object.keys(errors));
+    if (Object.keys(errors).length >= 0) {
       handleSubmit(e);
     } else {
       toast.error('Please ensure all fields are filled out correctly.');

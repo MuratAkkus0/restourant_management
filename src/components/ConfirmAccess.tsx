@@ -13,14 +13,14 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setAccess } from '../store/slices/registerAccess';
 import AccessKeyCard from './AccessKeyCard';
-function ConfirmAccess() {
+function ValidateRegisterAccess() {
   const [inputVal, setInputVal] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const verifyAccessKey = async () => {
     try {
       //get collection
-      const accessKeyRef = collection(db, 'accessKeys');
+      const accessKeyRef = collection(db, 'registerAccessKeys');
       //prepare query
       const q = query(accessKeyRef, where('key', '==', inputVal.trim()));
       //start query and get results
@@ -33,7 +33,7 @@ function ConfirmAccess() {
         const data = docSnap.data();
 
         // getting document ref
-        const docRef = doc(db, 'accessKeys', docSnap.id);
+        const docRef = doc(db, 'registerAccessKeys', docSnap.id);
 
         if (new Date() > data.expiresAt.toDate()) {
           await updateDoc(docRef, { isValid: false });
@@ -81,4 +81,4 @@ function ConfirmAccess() {
   );
 }
 
-export default ConfirmAccess;
+export default ValidateRegisterAccess;

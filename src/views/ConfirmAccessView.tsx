@@ -1,11 +1,10 @@
-import ConfirmAccess from '../components/ConfirmAccess';
 import FormPagesesContainer from '../components/templates/FormPagesesContainer';
 
 function ConfirmAccessView() {
   return (
     <>
       <FormPagesesContainer>
-        <ConfirmAccess />
+        <div></div>
       </FormPagesesContainer>
     </>
   );

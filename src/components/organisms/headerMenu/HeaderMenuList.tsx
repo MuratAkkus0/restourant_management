@@ -40,13 +40,13 @@ const HeaderMenuList: React.FC<HeaderMenuListProps> = ({ isMenuOpen }) => {
           }
           if (
             item.menuName === 'Dashboard' &&
-            userData.role === AppUserRoles.staff
+            userData.role === AppUserRoles.personal
           ) {
             return (
               <MenuItem
                 key={key}
                 menuName={item.menuName}
-                redirectTo={'/staff'}
+                redirectTo={'/personal'}
               />
             );
           }

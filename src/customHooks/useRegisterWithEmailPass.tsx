@@ -1,4 +1,5 @@
 import { auth, db } from '@/firebase/FirebaseConfig';
+import { setIsAppLoading } from '@/store/slices/appConfigSlice';
 import { setIsLoading } from '@/store/slices/onAuthChangeState';
 import { AppUserRoles } from '@/types/enums/AuthEnums';
 import { RegisterWithEmailPassProps } from '@/types/models/services/AuthModels';
@@ -19,6 +20,7 @@ export const useRegisterWithEmailPass = () => {
   const navigate = useNavigate();
   const registerWithEmailPass: RegisterWithEmailPassProps = async (data) => {
     try {
+      dispatch(setIsAppLoading(true));
       dispatch(setIsLoading(true));
 
       // Create User
@@ -60,16 +62,17 @@ export const useRegisterWithEmailPass = () => {
       // update user infos
       await updateUserInfos(data.name, data.surname);
 
-      dispatch(setIsLoading(false));
       toast.success(`Register successful! Please login with your new account.`);
       // i used it instead of custom logout hook because i dont wanna show any notifications .
       auth.signOut();
       navigate('/login');
     } catch (err: any) {
-      dispatch(setIsLoading(false));
       const errCode = err.code.charAt(0).toUpperCase() + err.code.slice(1);
       console.error(errCode);
       toast.error(errCode);
+    } finally {
+      dispatch(setIsAppLoading(false));
+      dispatch(setIsLoading(false));
     }
   };
 

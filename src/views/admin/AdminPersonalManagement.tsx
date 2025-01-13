@@ -1,16 +1,16 @@
 import Button from '@/components/atoms/Button';
-import useGenerateAccessKey from '@/customHooks/useGenerateAccessKey';
+import useRegisterGenerateAccessKey from '@/customHooks/useRegisterGenerateAccessKey';
 import { db } from '@/firebase/FirebaseConfig';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-function AdminStaffManagement() {
+function AdminPersonalManagement() {
   const [registerLink, setRegisterLink] = useState('');
   const userData = useSelector((store: any) => store.onAuthChangeState);
-  const generateAccessKey = useGenerateAccessKey();
+  const generateAccessKey = useRegisterGenerateAccessKey();
   const createRegisterationLink = () => {
-    console.log('create registeration link');
+    console.log('creating registeration link...');
     console.log(window.location.pathname);
 
     generateAccessKey(userData.companyId)
@@ -18,7 +18,7 @@ function AdminStaffManagement() {
         const paramObj = { key: key, cId: userData.companyId };
         const params = new URLSearchParams(paramObj);
         console.log(params.toString());
-        const link = `${window.location.origin}/staff-register/${params.toString()}`;
+        const link = `${window.location.origin}/personal-register?${params.toString()}`;
         setRegisterLink(link);
         return link;
       })
@@ -53,4 +53,4 @@ function AdminStaffManagement() {
   );
 }
 
-export default AdminStaffManagement;
+export default AdminPersonalManagement;

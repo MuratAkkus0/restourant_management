@@ -1,70 +1,23 @@
-import { useFormik } from 'formik';
-import { RegisterFormSchema } from '../../../schemas/RegisterFormSchema';
-import Logo from '../../molecules/Logo';
-import { useState } from 'react';
-import { GrFormView, GrFormViewHide } from 'react-icons/gr';
-import AddressAutocomplete from '../../molecules/AddressAutocomplete';
-import UnderlinedInput from '../../atoms/UnderlinedInput';
-import SideBySideInputContainer from '../../templates/SideBySideInputContainer';
-import FormTitle from '../../atoms/FormTitle';
-import StepByStepFormContainer from '../../templates/StepByStepFormContainer';
-import { toast } from 'sonner';
-import { useRegisterWithEmailPass } from '@/customHooks/useRegisterWithEmailPass';
-import { UnderlinedInputProps } from '@/types/models/atoms/UnderlinedInputModels';
+import FormTitle from '@/components/atoms/FormTitle';
+import UnderlinedInput from '@/components/atoms/UnderlinedInput';
+import Logo from '@/components/molecules/Logo';
+import SideBySideInputContainer from '@/components/templates/SideBySideInputContainer';
+import StepByStepFormContainer from '@/components/templates/StepByStepFormContainer';
 import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
+import { UnderlinedInputProps } from '@/types/models/atoms/UnderlinedInputModels';
+import { PersonalRegisterFormProps } from '@/types/models/organisms/PersonalRegisterForm';
+import { GrFormView, GrFormViewHide } from 'react-icons/gr';
 
-const RegisterForm = () => {
-  const [countryVal, setCountryVal] = useState('');
-  const registerWithEmailPass = useRegisterWithEmailPass();
-
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      surname: '',
-      email: '',
-      pass: '',
-      passConfirm: '',
-      street: '',
-      houseNo: '',
-      state: '',
-      postalCode: '',
-      city: '',
-      companyName: '',
-    },
-    validationSchema: RegisterFormSchema,
-    onSubmit: onSubmit,
-  });
-
-  const {
-    values,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    touched,
-    errors,
-    isSubmitting,
-    setSubmitting,
-  } = formik;
-
-  function onSubmit(data: any) {
-    console.log('aktif');
-    // submitted
-    try {
-      data.name = `${(data.name.charAt(0).toUpperCase() + data.name.slice(1).toLowerCase()).trim()}`;
-      data.surname = `${(data.surname.charAt(0).toUpperCase() + data.surname.slice(1).toLowerCase()).trim()}`;
-      data.companyName = `${(data.companyName.charAt(0).toUpperCase() + data.companyName.slice(1)).trim()}`;
-      data.country = countryVal;
-      console.log(data);
-      registerWithEmailPass({ ...values, country: countryVal });
-    } catch (error: any) {
-      console.log(error);
-      toast.error(error.message);
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
-  const formFields: UnderlinedInputProps[] = [
+const PersonalRegisterForm: React.FC<PersonalRegisterFormProps> = ({
+  values,
+  handleBlur,
+  handleChange,
+  errors,
+  touched,
+  isSubmitting,
+  handleSubmit,
+}) => {
+  const personalRegisterFormFields: UnderlinedInputProps[] = [
     {
       labelText: 'Email',
       inputValue: values.email,
@@ -124,7 +77,7 @@ const RegisterForm = () => {
           />
         }
       />
-      {formFields.map((item, index) => {
+      {personalRegisterFormFields.map((item, index) => {
         return item.hasIcon ? (
           <UnderlinedInput
             key={index}
@@ -159,10 +112,6 @@ const RegisterForm = () => {
     </>
   );
 
-  const step2 = (
-    <AddressAutocomplete setCountryVal={setCountryVal} formik={formik} />
-  );
-
   return (
     <>
       <StepByStepFormContainer
@@ -172,10 +121,10 @@ const RegisterForm = () => {
             LogoSize={LogoSizes.semiRegular}
           />
         }
-        formTitle={<FormTitle titleText="Register" />}
+        formTitle={<FormTitle titleText="Personal Register" />}
         isSubmitting={isSubmitting}
         submitButtonText="Register"
-        formAllStepComponents={[step1, step2]}
+        formAllStepComponents={[step1]}
         handleSubmit={handleSubmit}
         errors={errors}
       />
@@ -183,4 +132,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default PersonalRegisterForm;

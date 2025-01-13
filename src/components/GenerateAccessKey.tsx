@@ -1,7 +1,7 @@
 import AccessKeyCard from './AccessKeyCard';
 
 function GenerateAccessKey() {
-  // const generateAccessKey = useGenerateAccessKey();
+  // const generateAccessKey = useRegisterGenerateAccessKey();
   const handleGenerateAccessKey = async () => {};
 
   return (

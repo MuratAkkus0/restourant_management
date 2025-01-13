@@ -41,14 +41,14 @@
     ]
   },
   {
-    "label": "Staff Management",
-    "route": "staff-management",
+    "label": "Personal Management",
+    "route": "personal-management",
     "icon": "MdPeople",
     "subMenu": [
-      { "label": "Staff List", "route": "staff-list", "icon": "MdList" },
+      { "label": "Staff List", "route": "personal-list", "icon": "MdList" },
       {
-        "label": "Add New Staff",
-        "route": "add-new-staff",
+        "label": "Add New Personal",
+        "route": "add-new-personal",
         "icon": "MdPersonAdd"
       },
       {
@@ -129,7 +129,7 @@
       },
       {
         "label": "Staff Performance",
-        "route": "staff-performance",
+        "route": "personal-performance",
         "icon": "MdBarChart"
       },
       {

@@ -4,7 +4,7 @@ import { db } from '../firebase/FirebaseConfig';
 import { toast } from 'sonner';
 import { useGenerateAccessKeyProps } from '@/types/models/customHooks/useGenerateAccessKeyModels';
 
-function useGenerateAccessKey() {
+function useRegisterGenerateAccessKey() {
   const generateAccessKey: useGenerateAccessKeyProps = async (companyId) => {
     try {
       const key = uuidv4();
@@ -12,7 +12,7 @@ function useGenerateAccessKey() {
       const expiresAt = new Date();
       expiresAt.setHours(createdAt.getHours() + 12);
 
-      const docRef = await addDoc(collection(db, 'accessKeys'), {
+      const docRef = await addDoc(collection(db, 'registerAccessKeys'), {
         key,
         isValid: true,
         createdAt,
@@ -34,4 +34,4 @@ function useGenerateAccessKey() {
   return generateAccessKey;
 }
 
-export default useGenerateAccessKey;
+export default useRegisterGenerateAccessKey;

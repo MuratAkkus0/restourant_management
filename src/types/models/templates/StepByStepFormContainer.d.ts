@@ -1,3 +1,5 @@
+import { FormikProps } from 'formik';
+
 export interface StepByStepFormContainerProps {
   formLogo: React.ReactNode;
   formTitle: React.ReactNode;
@@ -6,5 +8,7 @@ export interface StepByStepFormContainerProps {
   prevButtonText?: string;
   nextButtonText?: string;
   submitButtonText?: string;
-  formik: FormikProps<any>;
+  // formik: FormikProps<any>;
+  handleSubmit: CallableFunction<any>;
+  errors: FormikErrors<any>;
 }

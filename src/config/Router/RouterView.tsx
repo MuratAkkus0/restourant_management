@@ -14,8 +14,8 @@ import ProtectedRoutes from './ProtectedRoutes';
 import { AppUserRoles } from '@/types/enums/AuthEnums';
 import AboutUsView from '@/views/AboutUsView';
 import AdminOrdersView from '@/views/admin/AdminOrdersView';
-import AdminStaffManagement from '@/views/admin/AdminStaffManagement';
-import PersonalRegister from '@/views/personal/PersonalRegister';
+import AdminPersonalManagement from '@/views/admin/AdminPersonalManagement';
+import PersonalRegister from '@/views/personal/PersonalRegisterView';
 
 function Router() {
   return (
@@ -31,7 +31,7 @@ function Router() {
         <Route path="/login" element={<LoginView />} />
 
         <Route path="/personal"></Route>
-        <Route path="/staff-register" element={<PersonalRegister />} />
+        <Route path="/personal-register" element={<PersonalRegister />} />
 
         <Route
           element={<ProtectedRoutes allowedRoles={[AppUserRoles.admin]} />}
@@ -55,8 +55,11 @@ function Router() {
             </Route>
 
             {/* Staff Management Section */}
-            <Route path="staff-management" element={<AdminStaffManagement />}>
-              <Route path="staff-list" element={<div>Staff List</div>} />
+            <Route
+              path="personal-management"
+              element={<AdminPersonalManagement />}
+            >
+              <Route path="personal-list" element={<div>Staff List</div>} />
               <Route path="assign-roles" element={<div>Assign Roles</div>} />
               <Route path="attendance" element={<div>Attendance</div>} />
             </Route>
@@ -121,7 +124,7 @@ function Router() {
             <Route path="reports" element={<div>Reports</div>}>
               <Route path="sales-reports" element={<div>Sales Reports</div>} />
               <Route
-                path="staff-performance"
+                path="personal-performance"
                 element={<div>Staff Performance</div>}
               />
               <Route

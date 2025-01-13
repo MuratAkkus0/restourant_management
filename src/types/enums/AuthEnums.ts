@@ -1,6 +1,6 @@
 export enum AppUserRoles {
   'admin',
-  'staff',
+  'personal',
   'customer',
   'unknown',
 }
