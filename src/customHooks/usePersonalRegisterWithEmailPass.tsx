@@ -1,4 +1,4 @@
-import registerWithEmailPass from '@/services/firebase/registerNewPersonal';
+import registerWithEmailPass from '@/services/firebase/registerNewPerson';
 import { setIsAppLoading } from '@/store/slices/appConfigSlice';
 import { setIsLoading } from '@/store/slices/onAuthChangeState';
 import { RegisterServiceProps } from '@/types/models/services/RegisterNewPersonalModels';

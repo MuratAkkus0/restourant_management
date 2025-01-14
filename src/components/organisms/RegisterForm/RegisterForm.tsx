@@ -48,7 +48,7 @@ const RegisterForm = () => {
     setSubmitting,
   } = formik;
 
-  function onSubmit(data: FormikValues) {
+  async function onSubmit(data: FormikValues) {
     try {
       data.name = `${(data.name.charAt(0).toUpperCase() + data.name.slice(1).toLowerCase()).trim()}`;
       data.surname = `${(data.surname.charAt(0).toUpperCase() + data.surname.slice(1).toLowerCase()).trim()}`;
@@ -69,7 +69,7 @@ const RegisterForm = () => {
         country: countryVal,
         companyName: data.companyName,
       };
-      registerWithEmailPass(registerData);
+      await registerWithEmailPass(registerData);
     } catch (error: any) {
       console.log(error);
       toast.error(error.message);

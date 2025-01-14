@@ -10,8 +10,9 @@ import {
 } from 'firebase/firestore';
 import { updateUserDisplayName } from './updateUserDisplayName';
 import {
+  createUserInCompanyDocFunc,
+  createUsersCompaniesDocFunc,
   RegisterService,
-  RegisterServiceProps,
 } from '@/types/models/services/RegisterNewPersonalModels';
 
 const registerWithEmailPass: RegisterService = async (data) => {
@@ -40,9 +41,11 @@ const registerWithEmailPass: RegisterService = async (data) => {
         subscription: 'Basic',
         subscriptionExpiration: null,
       });
-      await createUsersCompaniesDoc(userData.uid, companyRef.id, data);
+      createUsersCompaniesDoc(userData.uid, companyRef.id, data);
+      createUserInCompanyDoc('admins', userData.uid, companyRef.id, data);
     } else {
-      await createUsersCompaniesDoc(userData.uid, data.companyId, data);
+      createUsersCompaniesDoc(userData.uid, data.companyId, data);
+      createUserInCompanyDoc('personals', userData.uid, data.companyId, data);
     }
 
     // update user info
@@ -53,18 +56,30 @@ const registerWithEmailPass: RegisterService = async (data) => {
     throw err;
   }
 };
-const createUsersCompaniesDoc = async (
-  userId: string,
-  companyId: string,
-  data: RegisterServiceProps
+
+const createUserInCompanyDoc: createUserInCompanyDocFunc = async (
+  subTableName,
+  userId,
+  companyId,
+  data
+) => {
+  const userRef = doc(db, 'companies', companyId, subTableName, userId);
+  await setDoc(userRef, {
+    name: data.name,
+    surname: data.surname,
+    email: data.email,
+  });
+};
+
+const createUsersCompaniesDoc: createUsersCompaniesDocFunc = async (
+  userId,
+  companyId,
+  data
 ) => {
   const usersRef = doc(collection(db, 'usersCompanies'), userId);
   await setDoc(usersRef, {
     companyId,
-    name: data.name,
-    surname: data.surname,
     role: data.role,
-    email: data.email,
     status: AppUserStatus.active,
     createdAt: serverTimestamp(),
   });

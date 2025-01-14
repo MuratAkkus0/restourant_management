@@ -1,4 +1,4 @@
-import registerWithEmailPass from '@/services/firebase/registerNewPersonal';
+import registerWithEmailPass from '@/services/firebase/registerNewPerson';
 import { setIsAppLoading } from '@/store/slices/appConfigSlice';
 import { setIsLoading } from '@/store/slices/onAuthChangeState';
 import { RegisterServiceProps } from '@/types/models/services/RegisterNewPersonalModels';
@@ -13,12 +13,12 @@ export const useAdminRegisterWithEmailPass = () => {
     try {
       dispatch(setIsLoading(true));
       dispatch(setIsAppLoading(true));
-      registerWithEmailPass(data);
+      await registerWithEmailPass(data);
       toast.success('Register successfull !');
       navigate('/login');
     } catch (error: any) {
       console.log(error);
-      toast.error('An error occured during register: ' + error.code);
+      throw error;
     } finally {
       dispatch(setIsLoading(false));
       dispatch(setIsAppLoading(false));

@@ -24,3 +24,16 @@ export type RegisterServiceProps =
     });
 
 export type RegisterService = (data: RegisterServiceProps) => Promise<any>;
+
+export type createUserInCompanyDocFunc = (
+  subTableName: 'admins' | 'personals',
+  userId: string,
+  companyId: string,
+  data: RegisterServiceProps
+) => void;
+
+export type createUsersCompaniesDocFunc = (
+  userId: string,
+  companyId: string,
+  data: RegisterServiceProps
+) => void;
