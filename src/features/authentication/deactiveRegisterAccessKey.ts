@@ -14,16 +14,25 @@ export const deactiveAccessKey: DeactiveAccessKeyFunc = async (
   companyId
 ) => {
   try {
+    console.log('deactive');
     const docColRef = collection(
       db,
-      `companies/${companyId}/registerAccessKeys`
+      `companies/${companyId}/registerationLinks`
     );
     const q = query(docColRef, where('key', '==', accessKey));
     const querySnapshot = await getDocs(q);
     const docSnap = querySnapshot.docs[0];
-    const docRef = doc(db, 'registerAccessKeys', docSnap.id);
-    await updateDoc(docRef, { isValid: false });
+    if (docSnap.exists()) {
+      const docRef = doc(
+        db,
+        `companies/${companyId}/registerationLinks`,
+        docSnap.id
+      );
+      await updateDoc(docRef, { isValid: false });
+    } else {
+      throw new Error("Access key doesn't exists.");
+    }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

@@ -15,7 +15,7 @@ function AccessKeyList() {
   const [keyList, setKeyList] = useState<DocumentData[]>([]);
 
   async function getAccessKeyList() {
-    const accessKeyRef = collection(db, 'registerAccessKeys');
+    const accessKeyRef = collection(db, 'registerationLinks');
     const snapshot = await getDocs(accessKeyRef);
     const keys = snapshot.docs.map((item) => item.data());
     setKeyList(keys);
@@ -23,12 +23,12 @@ function AccessKeyList() {
 
   async function delAccessKey(e: React.MouseEvent<SVGElement, MouseEvent>) {
     const key = e.currentTarget.dataset.id;
-    const accessKeyRef = collection(db, 'registerAccessKeys');
+    const accessKeyRef = collection(db, 'registerationLinks');
     const q = query(accessKeyRef, where('key', '==', key));
     const querySnapshot = await getDocs(q);
 
     if (!querySnapshot.empty) {
-      await deleteDoc(doc(db, 'registerAccessKeys', querySnapshot.docs[0].id));
+      await deleteDoc(doc(db, 'registerationLinks', querySnapshot.docs[0].id));
     }
   }
   useEffect(() => {}, []);

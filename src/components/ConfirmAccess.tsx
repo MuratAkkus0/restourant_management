@@ -20,7 +20,7 @@ function ValidateRegisterAccess() {
   const verifyAccessKey = async () => {
     try {
       //get collection
-      const accessKeyRef = collection(db, 'registerAccessKeys');
+      const accessKeyRef = collection(db, 'registerationLinks');
       //prepare query
       const q = query(accessKeyRef, where('key', '==', inputVal.trim()));
       //start query and get results
@@ -33,7 +33,7 @@ function ValidateRegisterAccess() {
         const data = docSnap.data();
 
         // getting document ref
-        const docRef = doc(db, 'registerAccessKeys', docSnap.id);
+        const docRef = doc(db, 'registerationLinks', docSnap.id);
 
         if (new Date() > data.expiresAt.toDate()) {
           await updateDoc(docRef, { isValid: false });

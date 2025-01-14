@@ -23,4 +23,4 @@ export type RegisterServiceProps =
       companyId: string;
     });
 
-export type RegisterService = (data: RegisterServiceProps) => void;
+export type RegisterService = (data: RegisterServiceProps) => Promise<any>;

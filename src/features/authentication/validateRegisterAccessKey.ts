@@ -9,7 +9,7 @@ export const validateAccessKey: ValidateAccessKeyFunc = async ({
   console.log('valideting key..');
   const accessKeysRef = collection(
     db,
-    `companies/${companyId}/registerAccessKeys`
+    `companies/${companyId}/registerationLinks`
   );
   // prepare query
   const q = query(accessKeysRef, where('key', '==', accessKey));
@@ -26,8 +26,6 @@ export const validateAccessKey: ValidateAccessKeyFunc = async ({
         'This register link is not valid. Please request another link by admin.'
       );
     }
-    // get doc reference
-    // const docRef = doc(db, 'registerAccessKeys', docSnap.id);
 
     if (new Date() > data.expiresAt.toDate()) {
       throw new Error(

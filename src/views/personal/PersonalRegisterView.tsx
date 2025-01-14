@@ -3,11 +3,12 @@ import FormPagesesContainer from '@/components/templates/FormPagesesContainer';
 import { usePersonalRegisterWithEmailPass } from '@/customHooks/usePersonalRegisterWithEmailPass';
 import { deactiveAccessKey } from '@/features/authentication/deactiveRegisterAccessKey';
 import { validateAccessKey } from '@/features/authentication/validateRegisterAccessKey';
+import { auth } from '@/firebase/FirebaseConfig';
 import { PersonalRegisterFormSchema } from '@/schemas/PersonalRegisterFormSchema';
 import { setIsAppLoading } from '@/store/slices/appConfigSlice';
 import { setIsLoading } from '@/store/slices/onAuthChangeState';
 import { AppUserRoles } from '@/types/enums/AuthEnums';
-import { RegisterServiceProps } from '@/types/models/services/CreateNewPersonal';
+import { RegisterServiceProps } from '@/types/models/services/RegisterNewPersonalModels';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -55,48 +56,51 @@ function PersonalRegister() {
       console.log(err);
       throw new Error(err.message);
     });
-  }, []);
+  }, [accessKey]);
 
   function onSubmit() {
-    dispatch(setIsAppLoading(true));
-    dispatch(setIsLoading(true));
-    setSubmitting(true);
-    try {
-      if (!companyId || !accessKey) {
-        toast.error(
-          'The Company, that you want to join is not found. Please contact with admin.'
-        );
-        throw new Error('Company Id Not Found.');
+    const registerAndNavigate = async () => {
+      try {
+        if (!companyId || !accessKey) {
+          toast.error(
+            'The Company, that you want to join is not found. Please contact the admin.'
+          );
+          throw new Error('Company Id Not Found.');
+        }
+
+        // logout user if user already logged in
+        if (auth.currentUser) await auth.signOut();
+
+        // validate Access Key
+        await validateAccessKey({ accessKey, companyId });
+
+        // register user
+        const registerData: RegisterServiceProps = {
+          ...values,
+          role: AppUserRoles.personal,
+          companyId,
+        };
+        await personalRegisterWithEmailPass(registerData);
+
+        // deactive access key after using
+        deactiveAccessKey(accessKey, companyId);
+
+        // if everything okey then navigate user
+        navigate('/login');
+        toast.success('Registration successful. You can now log in.');
+      } catch (error: any) {
+        // Tüm hataları burada ele al
+        console.error('Error during registration:', error);
+        toast.error(`An error occurred: ${error.message}`);
+      } finally {
+        // Loading state'leri sıfırla
+        dispatch(setIsAppLoading(false));
+        dispatch(setIsLoading(false));
+        setSubmitting(false);
       }
-      validateAccessKey({ accessKey, companyId })
-        .then(() => {
-          // If access key is valid register user
-          const registerData: RegisterServiceProps = {
-            ...values,
-            role: AppUserRoles.personal,
-            companyId: companyId,
-          };
-          personalRegisterWithEmailPass(registerData);
-          return;
-        })
-        .then(() => {
-          deactiveAccessKey(accessKey, companyId);
-          return;
-        })
-        .then(() => navigate('/personal'))
-        .catch((err) => {
-          toast.error(err.message);
-          console.log(err);
-          throw new Error(err.message);
-        });
-    } catch (error: any) {
-      console.log(error);
-      toast.error(error.message);
-    } finally {
-      dispatch(setIsAppLoading(false));
-      dispatch(setIsLoading(false));
-      setSubmitting(false);
-    }
+    };
+
+    registerAndNavigate();
   }
 
   return (

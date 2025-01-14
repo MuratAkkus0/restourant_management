@@ -1,24 +1,19 @@
-import registerWithEmailPass from '@/services/firebase/createNewPersonal';
+import registerWithEmailPass from '@/services/firebase/registerNewPersonal';
 import { setIsAppLoading } from '@/store/slices/appConfigSlice';
 import { setIsLoading } from '@/store/slices/onAuthChangeState';
-import { RegisterServiceProps } from '@/types/models/services/CreateNewPersonal';
+import { RegisterServiceProps } from '@/types/models/services/RegisterNewPersonalModels';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
 
 export const usePersonalRegisterWithEmailPass = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const personalRegisterWithEmailPass = async (data: RegisterServiceProps) => {
     try {
       dispatch(setIsLoading(true));
       dispatch(setIsAppLoading(true));
-      registerWithEmailPass(data);
-      toast.success('Register successfull !');
-      navigate('/login');
+      await registerWithEmailPass(data);
     } catch (error: any) {
       console.log(error);
-      toast.error('An error occured during register: ' + error.code);
+      throw error;
     } finally {
       dispatch(setIsLoading(false));
       dispatch(setIsAppLoading(false));

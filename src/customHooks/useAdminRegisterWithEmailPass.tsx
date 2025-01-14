@@ -1,7 +1,7 @@
-import registerWithEmailPass from '@/services/firebase/createNewPersonal';
+import registerWithEmailPass from '@/services/firebase/registerNewPersonal';
 import { setIsAppLoading } from '@/store/slices/appConfigSlice';
 import { setIsLoading } from '@/store/slices/onAuthChangeState';
-import { RegisterServiceProps } from '@/types/models/services/CreateNewPersonal';
+import { RegisterServiceProps } from '@/types/models/services/RegisterNewPersonalModels';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';

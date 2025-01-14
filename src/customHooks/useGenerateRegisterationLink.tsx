@@ -2,20 +2,25 @@ import { v4 as uuidv4 } from 'uuid';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase/FirebaseConfig';
 import { toast } from 'sonner';
-import { useGenerateAccessKeyProps } from '@/types/models/customHooks/useGenerateAccessKeyModels';
+import { GenerateRegisterationLinkProps } from '@/types/models/customHooks/GenerateRegisterationLink';
 
-function useRegisterGenerateAccessKey() {
-  const generateAccessKey: useGenerateAccessKeyProps = async (companyId) => {
+function useGenerateRegisterationLink() {
+  const generateRegisterationLink: GenerateRegisterationLinkProps = async (
+    companyId
+  ) => {
     try {
       const key = uuidv4();
       const createdAt = new Date();
       const expiresAt = new Date();
       expiresAt.setHours(createdAt.getHours() + 12);
-
+      const paramObj = { key: key, cId: companyId };
+      const params = new URLSearchParams(paramObj);
+      const link = `${window.location.origin}/personal-register?${params.toString()}`;
       const docRef = await addDoc(
-        collection(db, `companies/${companyId}/registerAccessKeys`),
+        collection(db, `companies/${companyId}/registerationLinks`),
         {
           key,
+          link,
           isValid: true,
           createdAt,
           expiresAt,
@@ -24,7 +29,7 @@ function useRegisterGenerateAccessKey() {
       );
       console.log('Document written with id: ' + docRef.id);
       toast.success('Access key successfully created!');
-      return key;
+      return link;
     } catch (error) {
       toast.error(
         'Cannot create access key! An unknown error has occurred. Please check your internet connection or reload the page.'
@@ -33,7 +38,7 @@ function useRegisterGenerateAccessKey() {
       return '';
     }
   };
-  return generateAccessKey;
+  return generateRegisterationLink;
 }
 
-export default useRegisterGenerateAccessKey;
+export default useGenerateRegisterationLink;

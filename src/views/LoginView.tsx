@@ -8,7 +8,8 @@ function LoginView() {
   const userId = useSelector(
     (store: RootState) => store.onAuthChangeState.user.uid
   );
-
+  console.log('/login active');
+  console.log(userId);
   if (userId) {
     return <Navigate to={'/'} />;
   } else {

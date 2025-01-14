@@ -12,7 +12,7 @@ import { toast } from 'sonner';
 import { useAdminRegisterWithEmailPass } from '@/customHooks/useAdminRegisterWithEmailPass';
 import { UnderlinedInputProps } from '@/types/models/atoms/UnderlinedInputModels';
 import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
-import { RegisterServiceProps } from '@/types/models/services/CreateNewPersonal';
+import { RegisterServiceProps } from '@/types/models/services/RegisterNewPersonalModels';
 import { AppUserRoles } from '@/types/enums/AuthEnums';
 
 const RegisterForm = () => {
@@ -49,14 +49,12 @@ const RegisterForm = () => {
   } = formik;
 
   function onSubmit(data: FormikValues) {
-    console.log('aktif');
-    // submitted
     try {
       data.name = `${(data.name.charAt(0).toUpperCase() + data.name.slice(1).toLowerCase()).trim()}`;
       data.surname = `${(data.surname.charAt(0).toUpperCase() + data.surname.slice(1).toLowerCase()).trim()}`;
       data.companyName = `${(data.companyName.charAt(0).toUpperCase() + data.companyName.slice(1)).trim()}`;
       data.country = countryVal;
-      console.log(data);
+
       const registerData: RegisterServiceProps = {
         name: data.name,
         surname: data.surname,

@@ -9,7 +9,10 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import { updateUserDisplayName } from './updateUserDisplayName';
-import { RegisterService } from '@/types/models/services/CreateNewPersonal';
+import {
+  RegisterService,
+  RegisterServiceProps,
+} from '@/types/models/services/RegisterNewPersonalModels';
 
 const registerWithEmailPass: RegisterService = async (data) => {
   try {
@@ -37,33 +40,34 @@ const registerWithEmailPass: RegisterService = async (data) => {
         subscription: 'Basic',
         subscriptionExpiration: null,
       });
-      await usersCompaniesDoc(companyRef.id);
+      await createUsersCompaniesDoc(userData.uid, companyRef.id, data);
     } else {
-      await usersCompaniesDoc(data.companyId);
-    }
-
-    async function usersCompaniesDoc(companyId: string) {
-      // create usersCompanies Doc
-      const usersRef = doc(collection(db, 'usersCompanies'), userData.uid);
-      await setDoc(usersRef, {
-        companyId: companyId,
-        name: data.name,
-        surname: data.surname,
-        role: data.role,
-        email: data.email,
-        status: AppUserStatus.active,
-        createdAt: serverTimestamp(),
-      });
+      await createUsersCompaniesDoc(userData.uid, data.companyId, data);
     }
 
     // update user info
     await updateUserDisplayName(data.name, data.surname);
-
-    auth.signOut();
+    await auth.signOut();
   } catch (err: any) {
-    const errCode = err.code.charAt(0).toUpperCase() + err.code.slice(1);
-    console.error(errCode);
+    console.error('Error during registration:', err);
+    throw err;
   }
+};
+const createUsersCompaniesDoc = async (
+  userId: string,
+  companyId: string,
+  data: RegisterServiceProps
+) => {
+  const usersRef = doc(collection(db, 'usersCompanies'), userId);
+  await setDoc(usersRef, {
+    companyId,
+    name: data.name,
+    surname: data.surname,
+    role: data.role,
+    email: data.email,
+    status: AppUserStatus.active,
+    createdAt: serverTimestamp(),
+  });
 };
 
 export default registerWithEmailPass;

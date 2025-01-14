@@ -39,9 +39,11 @@ function App() {
           );
           dispatch(setIsLoading(false));
         } else {
+          dispatch(setIsLoading(false));
           dispatch(logout());
         }
       } else {
+        dispatch(setIsLoading(false));
         dispatch(logout());
       }
     });
