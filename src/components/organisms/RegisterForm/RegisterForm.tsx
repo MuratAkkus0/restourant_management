@@ -1,4 +1,4 @@
-import { useFormik } from 'formik';
+import { FormikValues, useFormik } from 'formik';
 import { RegisterFormSchema } from '../../../schemas/RegisterFormSchema';
 import Logo from '../../molecules/Logo';
 import { useState } from 'react';
@@ -9,13 +9,15 @@ import SideBySideInputContainer from '../../templates/SideBySideInputContainer';
 import FormTitle from '../../atoms/FormTitle';
 import StepByStepFormContainer from '../../templates/StepByStepFormContainer';
 import { toast } from 'sonner';
-import { useRegisterWithEmailPass } from '@/customHooks/useRegisterWithEmailPass';
+import { useAdminRegisterWithEmailPass } from '@/customHooks/useAdminRegisterWithEmailPass';
 import { UnderlinedInputProps } from '@/types/models/atoms/UnderlinedInputModels';
 import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
+import { RegisterServiceProps } from '@/types/models/services/CreateNewPersonal';
+import { AppUserRoles } from '@/types/enums/AuthEnums';
 
 const RegisterForm = () => {
   const [countryVal, setCountryVal] = useState('');
-  const registerWithEmailPass = useRegisterWithEmailPass();
+  const registerWithEmailPass = useAdminRegisterWithEmailPass();
 
   const formik = useFormik({
     initialValues: {
@@ -46,7 +48,7 @@ const RegisterForm = () => {
     setSubmitting,
   } = formik;
 
-  function onSubmit(data: any) {
+  function onSubmit(data: FormikValues) {
     console.log('aktif');
     // submitted
     try {
@@ -55,7 +57,21 @@ const RegisterForm = () => {
       data.companyName = `${(data.companyName.charAt(0).toUpperCase() + data.companyName.slice(1)).trim()}`;
       data.country = countryVal;
       console.log(data);
-      registerWithEmailPass({ ...values, country: countryVal });
+      const registerData: RegisterServiceProps = {
+        name: data.name,
+        surname: data.surname,
+        email: data.email,
+        pass: data.pass,
+        role: AppUserRoles.admin,
+        street: data.street,
+        houseNo: data.houseNo,
+        state: data.state,
+        postalCode: data.postalCode,
+        city: data.city,
+        country: countryVal,
+        companyName: data.companyName,
+      };
+      registerWithEmailPass(registerData);
     } catch (error: any) {
       console.log(error);
       toast.error(error.message);

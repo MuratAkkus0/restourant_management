@@ -15,28 +15,21 @@ function AdminPersonalManagement() {
 
     generateAccessKey(userData.companyId)
       .then((key) => {
+        // create url params
         const paramObj = { key: key, cId: userData.companyId };
         const params = new URLSearchParams(paramObj);
-        console.log(params.toString());
         const link = `${window.location.origin}/personal-register?${params.toString()}`;
         setRegisterLink(link);
         return link;
       })
       .then((link) => {
-        const registerationLinksRef = addDoc(
-          collection(db, 'registerationLinks'),
-          {
-            link: link,
-            createdAt: serverTimestamp(),
-            isValid: true,
-            companyId: userData.companyId,
-          }
-        );
+        addDoc(collection(db, 'registerationLinks'), {
+          link: link,
+          createdAt: serverTimestamp(),
+          companyId: userData.companyId,
+        });
         setRegisterLink(link);
-        return registerationLinksRef;
-      })
-      .then((registerationLinksRef) => {
-        console.log('Document written with id: ' + registerationLinksRef.id);
+        return;
       });
   };
   return (

@@ -12,16 +12,18 @@ function useRegisterGenerateAccessKey() {
       const expiresAt = new Date();
       expiresAt.setHours(createdAt.getHours() + 12);
 
-      const docRef = await addDoc(collection(db, 'registerAccessKeys'), {
-        key,
-        isValid: true,
-        createdAt,
-        expiresAt,
-        companyId,
-      });
+      const docRef = await addDoc(
+        collection(db, `companies/${companyId}/registerAccessKeys`),
+        {
+          key,
+          isValid: true,
+          createdAt,
+          expiresAt,
+          companyId,
+        }
+      );
       console.log('Document written with id: ' + docRef.id);
       toast.success('Access key successfully created!');
-      // setAccessKey(key);
       return key;
     } catch (error) {
       toast.error(

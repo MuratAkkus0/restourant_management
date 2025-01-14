@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { IoRestaurantOutline } from 'react-icons/io5';
 import { LogoProperties } from '@/types/models/molecules/LogoModels';
 import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
+import { memo } from 'react';
 
 function Logo(props: LogoProperties) {
   const { FontSize = FontSizes.normal, LogoSize = LogoSizes.normal } = props;
@@ -22,4 +23,4 @@ function Logo(props: LogoProperties) {
   );
 }
 
-export default Logo;
+export default memo(Logo);

@@ -4,3 +4,7 @@ export enum AppUserRoles {
   'customer',
   'unknown',
 }
+export enum AppUserStatus {
+  'active',
+  'deactive',
+}

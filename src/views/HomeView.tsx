@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@/components/atoms/Button';
 import faqs from '@/assets/static_datas/faqs.json';
 import Pharagrapf from '@/components/atoms/Pharagrapf';
+import { auth } from '@/firebase/FirebaseConfig';
 
 function HomeView() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -22,7 +23,10 @@ function HomeView() {
       <section className="w-full bg-primary text-accent py-16 px-8">
         <div className="w-full flex flex-col gap-4 md:flex-row items-center">
           <div className="md:w-1/2 text-center md:text-left space-y-6">
-            <h1 className="p-2 text-4xl md:text-6xl font-bold text-transparent bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text font-Poppins">
+            <h1
+              onClick={() => auth.signOut()}
+              className="p-2 text-4xl md:text-6xl font-bold text-transparent bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text font-Poppins"
+            >
               Take Your Business to the Future!
             </h1>
             <Pharagrapf size="xl">
