@@ -16,19 +16,19 @@ const HeaderMenuList: React.FC<HeaderMenuListProps> = ({ isMenuOpen }) => {
         {menuItems.map((item, key) => {
           if (
             (item.menuName === 'Login' || item.menuName === 'Register') &&
-            userData.role !== AppUserRoles.unknown
+            userData.role !== AppUserRoles.UNKNOWN
           ) {
             return;
           }
           if (
             item.menuName === 'Dashboard' &&
-            userData.role === AppUserRoles.unknown
+            userData.role === AppUserRoles.UNKNOWN
           ) {
             return;
           }
           if (
             item.menuName === 'Dashboard' &&
-            userData.role === AppUserRoles.admin
+            userData.role === AppUserRoles.ADMIN
           ) {
             return (
               <MenuItem
@@ -40,7 +40,7 @@ const HeaderMenuList: React.FC<HeaderMenuListProps> = ({ isMenuOpen }) => {
           }
           if (
             item.menuName === 'Dashboard' &&
-            userData.role === AppUserRoles.personal
+            userData.role === AppUserRoles.PERSONAL
           ) {
             return (
               <MenuItem
@@ -53,7 +53,7 @@ const HeaderMenuList: React.FC<HeaderMenuListProps> = ({ isMenuOpen }) => {
 
           if (
             item.menuName === 'Dashboard' &&
-            userData.role === AppUserRoles.customer
+            userData.role === AppUserRoles.PERSONAL
           ) {
             return (
               <MenuItem

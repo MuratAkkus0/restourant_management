@@ -77,7 +77,7 @@ function PersonalRegister() {
         // register user
         const registerData: RegisterServiceProps = {
           ...values,
-          role: AppUserRoles.personal,
+          role: AppUserRoles.PERSONAL,
           companyId,
         };
         await personalRegisterWithEmailPass(registerData);

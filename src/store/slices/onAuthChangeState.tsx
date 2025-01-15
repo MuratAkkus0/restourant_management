@@ -9,7 +9,7 @@ const initialState: AuthState = {
     displayName: null,
     photoURL: null,
   },
-  role: AppUserRoles.unknown,
+  role: AppUserRoles.UNKNOWN,
   companyId: null,
   loading: true,
 };
@@ -34,7 +34,7 @@ const onAuthChangeState = createSlice({
         displayName: null,
         photoURL: null,
       };
-      state.role = AppUserRoles.unknown;
+      state.role = AppUserRoles.UNKNOWN;
       state.companyId = null;
       state.loading = false;
     },

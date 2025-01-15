@@ -1,20 +1,17 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import HeroImage from '../assets/images/hero_img.jpg';
 import AdvantagesCard from '../components/molecules/AdvantagesCard';
 import Logo from '../components/molecules/Logo';
-import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Button from '@/components/atoms/Button';
-import faqs from '@/assets/static_datas/faqs.json';
 import Pharagrapf from '@/components/atoms/Pharagrapf';
+import Accordion from '@/components/organisms/Accordion/Accordion';
+import faqs from '@/assets/static_datas/faqs.json';
 
 function HomeView() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const navigate = useNavigate();
-  const toggleAccordion = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
+
   const featuresRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -117,26 +114,7 @@ function HomeView() {
           {/* FAQ Underline */}
           <div className="w-10/12 sm:w-8/12 lg:w-1/3 border border-black rounded-md mx-auto mb-6"></div>
           {/* Accordion */}
-          <div className="w-full space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className="w-full bg-white shadow-lg rounded-lg">
-                <button
-                  onClick={() => toggleAccordion(index)}
-                  className="w-full text-left lg:text-base xl:text-lg flex justify-between items-center p-4 font-medium"
-                >
-                  {faq.question}
-                  <span>
-                    {activeIndex === index ? <FaMinus /> : <FaPlus />}
-                  </span>
-                </button>
-                {activeIndex === index && (
-                  <div className="p-4 xl:text-base border-t border-neutralLight">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          <Accordion data={faqs} />
         </div>
       </section>
     </div>

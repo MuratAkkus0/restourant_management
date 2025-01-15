@@ -34,7 +34,7 @@ function Router() {
         <Route path="/personal-register" element={<PersonalRegister />} />
 
         <Route
-          element={<ProtectedRoutes allowedRoles={[AppUserRoles.admin]} />}
+          element={<ProtectedRoutes allowedRoles={[AppUserRoles.ADMIN]} />}
         >
           <Route path="/admin" element={<AdminPanelView />}>
             {/* Overview Section */}

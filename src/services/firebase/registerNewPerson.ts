@@ -25,7 +25,7 @@ const registerWithEmailPass: RegisterService = async (data) => {
     );
     const userData = UserCredential.user;
     // create company if user is admin
-    if (data.role === AppUserRoles.admin) {
+    if (data.role === AppUserRoles.ADMIN) {
       // Create Company Doc
       const companyRef = await addDoc(collection(db, 'companies'), {
         name: data.companyName,

@@ -8,7 +8,7 @@ function AdminPanelView() {
     navigate('overview');
   }, []);
   return (
-    <div className="w-full h-full flex md:gap-2">
+    <div className="w-full h-full flex pl-4 md:pl-0 md:gap-5">
       <DashMenu />
       <Outlet />
     </div>

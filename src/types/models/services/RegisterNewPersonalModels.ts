@@ -9,7 +9,7 @@ export type RegisterServiceBaseProps = {
 
 export type RegisterServiceProps =
   | (RegisterServiceBaseProps & {
-      role: AppUserRoles.admin;
+      role: AppUserRoles.ADMIN;
       street: string;
       houseNo: string;
       state: string;
@@ -19,7 +19,7 @@ export type RegisterServiceProps =
       companyName: string;
     })
   | (RegisterServiceBaseProps & {
-      role: AppUserRoles.personal | AppUserRoles.customer;
+      role: AppUserRoles.PERSONAL | AppUserRoles.PERSONAL;
       companyId: string;
     });
 

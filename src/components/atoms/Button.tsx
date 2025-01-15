@@ -7,7 +7,6 @@ const Button: React.FC<ButtonProps> = ({
   isSubmitInProgress = false,
   onBtnClick,
 }) => {
-  console.log(isSubmitInProgress);
   const conditionalStyle = `${isSubmitInProgress ? 'bg-red-400' : 'bg-gradient-to-r from-orange-500 to-red-600'}`;
   return (
     <>

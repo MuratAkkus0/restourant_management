@@ -1,22 +1,22 @@
 [
-    {
-        "menuName": "Home",
-        "redirectTo": "/"
-    },
-    {
-        "menuName": "Login",
-        "redirectTo": "/login"
-    },
-    {
-        "menuName": "Register",
-        "redirectTo": "/register"
-    },
-    {
-        "menuName": "Dashboard",
-        "redirectTo": ""
-    },
-    {
-        "menuName": "About Us",
-        "redirectTo": "/about-us"
-    }
+  {
+    "menuName": "Home",
+    "redirectTo": "/"
+  },
+  {
+    "menuName": "Login",
+    "redirectTo": "/login"
+  },
+  {
+    "menuName": "Register",
+    "redirectTo": "/register"
+  },
+  {
+    "menuName": "Dashboard",
+    "redirectTo": "/user"
+  },
+  {
+    "menuName": "About Us",
+    "redirectTo": "/about-us"
+  }
 ]

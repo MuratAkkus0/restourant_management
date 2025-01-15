@@ -1,4 +1,6 @@
-import Button from '@/components/atoms/Button';
+import GenerateLinkCard from '@/components/molecules/GenerateLinkCard';
+import LinkList from '@/components/molecules/LinkList';
+import AdminPanelsPagesContainer from '@/components/templates/AdminPanelsPagesContainer';
 import useGenerateRegisterationLink from '@/customHooks/useGenerateRegisterationLink';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -14,18 +16,15 @@ function AdminPersonalManagement() {
     });
   };
   return (
-    <div className="flex flex-col gap-2 w-full h-full justify-center items-center">
-      <div className="border p-2">
-        <a target="_blank" href={registerLink}>
-          {registerLink}
-        </a>
+    <AdminPanelsPagesContainer>
+      <div className="w-full h-full flex flex-col gap-4">
+        <GenerateLinkCard
+          link={registerLink}
+          onClickCreateLink={createRegisterationLink}
+        />
+        <LinkList />
       </div>
-      <Button
-        type="button"
-        onBtnClick={createRegisterationLink}
-        text="Create Link"
-      />
-    </div>
+    </AdminPanelsPagesContainer>
   );
 }
 

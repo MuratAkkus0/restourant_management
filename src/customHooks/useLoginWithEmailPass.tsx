@@ -41,7 +41,7 @@ export const useLoginWithEmailPass = () => {
           // const companyData = companyDocSnap.data();
 
           // redirect user
-          if (userInfo.role === AppUserRoles.admin) {
+          if (userInfo.role === AppUserRoles.ADMIN) {
             navigate('/admin');
             console.log('aktive');
           } else {

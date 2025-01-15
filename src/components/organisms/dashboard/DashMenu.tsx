@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import UserCircleCardWithName from '../../molecules/UserCircleCardWithName';
-import MenuList from './DashMenuList';
+import DashMenuList from './DashMenuList';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { TbLogout2 } from 'react-icons/tb';
@@ -23,10 +23,11 @@ function DashMenu() {
         ></div>
       )}
       <aside
-        className={`${isMenuOpen
-          ? 'w-9/12 sm:w-4/12 md:w-4/12 lg:w-3/12 xl:w-3/12 translate-x-0'
-          : 'w-0 -translate-x-full'
-          } flex-shrink-0 z-10 h-full transition-[width transform] duration-200 absolute md:relative top-0 left-0 bg-slate-950 py-4 text-white`}
+        className={`${
+          isMenuOpen
+            ? 'w-9/12 sm:w-4/12 md:w-4/12 lg:w-3/12 xl:w-3/12 translate-x-0'
+            : 'w-0 -translate-x-full'
+        } flex-shrink-0 z-10 h-full transition-[width transform] duration-200 absolute md:relative top-0 left-0 bg-slate-950 py-4 text-white`}
       >
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -44,7 +45,7 @@ function DashMenu() {
             fullName={userData.displayName ?? ''}
             imgUrl={userData.photoURL ?? ''}
           />
-          <MenuList />
+          <DashMenuList />
           <div
             onClick={() => logout()}
             className="w-full flex justify-end items-center gap-1 text-md px-4 cursor-pointer"

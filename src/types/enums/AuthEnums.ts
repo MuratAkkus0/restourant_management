@@ -1,8 +1,8 @@
 export enum AppUserRoles {
-  'admin',
-  'personal',
-  'customer',
-  'unknown',
+  ADMIN = 'admin',
+  PERSONAL = 'personal',
+  CUSTOMER = 'customer',
+  UNKNOWN = 'unknown',
 }
 export enum AppUserStatus {
   'active',

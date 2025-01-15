@@ -60,7 +60,7 @@ const RegisterForm = () => {
         surname: data.surname,
         email: data.email,
         pass: data.pass,
-        role: AppUserRoles.admin,
+        role: AppUserRoles.ADMIN,
         street: data.street,
         houseNo: data.houseNo,
         state: data.state,
