@@ -13,7 +13,6 @@ function LinkList() {
     const getData = async () => {
       if (userData.companyId) {
         const data = await getAllRegisterLinks(userData.companyId);
-        console.log(data[0]);
         setListData(data);
       }
     };
