@@ -13,7 +13,7 @@ function UnderlinedInput(props: UnderlinedInputProps) {
     inputPlaceHolder = '',
     errors = {},
     touched = {},
-    hasIcon,
+    hasIcon = false,
     showIcon = true,
     onClickIcon,
     Icon,
@@ -35,7 +35,7 @@ function UnderlinedInput(props: UnderlinedInputProps) {
   return (
     <div className="flex flex-col gap-2 flex-shrink-0">
       <label
-        className="flex flex-col gap-2 text-base md:text-lg font-normal sm:font-medium "
+        className="flex flex-col gap-2 text-sm md:text-base font-normal sm:font-medium "
         htmlFor={inputId}
       >
         {labelText} :
@@ -50,7 +50,7 @@ function UnderlinedInput(props: UnderlinedInputProps) {
           id={inputId}
           name={inputId}
           type={hasIcon ? (!changeIconByClick ? 'text' : inputType) : inputType}
-          className={`w-full border-b py-1 px-2 focus:outline-none transition-[border-color] ${errors && errorMessage && isTouched ? 'border-b-red-600' : 'focus:border-gray-500 '}`}
+          className={`w-full border-b py-1 focus:outline-none transition-[border-color] text-sm sm:text-base placeholder:text-sm placeholder:text-base ${errors && errorMessage && isTouched ? 'border-b-red-600' : 'focus:border-gray-500 '} ${hasIcon ? 'pr-10' : ''}`}
           placeholder={inputPlaceHolder}
         />
         {hasIcon && (
@@ -69,7 +69,7 @@ function UnderlinedInput(props: UnderlinedInputProps) {
       {errorMessage && isTouched ? (
         <>
           <Pharagrapf
-            size="xs"
+            size="2xs"
             colorClassName="text-red-600"
             className="font-medium first-letter:uppercase"
           >

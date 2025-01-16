@@ -14,7 +14,7 @@ const FormPagesesContainer: FC<{ children: ReactNode }> = ({ children }) => {
               to="/"
               className="inline-flex text-base md:text-lg font-medium gap-1 items-center"
             >
-              <MdKeyboardBackspace className="text-xl md:text-2xl" />
+              <MdKeyboardBackspace className=" text-xl md:text-2xl" />
               Back to Home
             </Link>
           </div>
@@ -24,14 +24,20 @@ const FormPagesesContainer: FC<{ children: ReactNode }> = ({ children }) => {
           </div>
 
           <div className="flex justify-between px-4 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-3xl border-t border-gray-200 container bg-white p-2 text-base md:text-lg">
-            <span className="font-medium">
+            <span className="text-gray-600 text-xs sm:text-sm font-normal">
               ©{new Date().getFullYear()} Manegio
             </span>
-            <Link to="/" className="font-medium">
+            <Link
+              to="/"
+              className="text-gray-600 text-xs sm:text-sm font-normal"
+            >
               Data Privacy
             </Link>
-            <Link to="/" className="font-medium">
-              Terms & Conditions
+            <Link
+              to="/"
+              className="text-gray-600 text-xs sm:text-sm font-normal"
+            >
+              Terms
             </Link>
           </div>
         </div>

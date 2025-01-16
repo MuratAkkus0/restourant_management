@@ -56,9 +56,7 @@ function LoginForm() {
         />
       </div>
       <div className="flex flex-col flex-shrink-0 flex-1 gap-4">
-        <h3 className="mx-auto text-2xl font-medium font-Phenomena sm:text-3xl">
-          Login
-        </h3>
+        <h3 className="mx-auto text-2xl font-medium sm:text-3xl">Login</h3>
 
         {/* Email Input */}
         <UnderlinedInput
@@ -90,13 +88,15 @@ function LoginForm() {
         />
 
         {/* Register Link */}
-        <Pharagrapf size='sm' className='w-full h-2 sm:text-sm md:text-base'>Don't have an account yet?{' '}
+        <Pharagrapf size="2xs" className="w-full h-2 sm:text-sm">
+          Don't have an account yet?{' '}
           <Link
             to="/register"
             className="underline underline-offset-1 text-blue-500"
           >
             Register with email.
-          </Link></Pharagrapf>
+          </Link>
+        </Pharagrapf>
 
         {/* Login Button */}
         <div className="flex flex-col items-center gap-5 mt-6">

@@ -32,7 +32,7 @@ const DropdownSearch: React.FC<DropdownSearchProps> = ({
   return (
     <>
       {isDropdownOpen && (
-        <div className="mt-2 bg-white border border-gray-300 rounded-lg shadow-lg absolute top-full left-0 right-0 z-10">
+        <div className="mt-2 text-sm bg-white border border-gray-300 rounded-lg shadow-lg absolute top-full left-0 right-0 z-10">
           <input
             type="text"
             value={query}

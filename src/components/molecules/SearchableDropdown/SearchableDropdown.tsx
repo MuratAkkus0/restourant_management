@@ -31,7 +31,7 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
     <div className="relative w-full mx-auto bg-white" ref={dropdownRef}>
       {/* Dropdown Trigger */}
       <div
-        className={`p-2 sm:p-3 border ${isDropdownOpen ? 'border-black' : 'border-gray-300'} rounded-lg cursor-pointer flex items-center justify-between`}
+        className={`p-2 sm:p-3 border ${isDropdownOpen ? 'border-black' : 'border-gray-300'} rounded-lg cursor-pointer flex items-center justify-between text-sm`}
         onClick={() => setDropdownOpen(!isDropdownOpen)}
       >
         <span className="text-gray-700">

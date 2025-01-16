@@ -48,11 +48,11 @@ function DashMenu() {
           <DashMenuList />
           <div
             onClick={() => logout()}
-            className="w-full flex justify-end items-center gap-1 text-md px-4 cursor-pointer"
+            className="w-full flex justify-end items-center gap-1 px-4 cursor-pointer"
           >
-            <span className="flex items-center gap-1 cursor-pointer text-base md:text-xl">
-              <TbLogout2 className="text-xl md:text-2xl" />
-              Logout
+            <span className="flex items-center gap-1 cursor-pointer">
+              <TbLogout2 className="text-base md:text-base" />
+              <span className="text-sm md:text-base">Logout</span>
             </span>
           </div>
         </div>

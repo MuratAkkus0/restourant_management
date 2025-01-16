@@ -83,10 +83,10 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
     setFieldValue(
       'city',
       address.city ||
-      address.city_district ||
-      address.borough ||
-      address.province ||
-      ''
+        address.city_district ||
+        address.borough ||
+        address.province ||
+        ''
     );
 
     setIsSelecting(true);
@@ -97,7 +97,7 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   };
 
   return (
-    <div className="relative w-full max-w-md flex flex-col gap-3 mx-auto">
+    <div className="relative w-full max-w-md flex flex-col gap-4 mx-auto">
       <UnderlinedInput
         labelText={'Company Name'}
         inputValue={values.companyName}
@@ -112,9 +112,9 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
       <div>
         <label
           htmlFor="country"
-          className="block text-gray-700 font-normal sm:font-medium mb-2"
+          className="block text-gray-700 font-normal sm:font-medium mb-2 text-sm md:text-base"
         >
-          Select Country
+          Select Country :
         </label>
         <SearchableDropdown
           countryList={countryList}
@@ -179,61 +179,37 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
         </div>
       </div>
       {/* State Input */}
-      <div className="">
-        <label
-          htmlFor="state"
-          className="block text-gray-700 font-normal sm:font-medium mb-2"
-        >
-          State
-        </label>
-        <input
-          value={values.state}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          id="state"
-          type="text"
-          className="w-full py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
-          placeholder="Enter state or region"
-        />
-      </div>
+      <UnderlinedInput
+        labelText="State"
+        inputValue={values.state}
+        onInputChange={handleChange}
+        onInputBlur={handleBlur}
+        inputId="state"
+        inputPlaceHolder="State"
+        errors={errors}
+        touched={touched}
+      />
 
-      {/* Postal Code Input */}
-      <div className="">
-        <label
-          htmlFor="postalCode"
-          className="block text-gray-700 font-normal sm:font-medium mb-2"
-        >
-          Postal Code
-        </label>
-        <input
-          value={values.postalCode}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          id="postalCode"
-          type="text"
-          className="w-full py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
-          placeholder="Enter postal code"
-        />
-      </div>
-
-      {/* City Input */}
-      <div className="">
-        <label
-          htmlFor="city"
-          className="block text-gray-700 font-normal sm:font-medium mb-2"
-        >
-          City
-        </label>
-        <input
-          value={values.city}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          id="city"
-          type="text"
-          className="w-full py-1 px-2  border-b border-gray-300 focus:outline-none focus:border-black"
-          placeholder="Enter city name"
-        />
-      </div>
+      <UnderlinedInput
+        labelText="Postal Code"
+        inputValue={values.postalCode}
+        onInputChange={handleChange}
+        onInputBlur={handleBlur}
+        inputId="postalCode"
+        inputPlaceHolder="Postal Code"
+        errors={errors}
+        touched={touched}
+      />
+      <UnderlinedInput
+        labelText="City"
+        inputValue={values.city}
+        onInputChange={handleChange}
+        onInputBlur={handleBlur}
+        inputId="city"
+        inputPlaceHolder="City"
+        errors={errors}
+        touched={touched}
+      />
     </div>
   );
 };

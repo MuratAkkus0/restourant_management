@@ -10,14 +10,15 @@ const DashMenuItem: React.FC<DashMenuItemProps> = ({ tab }) => {
 
   return (
     <>
-      <li className="cursor-pointer  text-gray-400">
+      <li className="cursor-pointer text-sm md:text-base xl:text-md text-gray-400">
         <div onClick={() => tab.subMenu && setIsSubMenuOpen(!isSubMenuOpen)}>
           <NavLink
             to={tab.route}
             className={({ isActive }) =>
-              `w-full h-full p-2 flex justify-between items-center gap-3 px-4 ${isActive
-                ? 'bg-slate-800 text-white'
-                : 'text-gray-400 hover:bg-slate-800'
+              `w-full h-full p-2 flex justify-between items-center gap-3 px-4 ${
+                isActive
+                  ? 'bg-slate-800 text-white'
+                  : 'text-gray-400 hover:bg-slate-800'
               }`
             }
           >
@@ -39,11 +40,12 @@ const DashMenuItem: React.FC<DashMenuItemProps> = ({ tab }) => {
           {tab.subMenu.map((item, key) => {
             const Icon = Icons[item.icon as keyof typeof Icons];
             return (
-              <li key={key} className="hover:bg-slate-800">
+              <li key={key} className="hover:bg-slate-800 text-sm md:text-base">
                 <NavLink
                   to={item.route}
                   className={({ isActive }) =>
-                    `p-2 flex items-center gap-3 px-4 ${isActive ? 'bg-slate-800 text-white' : 'text-gray-400'
+                    `p-2 flex items-center gap-3 px-4 ${
+                      isActive ? 'bg-slate-800 text-white' : 'text-gray-400'
                     }`
                   }
                 >

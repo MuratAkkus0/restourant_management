@@ -7,7 +7,7 @@ const AccordionItemDetails: React.FC<AccordionItemDetailsProps> = ({
   return (
     <>
       {activeIndex === index && (
-        <div className="w-full p-4 pl-0 border-t">{answer}</div>
+        <div className="w-full p-4 pl-0 border-t text-gray-600">{answer}</div>
       )}
     </>
   );

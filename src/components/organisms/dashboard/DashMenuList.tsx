@@ -12,9 +12,9 @@ const DashMenuList = () => {
       style={{ scrollbarColor: '#ffffffe3 rgb(2,6,23)' }}
     >
       <Pharagrapf
-        size="sm"
+        size="2xs"
         colorClassName="text-gray-400"
-        className=" px-4 sm:text-base"
+        className=" px-4 sm:text-sm"
       >
         Dash menu
       </Pharagrapf>

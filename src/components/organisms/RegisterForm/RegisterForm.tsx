@@ -110,7 +110,7 @@ const RegisterForm = () => {
   ];
 
   const step1 = (
-    <>
+    <div className="flex flex-col gap-4 w-full h-full">
       <SideBySideInputContainer
         isByMdScreensInputsGrid={true}
         left={
@@ -120,7 +120,7 @@ const RegisterForm = () => {
             onInputChange={handleChange}
             onInputBlur={handleBlur}
             inputId={'name'}
-            inputPlaceHolder={'Please enter your name...'}
+            inputPlaceHolder={'Your name...'}
             errors={errors}
             touched={touched}
           />
@@ -132,7 +132,7 @@ const RegisterForm = () => {
             onInputChange={handleChange}
             onInputBlur={handleBlur}
             inputId={'surname'}
-            inputPlaceHolder={'Please enter your surname...'}
+            inputPlaceHolder={'Your surname...'}
             errors={errors}
             touched={touched}
           />
@@ -170,7 +170,7 @@ const RegisterForm = () => {
           />
         );
       })}
-    </>
+    </div>
   );
 
   const step2 = (
