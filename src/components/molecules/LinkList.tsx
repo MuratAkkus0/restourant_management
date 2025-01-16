@@ -9,6 +9,7 @@ function LinkList() {
   const [listData, setListData] = useState<DocumentData[]>([]);
 
   useEffect(() => {
+    console.log(listData);
     const getData = async () => {
       if (userData.companyId) {
         const data = await getAllRegisterLinks(userData.companyId);
