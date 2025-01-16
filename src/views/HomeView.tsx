@@ -104,15 +104,13 @@ function HomeView() {
         </div>
       </section>
       <section className="w-full bg-neutralLight py-12">
-        <div className="w-full mx-auto px-4">
-          <h2 className="flex justify-center items-center gap-1 text-2xl sm:text-3xl xl:text-4xl font-semibold text-neutralDark text-center mb-2">
-            Frequently Asked Questions
-            <span className="">
-              <FaRegQuestionCircle className="inline-block text-xl sm:text-2xl xl:text-3xl" />
-            </span>
+        <div className="w-full mx-auto ">
+          <h2 className="flex justify-center items-center gap-1 text-xl sm:text-3xl xl:text-4xl font-semibold mb-2">
+            <span className="text-center">Frequently Asked Questions</span>
+            <FaRegQuestionCircle className="inline-block text-xl sm:text-3xl xl:text-4xl" />
           </h2>
           {/* FAQ Underline */}
-          <div className="w-10/12 sm:w-8/12 lg:w-1/3 border border-black rounded-md mx-auto mb-6"></div>
+          <div className="w-8/12 sm:w-9/12 lg:w-2/3 xl:w-2/4 border border-black rounded-md mx-auto mb-6"></div>
           {/* Accordion */}
           <Accordion data={faqs} />
         </div>

@@ -3,21 +3,11 @@ import AccordionItemContainer from './AccordionItemContainer';
 import { useState } from 'react';
 import AccordionItemTitle from './AccordionItemTitle';
 import AccordionItemDetails from './AccordionItemDetails';
-import {
-  AccordionData,
-  AccordionProps,
-} from '@/types/models/organisms/AccordionProps';
+import { AccordionProps } from '@/types/models/organisms/AccordionProps';
 
 // data format should be [question:'',answer:'']
-const Accordion = <T,>({
-  data,
-  haveDetails = true,
-  isDataHaveAnotherFormat = false,
-  isTitleHaveAdditionalChild = false,
-  titleDataObjKey,
-  detailsDataObjKey,
-  additionalChildNode,
-}: AccordionProps<T>) => {
+
+const Accordion = ({ data, haveDetails = true }: AccordionProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const toggleAccordion = (index: number) => {
@@ -28,27 +18,18 @@ const Accordion = <T,>({
       <AccordionContainer>
         {data.map((item, index) => (
           <AccordionItemContainer key={index}>
-            <AccordionItemTitle
-              activeIndex={activeIndex}
-              index={index}
-              question={
-                isDataHaveAnotherFormat
-                  ? (item as T)[titleDataObjKey as keyof T]
-                  : (item as AccordionData).question
-              }
-              toggleAccordion={toggleAccordion}
-              additionalChildNode={
-                isTitleHaveAdditionalChild ? additionalChildNode : <></>
-              }
-            />
+            {
+              <AccordionItemTitle
+                activeIndex={activeIndex}
+                index={index}
+                question={item.question}
+                toggleAccordion={toggleAccordion}
+              />
+            }
             {haveDetails && (
               <AccordionItemDetails
                 activeIndex={activeIndex}
-                answer={
-                  isDataHaveAnotherFormat
-                    ? (item as T)[detailsDataObjKey as keyof T]
-                    : (item as AccordionData).answer
-                }
+                answer={item.answer}
                 index={index}
               />
             )}

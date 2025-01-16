@@ -1,5 +1,4 @@
 import { AccordionItemDetailsProps } from '@/types/models/organisms/AccordionProps';
-
 const AccordionItemDetails: React.FC<AccordionItemDetailsProps> = ({
   activeIndex,
   index,
@@ -8,9 +7,7 @@ const AccordionItemDetails: React.FC<AccordionItemDetailsProps> = ({
   return (
     <>
       {activeIndex === index && (
-        <div className="p-4 xl:text-base border-t border-neutralLight">
-          {answer}
-        </div>
+        <div className="w-full p-4 pl-0 border-t">{answer}</div>
       )}
     </>
   );

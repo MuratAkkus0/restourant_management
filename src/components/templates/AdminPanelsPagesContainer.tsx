@@ -15,8 +15,8 @@ const AdminPanelsPagesContainer: FC<{ children: ReactNode }> = ({
     }
   }, [windowSize]);
   return (
-    <div className="w-full h-full transition-[width] duration-200 p-2">
-      <div className="w-full h-16 bg-white mb-4 flex items-center justify-center">
+    <div className="w-full h-full flex flex-col transition-[width] duration-200 p-2 gap-4">
+      <div className="flex-shrink-0 w-full h-16 bg-white flex items-center justify-center">
         <Logo LogoSize={logoSize} />
       </div>
       {children}

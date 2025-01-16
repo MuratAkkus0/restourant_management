@@ -9,8 +9,7 @@ const GenerateLinkCard: React.FC<GenerateLinkCardProps> = ({
 }) => {
   return (
     <>
-      {' '}
-      <div className="w-full flex flex-col items-center gap-2 bg-white rounded-lg p-4">
+      <div className="flex-shrink-0 flex flex-col items-center gap-2 bg-white rounded-lg p-4">
         <h3 className="w-full text-center font-medium text-xl md:text-2xl">
           {cardTitle}
         </h3>
@@ -20,7 +19,7 @@ const GenerateLinkCard: React.FC<GenerateLinkCardProps> = ({
           </a>
           <FunctionalCopyIcon textToCopy={link} />
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center select-none">
           <Button
             type="button"
             onBtnClick={onClickCreateLink}

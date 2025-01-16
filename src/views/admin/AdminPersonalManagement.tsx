@@ -17,13 +17,11 @@ function AdminPersonalManagement() {
   };
   return (
     <AdminPanelsPagesContainer>
-      <div className="w-full h-full flex flex-col gap-4">
-        <GenerateLinkCard
-          link={registerLink}
-          onClickCreateLink={createRegisterationLink}
-        />
-        <LinkList />
-      </div>
+      <GenerateLinkCard
+        link={registerLink}
+        onClickCreateLink={createRegisterationLink}
+      />
+      <LinkList />
     </AdminPanelsPagesContainer>
   );
 }
