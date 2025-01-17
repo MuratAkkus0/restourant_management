@@ -50,7 +50,7 @@ function UnderlinedInput(props: UnderlinedInputProps) {
           id={inputId}
           name={inputId}
           type={hasIcon ? (!changeIconByClick ? 'text' : inputType) : inputType}
-          className={`w-full border-b py-1 focus:outline-none transition-[border-color] text-sm sm:text-base placeholder:text-sm placeholder:text-base ${errors && errorMessage && isTouched ? 'border-b-red-600' : 'focus:border-gray-500 '} ${hasIcon ? 'pr-10' : ''}`}
+          className={`w-full border-b py-1 focus:outline-none transition-[border-color] text-base placeholder:text-base placeholder:text-gray-300 placeholder:font-light ${errors && errorMessage && isTouched ? 'border-b-red-600' : 'focus:border-gray-500 '} ${hasIcon ? 'pr-10' : ''}`}
           placeholder={inputPlaceHolder}
         />
         {hasIcon && (
