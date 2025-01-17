@@ -5,7 +5,7 @@ import useGenerateRegisterationLink from '@/customHooks/useGenerateRegisteration
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-function AdminPersonalManagement() {
+function AdminAddPersonalView() {
   const [registerLink, setRegisterLink] = useState('');
   const userData = useSelector((store: any) => store.onAuthChangeState);
   const generateRegisterationLink = useGenerateRegisterationLink();
@@ -26,4 +26,4 @@ function AdminPersonalManagement() {
   );
 }
 
-export default AdminPersonalManagement;
+export default AdminAddPersonalView;

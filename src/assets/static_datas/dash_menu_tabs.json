@@ -45,12 +45,12 @@
     "route": "personal-management",
     "icon": "MdPeople",
     "subMenu": [
-      { "label": "Staff List", "route": "personal-list", "icon": "MdList" },
       {
         "label": "Add New Personal",
         "route": "add-new-personal",
         "icon": "MdPersonAdd"
       },
+      { "label": "Staff List", "route": "personal-list", "icon": "MdList" },
       {
         "label": "Assign Tasks",
         "route": "assign-tasks",

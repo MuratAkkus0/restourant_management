@@ -14,8 +14,9 @@ import ProtectedRoutes from './ProtectedRoutes';
 import { AppUserRoles } from '@/types/enums/AuthEnums';
 import AboutUsView from '@/views/AboutUsView';
 import AdminOrdersView from '@/views/admin/AdminOrdersView';
-import AdminPersonalManagement from '@/views/admin/AdminPersonalManagement';
+import AdminAddPersonalView from '@/views/admin/AdminAddPersonalView';
 import PersonalRegister from '@/views/personal/PersonalRegisterView';
+import AdminPersonalManagementView from '@/views/admin/AdminPersonalManagementView';
 
 function Router() {
   return (
@@ -57,11 +58,12 @@ function Router() {
             {/* Staff Management Section */}
             <Route
               path="personal-management"
-              element={<AdminPersonalManagement />}
+              element={<AdminPersonalManagementView />}
             >
-              <Route path="personal-list" element={<div>Staff List</div>} />
-              <Route path="assign-roles" element={<div>Assign Roles</div>} />
-              <Route path="attendance" element={<div>Attendance</div>} />
+              <Route
+                path="add-new-personal"
+                element={<AdminAddPersonalView />}
+              />
             </Route>
 
             {/* Admin Menu Section */}
