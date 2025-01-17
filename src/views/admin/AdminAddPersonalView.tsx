@@ -1,3 +1,4 @@
+import ConfirmChoiseBox from '@/components/molecules/ConfirmChoiseBox';
 import GenerateLinkCard from '@/components/molecules/GenerateLinkCard';
 import LinkList from '@/components/molecules/LinkList';
 import AdminPanelsPagesContainer from '@/components/templates/AdminPanelsPagesContainer';
@@ -17,6 +18,7 @@ function AdminAddPersonalView() {
   };
   return (
     <AdminPanelsPagesContainer>
+      <ConfirmChoiseBox />
       <GenerateLinkCard
         link={registerLink}
         onClickCreateLink={createRegisterationLink}

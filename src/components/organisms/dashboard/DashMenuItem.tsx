@@ -7,7 +7,6 @@ import { DashMenuItemProps } from '@/types/models/organisms/AdminDashMenuModels'
 const DashMenuItem: React.FC<DashMenuItemProps> = ({ tab }) => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const IconComponent = Icons[tab.icon as keyof typeof Icons];
-  console.log(tab.route);
   return (
     <>
       <li className="cursor-pointer text-sm md:text-base xl:text-md text-gray-400">
