@@ -19,16 +19,16 @@ const DashMenuItem: React.FC<DashMenuItemProps> = ({
             to={
               tab.subMenu ? `${tab.route}/${tab.subMenu[0].route}` : tab.route
             }
-            className={({ isActive }) =>
-              `w-full h-full p-2 flex justify-between items-center gap-3 px-4 ${
-                index === activeIndex
-                  ? 'bg-slate-800 text-white'
-                  : 'text-gray-400 hover:bg-slate-800'
-              }`
-            }
+            className={`w-full h-full p-2 flex justify-between items-center gap-3 px-4 ${
+              index === activeIndex
+                ? 'bg-slate-800 text-white'
+                : 'text-gray-400 hover:bg-slate-800'
+            }`}
           >
             <div className="flex items-center gap-3">
-              {IconComponent && <IconComponent />}
+              {IconComponent && (
+                <IconComponent className="size-6 sm:size-7 2xl:size-8" />
+              )}
               <span className="font-light tracking-wider">{tab.label}</span>
             </div>
             {tab.subMenu && (
