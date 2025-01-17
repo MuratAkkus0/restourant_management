@@ -4,6 +4,7 @@ import FunctionalActiveDeactiveIcon from './FunctionalActiveDeactiveIcon';
 import { deleteDocument } from '@/features/authentication/deleteDocument';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '@/firebase/FirebaseConfig';
+import { useState } from 'react';
 
 export interface LinkListItemProps {
   link: string;
@@ -13,6 +14,7 @@ const LinkListItem: React.FC<LinkListItemProps> = ({ link, isValid }) => {
   const searchParams = new URLSearchParams(link.split('?')[1]);
   const accessKey = searchParams.get('key');
   const companyId = searchParams.get('cId');
+  const [show, setShow] = useState(false);
 
   const handleDelete = async () => {
     // collectionName: string, docId: string
@@ -42,22 +44,40 @@ const LinkListItem: React.FC<LinkListItemProps> = ({ link, isValid }) => {
     }
   };
 
+  const copyOnClick = () => {
+    navigator.clipboard.writeText(link);
+    console.log('click');
+    setShow(true);
+    setTimeout(() => {
+      setShow(false);
+    }, 500);
+  };
+
   return (
     <>
       <div className="w-full p-4 bg-white shadow-lg rounded-lg flex justify-evenly items-center gap-4">
-        <p className="sm:max-w-sm md:max-w-60 lg:max-w-lg max-w-[58rem] text-sm md:text-base text-gray-500 hover:text-black truncate">
+        <p
+          onClick={copyOnClick}
+          className="sm:max-w-sm md:max-w-60 lg:max-w-lg max-w-[58rem] text-sm md:text-base text-gray-500 hover:text-black truncate"
+        >
           {link}
+          {show && (
+            <span className="w-52 h-16 absolute left-1/2 -translate-x-1/2 text-gray-700 animate-bounce">
+              Copied!
+            </span>
+          )}
         </p>
+
         <FunctionalActiveDeactiveIcon isValid={isValid} />
         <div className="flex-shrink-0 flex items-center text-right cursor-pointer">
+          <FunctionalCopyIcon
+            textToCopy={link}
+            className="text-red-600 border-none"
+          />
           <MdDeleteForever
             onClick={handleDelete}
             className="text-red-600 hover:scale-110 transition"
             size={25}
-          />
-          <FunctionalCopyIcon
-            textToCopy={link}
-            className="text-red-600 border-none"
           />
         </div>
       </div>

@@ -1,23 +1,27 @@
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as Icons from 'react-icons/md';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { DashMenuItemProps } from '@/types/models/organisms/AdminDashMenuModels';
 
-const DashMenuItem: React.FC<DashMenuItemProps> = ({ tab }) => {
-  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+const DashMenuItem: React.FC<DashMenuItemProps> = ({
+  tab,
+  index,
+  activeIndex,
+  handleMenuOpen,
+}) => {
   const IconComponent = Icons[tab.icon as keyof typeof Icons];
+
   return (
     <>
       <li className="cursor-pointer text-sm md:text-base xl:text-md text-gray-400">
-        <div onClick={() => tab.subMenu && setIsSubMenuOpen(!isSubMenuOpen)}>
+        <div onClick={() => tab.subMenu && handleMenuOpen(index)}>
           <NavLink
             to={
               tab.subMenu ? `${tab.route}/${tab.subMenu[0].route}` : tab.route
             }
             className={({ isActive }) =>
               `w-full h-full p-2 flex justify-between items-center gap-3 px-4 ${
-                isActive
+                index === activeIndex
                   ? 'bg-slate-800 text-white'
                   : 'text-gray-400 hover:bg-slate-800'
               }`
@@ -28,15 +32,15 @@ const DashMenuItem: React.FC<DashMenuItemProps> = ({ tab }) => {
               <span className="font-light tracking-wider">{tab.label}</span>
             </div>
             {tab.subMenu && (
-              <button aria-expanded={isSubMenuOpen}>
-                {isSubMenuOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+              <button aria-expanded={index === activeIndex}>
+                {index === activeIndex ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
             )}
           </NavLink>
         </div>
       </li>
 
-      {isSubMenuOpen && tab.subMenu && (
+      {index === activeIndex && tab.subMenu && (
         <ul className="pl-5">
           {tab.subMenu.map((item, key) => {
             const Icon = Icons[item.icon as keyof typeof Icons];

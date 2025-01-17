@@ -2,9 +2,15 @@ import menuTabs from '@/assets/static_datas/dash_menu_tabs.json';
 import Pharagrapf from '@/components/atoms/Pharagrapf';
 import DashMenuItem from './DashMenuItem';
 import { DashMenuItemType } from '@/types/models/organisms/AdminDashMenuModels';
+import { useState } from 'react';
 
 const DashMenuList = () => {
   const menuData = menuTabs as DashMenuItemType[];
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const handleMenuOpen = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
     <nav
@@ -20,7 +26,13 @@ const DashMenuList = () => {
       </Pharagrapf>
       <ul>
         {menuData.map((tab, index) => (
-          <DashMenuItem key={index} tab={tab} />
+          <DashMenuItem
+            key={index}
+            tab={tab}
+            index={index}
+            activeIndex={activeIndex}
+            handleMenuOpen={handleMenuOpen}
+          />
         ))}
       </ul>
     </nav>
