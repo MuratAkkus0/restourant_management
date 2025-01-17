@@ -1,10 +1,9 @@
-import getAllRegisterLinks from '@/services/firebase/getAllRegisterLinks';
 import { RootState } from '@/store/store';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { DocumentData } from 'firebase-admin/firestore';
 import LinkListItem from '../atoms/LinkListItem';
-import { collection, doc, getDocs, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '@/firebase/FirebaseConfig';
 
 function LinkList() {
