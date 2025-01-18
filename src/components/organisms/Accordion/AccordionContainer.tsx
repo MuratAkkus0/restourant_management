@@ -3,9 +3,7 @@ const AccordionContainer: React.FC<AccordionContainersBaseProp> = ({
   children,
 }) => {
   return (
-    <div className="w-full h-full flex flex-col gap-4 p-4 border">
-      {children}
-    </div>
+    <div className="w-full h-full flex flex-col gap-4 p-4">{children}</div>
   );
 };
 
