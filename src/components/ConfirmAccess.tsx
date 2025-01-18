@@ -45,6 +45,7 @@ function ValidateRegisterAccess() {
           );
 
         // if access confirmed
+
         //update document
         await updateDoc(docRef, { isValid: false });
 
