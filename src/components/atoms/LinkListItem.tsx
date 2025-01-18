@@ -62,7 +62,7 @@ const LinkListItem: React.FC<LinkListItemProps> = ({ link, isValid }) => {
       />
       <ListWithControlsItem>
         <Pharagrapf
-          className="sm:max-w-sm md:max-w-60 lg:max-w-lg max-w-[58rem] hover:text-black truncate"
+          className="sm:max-w-md md:max-w-64 lg:max-w-lg max-w-[58rem] hover:text-black truncate"
           size="sm"
         >
           {link}
