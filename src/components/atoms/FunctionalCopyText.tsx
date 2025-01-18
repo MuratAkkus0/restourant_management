@@ -25,6 +25,7 @@ const FunctionalCopyText: React.FC<FunctionalCopyTextProps> = ({
         setShow(false);
       }, 500);
     };
+    copyOnClick();
     return copyOnClick();
   }, [clientX, clientY]);
   return (
