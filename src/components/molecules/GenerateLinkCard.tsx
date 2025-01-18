@@ -1,6 +1,7 @@
 import Button from '../atoms/Button';
 import FunctionalCopyIcon from '../atoms/FunctionalCopyIcon';
 import { GenerateLinkCardProps } from '@/types/models/molecules/GenerateLinkCardModels';
+import Title from '../atoms/Title';
 
 const GenerateLinkCard: React.FC<GenerateLinkCardProps> = ({
   cardTitle = 'Create Registeration Link',
@@ -10,9 +11,10 @@ const GenerateLinkCard: React.FC<GenerateLinkCardProps> = ({
   return (
     <>
       <div className="flex-shrink-0 flex flex-col items-center gap-2 bg-white rounded-lg p-4">
-        <h3 className="w-full text-center font-medium text-xl md:text-2xl">
+        <Title size="base" className="md:text-2xl">
           {cardTitle}
-        </h3>
+        </Title>
+
         <div className="w-full md:w-3/4 h-12 p-2 flex gap-2">
           <input
             disabled
