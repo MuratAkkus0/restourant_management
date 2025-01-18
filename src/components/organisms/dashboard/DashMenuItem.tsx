@@ -27,7 +27,7 @@ const DashMenuItem: React.FC<DashMenuItemProps> = ({
           >
             <div className="flex items-center gap-3">
               {IconComponent && (
-                <IconComponent className="size-6 sm:size-7 2xl:size-8" />
+                <IconComponent className="min-w-6 min-h-6 size-6 sm:size-7 2xl:size-8" />
               )}
               <span className="font-light tracking-wider">{tab.label}</span>
             </div>
