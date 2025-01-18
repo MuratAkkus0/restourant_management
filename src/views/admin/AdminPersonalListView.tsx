@@ -1,4 +1,5 @@
 import Pharagrapf from '@/components/atoms/Pharagrapf';
+import Title from '@/components/atoms/Title';
 import ListWithControlsButtonContainer from '@/components/molecules/ListWithControls/ListWithControlsButtonContainer';
 import ListWithControlsContainer from '@/components/molecules/ListWithControls/ListWithControlsContainer';
 import ListWithControlsItem from '@/components/molecules/ListWithControls/ListWithControlsItem';
@@ -10,6 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CiEdit, CiMenuKebab } from 'react-icons/ci';
 import { IoPerson } from 'react-icons/io5';
 import { MdDeleteForever } from 'react-icons/md';
+import { PiUserListFill } from 'react-icons/pi';
 import { useSelector } from 'react-redux';
 
 export const AdminPersonalListView = () => {
@@ -45,7 +47,12 @@ export const AdminPersonalListView = () => {
 
   return (
     <AdminPanelsPagesContainer>
-      <h2>Personal List</h2>
+      <div className="flex p-4 bg-white rounded-lg items-center justify-center gap-2">
+        <PiUserListFill className="size-7" />
+        <Title size="large" className="">
+          Personal List
+        </Title>
+      </div>
       <ListWithControlsContainer>
         {listData.map((item, key) => (
           <ListWithControlsItem key={key}>
