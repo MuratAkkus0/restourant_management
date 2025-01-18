@@ -5,7 +5,6 @@ import AdminOverviewView from '../../views/admin/AdminOverviewView';
 import ProtectedRegisterAccess from './ProtectedRegisterAccess';
 import AdminPanelView from '../../views/admin/AdminPanelView';
 import AdminMenuView from '../../views/admin/AdminMenuView';
-import AdminAccessKeysView from '../../views/admin/AdminAccessKeysView';
 import RootView from '../../views/RootView';
 import ConfirmAccessView from '../../views/ConfirmAccessView';
 import NotFoundView from '../../views/NotFoundView';
@@ -81,9 +80,6 @@ function Router() {
                 element={<div>Top-Selling Products</div>}
               />
             </Route>
-
-            {/* Admin Access Keys Section */}
-            <Route path="access-keys" element={<AdminAccessKeysView />} />
 
             {/* Product Management Section */}
             <Route

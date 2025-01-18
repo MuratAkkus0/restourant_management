@@ -4,7 +4,8 @@ import FunctionalActiveDeactiveIcon from './FunctionalActiveDeactiveIcon';
 import { deleteDocument } from '@/features/authentication/deleteDocument';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '@/firebase/FirebaseConfig';
-import { useState } from 'react';
+import { FunctionalCopyText } from './FunctionalCopyText';
+import { MouseEvent, useState } from 'react';
 
 export interface LinkListItemProps {
   link: string;
@@ -14,7 +15,7 @@ const LinkListItem: React.FC<LinkListItemProps> = ({ link, isValid }) => {
   const searchParams = new URLSearchParams(link.split('?')[1]);
   const accessKey = searchParams.get('key');
   const companyId = searchParams.get('cId');
-  const [show, setShow] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleDelete = async () => {
     // collectionName: string, docId: string
@@ -44,13 +45,9 @@ const LinkListItem: React.FC<LinkListItemProps> = ({ link, isValid }) => {
     }
   };
 
-  const copyOnClick = () => {
-    navigator.clipboard.writeText(link);
-    console.log('click');
-    setShow(true);
-    setTimeout(() => {
-      setShow(false);
-    }, 500);
+  const copyOnClick = (e: MouseEvent<HTMLParagraphElement>) => {
+    const newPosition = { x: e.clientX, y: e.clientY };
+    setPosition(newPosition);
   };
 
   return (
@@ -61,11 +58,11 @@ const LinkListItem: React.FC<LinkListItemProps> = ({ link, isValid }) => {
           className="sm:max-w-sm md:max-w-60 lg:max-w-lg max-w-[58rem] text-sm md:text-base text-gray-500 hover:text-black truncate"
         >
           {link}
-          {show && (
-            <span className="w-52 h-16 absolute left-1/2 -translate-x-1/2 text-gray-700 animate-bounce">
-              Copied!
-            </span>
-          )}
+          <FunctionalCopyText
+            text={link}
+            clientX={position.x}
+            clientY={position.y}
+          />
         </p>
 
         <FunctionalActiveDeactiveIcon isValid={isValid} />
