@@ -7,3 +7,9 @@ export enum TitleTextSizes {
   'xl' = 'text-2xl sm:text-3xl font-bold',
   '2xl' = 'text-3xl sm:text-4xl font-extrabold',
 }
+
+export enum TitlePositions {
+  left = 'text-left',
+  center = 'text-center',
+  right = 'text-right',
+}
