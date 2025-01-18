@@ -14,8 +14,7 @@ export default {
 
     // },
     fontFamily: {
-      Phenomena: ['Phenomena', 'sans-serif'],
-      Lobster: ['Caveat', 'cursive'],
+      Lobster: ['Lobster Two', 'cursive'],
       Poppins: ['Poppins', 'serif'],
     },
     extend: {},

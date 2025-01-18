@@ -16,7 +16,7 @@ function Logo(props: LogoProperties) {
     >
       <IoRestaurantOutline className="text-red-600" size={LogoSize} />
 
-      <span className="font-Lobster font-semibold shadow-sm text-red-600">
+      <span className=" font-Lobster font-medium italic shadow-sm text-red-600">
         Manegio
       </span>
     </div>
