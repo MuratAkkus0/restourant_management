@@ -71,7 +71,7 @@ function Router() {
             <Route path="menu" element={<AdminMenuView />}>
               <Route
                 path="add-update"
-                element={<div>Add/Update Products</div>}
+                element={<div>Add/Upd ate Products</div>}
               />
               <Route
                 path="product-inventory"
