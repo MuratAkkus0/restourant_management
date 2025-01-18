@@ -6,6 +6,9 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '@/firebase/FirebaseConfig';
 import FunctionalCopyText from './FunctionalCopyText';
 import { MouseEvent, useState } from 'react';
+import ListWithControlsItem from '../molecules/ListWithControls/ListWithControlsItem';
+import ListWithControlsButtonContainer from '../molecules/ListWithControls/ListWithControlsButtonContainer';
+import Pharagrapf from './Pharagrapf';
 
 export interface LinkListItemProps {
   link: string;
@@ -57,16 +60,16 @@ const LinkListItem: React.FC<LinkListItemProps> = ({ link, isValid }) => {
         clientX={position.x}
         clientY={position.y}
       />
-      <div className="w-full p-4 bg-white shadow-lg rounded-lg flex justify-evenly items-center gap-4">
-        <p
-          onClick={copyOnClick}
-          className="sm:max-w-sm md:max-w-60 lg:max-w-lg max-w-[58rem] text-sm md:text-base text-gray-500 hover:text-black truncate"
+      <ListWithControlsItem>
+        <Pharagrapf
+          className="sm:max-w-sm md:max-w-60 lg:max-w-lg max-w-[58rem] hover:text-black truncate"
+          size="sm"
         >
           {link}
-        </p>
+        </Pharagrapf>
 
         <FunctionalActiveDeactiveIcon isValid={isValid} />
-        <div className="flex-shrink-0 flex items-center text-right cursor-pointer">
+        <ListWithControlsButtonContainer>
           <FunctionalCopyIcon
             textToCopy={link}
             className="text-red-600 border-none"
@@ -76,8 +79,8 @@ const LinkListItem: React.FC<LinkListItemProps> = ({ link, isValid }) => {
             className="text-red-600 hover:scale-110 transition"
             size={25}
           />
-        </div>
-      </div>
+        </ListWithControlsButtonContainer>
+      </ListWithControlsItem>
     </>
   );
 };

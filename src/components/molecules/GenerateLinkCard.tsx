@@ -14,9 +14,11 @@ const GenerateLinkCard: React.FC<GenerateLinkCardProps> = ({
           {cardTitle}
         </h3>
         <div className="w-full md:w-3/4 h-12 p-2 flex gap-2">
-          <a className="w-full h-9 leading-8 px-2 block border border-gray-400 rounded text-nowrap overflow-x-auto">
-            {link}
-          </a>
+          <input
+            disabled
+            value={link}
+            className="w-full h-9 leading-8 px-2 block border border-gray-400 rounded text-nowrap overflow-x-auto"
+          ></input>
           <FunctionalCopyIcon textToCopy={link} />
         </div>
         <div className="flex justify-center select-none">

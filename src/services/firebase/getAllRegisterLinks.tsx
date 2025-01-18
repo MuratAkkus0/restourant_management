@@ -23,14 +23,6 @@ const getAllRegisterLinks: GetAllRegisterLinksFunc = (companyId) => {
     }
   });
   return result;
-  // console.log(registerLinkColRef);
-  // const registerLinksSnapshot = await getDocs(registerLinkColRef);
-  // if (!registerLinksSnapshot.empty) {
-  //   const registerLinksData = registerLinksSnapshot.docs.map((item) =>
-  //     item.data()
-  //   );
-  //   return registerLinksData;
-  // } else return [];
 };
 
 export default getAllRegisterLinks;

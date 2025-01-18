@@ -1,4 +1,4 @@
-export const ListWithControlsContainer = ({
+const ListWithControlsContainer = ({
   children,
 }: {
   children: React.ReactNode;
@@ -11,3 +11,4 @@ export const ListWithControlsContainer = ({
     </>
   );
 };
+export default ListWithControlsContainer;

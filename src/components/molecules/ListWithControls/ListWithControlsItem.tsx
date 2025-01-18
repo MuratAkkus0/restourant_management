@@ -1,16 +1,10 @@
-export const ListWithControlsItem = ({
-  children,
-  text,
-}: {
-  children: React.ReactNode;
-  text: string;
-}) => {
+const ListWithControlsItem = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <div className="w-full h-12 px-2 flex justify-between items-center gap-2 shadow-md">
-        <p className="text-base border truncate">{text}</p>
+      <div className="w-full p-4 bg-white shadow-lg rounded-lg flex justify-evenly items-center gap-4">
         {children}
       </div>
     </>
   );
 };
+export default ListWithControlsItem;
