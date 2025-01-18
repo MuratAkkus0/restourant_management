@@ -8,6 +8,7 @@ import Button from '@/components/atoms/Button';
 import Pharagrapf from '@/components/atoms/Pharagrapf';
 import Accordion from '@/components/organisms/Accordion/Accordion';
 import faqs from '@/assets/static_datas/faqs.json';
+import Title from '@/components/atoms/Title';
 
 function HomeView() {
   const navigate = useNavigate();
@@ -104,13 +105,18 @@ function HomeView() {
         </div>
       </section>
       <section className="w-full bg-neutralLight py-12">
-        <div className="w-full mx-auto ">
-          <h2 className="flex justify-center items-center gap-1 text-xl sm:text-3xl xl:text-4xl font-semibold mb-2">
-            <span className="text-center">Frequently Asked Questions</span>
-            <FaRegQuestionCircle className="inline-block text-xl sm:text-3xl xl:text-4xl" />
-          </h2>
+        <div className="w-full mx-auto px-4">
+          <div className="mx-auto w-fit px-4 flex items-center gap-4 border-b-2 border-black">
+            <Title size="large" className="text-center w-48 sm:w-fit">
+              Frequently Asked Questions
+            </Title>
+            <FaRegQuestionCircle
+              size={30}
+              className="inline-block text-xl sm:text-3xl xl:text-4xl"
+            />
+          </div>
           {/* FAQ Underline */}
-          <div className="w-8/12 sm:w-9/12 lg:w-2/3 xl:w-2/4 border border-black rounded-md mx-auto mb-6"></div>
+          {/* <div className="w-8/12 sm:w-9/12 lg:w-2/3 xl:w-2/4 border border-black rounded-md mx-auto mb-6"></div> */}
           {/* Accordion */}
           <Accordion data={faqs} />
         </div>
