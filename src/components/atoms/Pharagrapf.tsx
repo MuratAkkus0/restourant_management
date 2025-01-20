@@ -7,10 +7,12 @@ const Pharagrapf: React.FC<PharagrapfProps> = ({
   className = '',
   colorClassName = 'text-black',
   size = 'base',
+  onClick = () => {},
 }) => {
   const customStyle = color ? { color: color } : {};
   return (
     <p
+      onClick={onClick}
       style={customStyle}
       className={`${PharagrapfTextSizes[size]} ${colorClassName} ${className}`}
     >

@@ -1,5 +1,5 @@
 import { db } from '@/firebase/FirebaseConfig';
-import { FetchDocumentsProps } from '@/types/models/services/fetchDocumentsModels';
+import { FetchDocumentsProps } from '@/types/models/services/FetchDocumentsModels';
 import { collection, onSnapshot, getDocs } from 'firebase/firestore';
 
 export const fetchDocuments: FetchDocumentsProps = async (

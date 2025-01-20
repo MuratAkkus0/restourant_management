@@ -35,7 +35,6 @@ const LinkListItem: React.FC<LinkListItemProps> = ({ link, isValid }) => {
       const docSnap = querySnapshot.docs[0];
 
       if (docSnap.exists()) {
-        // const docRef = doc(db,`companies/${companyId}/registerationLinks`,docSnap.id);
         await deleteDocument(
           `companies/${companyId}/registerationLinks`,
           docSnap.id
@@ -62,6 +61,7 @@ const LinkListItem: React.FC<LinkListItemProps> = ({ link, isValid }) => {
       />
       <ListWithControlsItem>
         <Pharagrapf
+          onClick={copyOnClick}
           className="sm:max-w-md md:max-w-64 lg:max-w-lg max-w-[58rem] hover:text-black truncate"
           size="sm"
         >

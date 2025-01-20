@@ -9,15 +9,14 @@ import { fetchDocuments } from '@/services/firebase/fetchDocuments';
 function LinkList() {
   const userData = useSelector((store: RootState) => store.onAuthChangeState);
   const [listData, setListData] = useState<DocumentData[]>([]);
-  const [companyId, setCompanyId] = useState(userData.companyId);
 
   useEffect(() => {
-    if (!companyId) return;
+    if (!userData.companyId) return;
     let unsub: any = null;
     const listener = async () => {
       try {
         const unsubscribe = await fetchDocuments(
-          ['companies', companyId, 'registerationLinks'],
+          ['companies', `${userData.companyId}`, 'registerationLinks'],
           setListData,
           { realTime: true }
         );
@@ -42,14 +41,3 @@ function LinkList() {
 }
 
 export default LinkList;
-// Realtime listener for link list
-// const collectionRef = collection(
-//   db,
-//   `companies/${companyId}/registerationLinks`
-// );
-// const listener = onSnapshot(collectionRef, (snapshot) => {
-//   if (companyId) {
-//     const registerLinks = snapshot.docs.map((item) => item.data());
-//     setListData(registerLinks);
-//   }
-// });

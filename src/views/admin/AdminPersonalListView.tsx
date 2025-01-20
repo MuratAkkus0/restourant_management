@@ -7,8 +7,7 @@ import AdminPanelsPagesContainer from '@/components/templates/AdminPanelsPagesCo
 import { fetchDocuments } from '@/services/firebase/fetchDocuments';
 import { RootState } from '@/store/store';
 import { DocumentData } from 'firebase-admin/firestore';
-import { useEffect, useRef, useState } from 'react';
-import { CiEdit, CiMenuKebab } from 'react-icons/ci';
+import { useEffect, useState } from 'react';
 import { IoPerson } from 'react-icons/io5';
 import { MdDeleteForever } from 'react-icons/md';
 import { PiUserListFill } from 'react-icons/pi';
