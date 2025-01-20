@@ -4,14 +4,17 @@ import ListWithControlsButtonContainer from '@/components/molecules/ListWithCont
 import ListWithControlsContainer from '@/components/molecules/ListWithControls/ListWithControlsContainer';
 import ListWithControlsItem from '@/components/molecules/ListWithControls/ListWithControlsItem';
 import AdminPanelsPagesContainer from '@/components/templates/AdminPanelsPagesContainer';
+import { db } from '@/firebase/FirebaseConfig';
 import { fetchDocuments } from '@/services/firebase/fetchDocuments';
 import { RootState } from '@/store/store';
 import { DocumentData } from 'firebase-admin/firestore';
+import { deleteDoc, doc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { IoPerson } from 'react-icons/io5';
 import { MdDeleteForever } from 'react-icons/md';
 import { PiUserListFill } from 'react-icons/pi';
 import { useSelector } from 'react-redux';
+import { toast } from 'sonner';
 
 export const AdminPersonalListView = () => {
   const userData = useSelector((store: RootState) => store.onAuthChangeState);
@@ -44,6 +47,18 @@ export const AdminPersonalListView = () => {
     console.log(listData);
   }, [listData]);
 
+  const handleDelete = async (personalId: string) => {
+    try {
+      const docRef = doc(db, `companies/${companyId}/personals/${personalId}`);
+      console.log(docRef);
+      await deleteDoc(docRef);
+      toast.success('Personal successfuly deleted.');
+    } catch (error) {
+      console.log(error);
+      toast.error('An error occured during deleting personal: ' + error);
+    }
+  };
+
   return (
     <AdminPanelsPagesContainer>
       <div className="flex p-4 bg-white rounded-lg items-center justify-center gap-2">
@@ -63,7 +78,10 @@ export const AdminPersonalListView = () => {
             </div>
 
             <ListWithControlsButtonContainer>
-              <MdDeleteForever className="text-red-600 size-6 min-w-8" />
+              <MdDeleteForever
+                onClick={() => handleDelete(item.id)}
+                className="text-red-600 size-6 min-w-8"
+              />
             </ListWithControlsButtonContainer>
           </ListWithControlsItem>
         ))}
