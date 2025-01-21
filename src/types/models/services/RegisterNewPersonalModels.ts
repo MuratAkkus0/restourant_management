@@ -5,6 +5,7 @@ export type RegisterServiceBaseProps = {
   surname: string;
   email: string;
   pass: string;
+  imgBase64?: string;
 };
 
 export type RegisterServiceProps =
@@ -19,7 +20,7 @@ export type RegisterServiceProps =
       companyName: string;
     })
   | (RegisterServiceBaseProps & {
-      role: AppUserRoles.PERSONAL | AppUserRoles.PERSONAL;
+      role: AppUserRoles.PERSONAL | AppUserRoles.CUSTOMER;
       companyId: string;
     });
 

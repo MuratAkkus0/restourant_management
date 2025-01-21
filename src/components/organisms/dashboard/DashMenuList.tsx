@@ -25,15 +25,18 @@ const DashMenuList = () => {
         Dash menu
       </Pharagrapf>
       <ul>
-        {menuData.map((tab, index) => (
-          <DashMenuItem
-            key={index}
-            tab={tab}
-            index={index}
-            activeIndex={activeIndex}
-            handleMenuOpen={handleMenuOpen}
-          />
-        ))}
+        {menuData.map((tab, index) => {
+          if (tab.isInDevProccess) return;
+          return (
+            <DashMenuItem
+              key={index}
+              tab={tab}
+              index={index}
+              activeIndex={activeIndex}
+              handleMenuOpen={handleMenuOpen}
+            />
+          );
+        })}
       </ul>
     </nav>
   );

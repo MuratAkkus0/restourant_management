@@ -1,7 +1,6 @@
 import ConfirmChoiseBox from '@/components/molecules/ConfirmChoiseBox';
 import GenerateLinkCard from '@/components/molecules/GenerateLinkCard';
 import LinkList from '@/components/molecules/LinkList';
-import AdminPanelsPagesContainer from '@/components/templates/AdminPanelsPagesContainer';
 import useGenerateRegisterationLink from '@/customHooks/useGenerateRegisterationLink';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -17,14 +16,14 @@ function AdminAddPersonalView() {
     });
   };
   return (
-    <AdminPanelsPagesContainer>
+    <>
       <ConfirmChoiseBox />
       <GenerateLinkCard
         link={registerLink}
         onClickCreateLink={createRegisterationLink}
       />
       <LinkList />
-    </AdminPanelsPagesContainer>
+    </>
   );
 }
 

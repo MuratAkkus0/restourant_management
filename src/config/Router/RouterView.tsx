@@ -4,7 +4,6 @@ import HomeView from '../../views/HomeView';
 import AdminOverviewView from '../../views/admin/AdminOverviewView';
 import ProtectedRegisterAccess from './ProtectedRegisterAccess';
 import AdminPanelView from '../../views/admin/AdminPanelView';
-import AdminMenuView from '../../views/admin/AdminMenuView';
 import RootView from '../../views/RootView';
 import ConfirmAccessView from '../../views/ConfirmAccessView';
 import NotFoundView from '../../views/NotFoundView';
@@ -17,6 +16,8 @@ import AdminAddPersonalView from '@/views/admin/AdminAddPersonalView';
 import PersonalRegister from '@/views/personal/PersonalRegisterView';
 import AdminPersonalManagementView from '@/views/admin/AdminPersonalManagementView';
 import { AdminPersonalListView } from '@/views/admin/AdminPersonalListView';
+import AdminProductView from '@/views/admin/AdminProductView';
+import AdminProductListView from '@/views/admin/AdminProductListView';
 
 function Router() {
   return (
@@ -35,7 +36,11 @@ function Router() {
         <Route path="/personal-register" element={<PersonalRegister />} />
 
         <Route
-          element={<ProtectedRoutes allowedRoles={[AppUserRoles.ADMIN]} />}
+          element={
+            <ProtectedRoutes
+              allowedRoles={[AppUserRoles.ADMIN, AppUserRoles.BOSS]}
+            />
+          }
         >
           <Route path="/admin" element={<AdminPanelView />}>
             {/* Overview Section */}
@@ -50,6 +55,7 @@ function Router() {
               />
               <Route path="key-metrics" element={<div>Key Metrics</div>} />
             </Route>
+
             {/* Orders Section */}
             <Route path="orders" element={<AdminOrdersView />}>
               <Route path="add-order" element={<div>Orders Overview</div>} />
@@ -67,28 +73,9 @@ function Router() {
               <Route path="personal-list" element={<AdminPersonalListView />} />
             </Route>
 
-            {/* Admin Menu Section */}
-            <Route path="menu" element={<AdminMenuView />}>
-              <Route
-                path="add-update"
-                element={<div>Add/Upd ate Products</div>}
-              />
-              <Route
-                path="product-inventory"
-                element={<div>Product Inventory</div>}
-              />
-              <Route
-                path="top-selling"
-                element={<div>Top-Selling Products</div>}
-              />
-            </Route>
-
             {/* Product Management Section */}
-            <Route
-              path="product-management"
-              element={<div>Product Management</div>}
-            >
-              <Route path="product-list" element={<div>Product List</div>} />
+            <Route path="product-management" element={<AdminProductView />}>
+              <Route path="product-list" element={<AdminProductListView />} />
               <Route
                 path="add-update"
                 element={<div>Add or Update Products</div>}
@@ -203,6 +190,7 @@ function Router() {
         <Route element={<ProtectedRegisterAccess />}>
           <Route path="/personal"></Route>
         </Route>
+
         <Route path="*" element={<NotFoundView />} />
       </Routes>
     </>

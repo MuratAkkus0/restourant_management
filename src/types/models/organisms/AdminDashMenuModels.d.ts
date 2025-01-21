@@ -8,5 +8,6 @@ export type DashMenuItemType = {
   label: string;
   route: string;
   icon: string;
+  isInDevProccess?: boolean;
   subMenu?: DashMenuItemType[];
 };

@@ -25,4 +25,5 @@ export const PersonalRegisterFormSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref('pass'), undefined], 'Passwords must match !')
     .required('Please confirm your password !'),
+  imgBase64: yup.string(),
 });

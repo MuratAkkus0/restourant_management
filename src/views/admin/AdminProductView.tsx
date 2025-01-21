@@ -1,7 +1,11 @@
 import AdminPanelsPagesContainer from '@/components/templates/AdminPanelsPagesContainer';
 import { Outlet } from 'react-router-dom';
 
-function AdminPersonalManagementView() {
+export interface AdminProductViewProps {
+  children: React.ReactNode;
+}
+
+const AdminProductView = () => {
   return (
     <>
       <AdminPanelsPagesContainer>
@@ -9,6 +13,6 @@ function AdminPersonalManagementView() {
       </AdminPanelsPagesContainer>
     </>
   );
-}
+};
 
-export default AdminPersonalManagementView;
+export default AdminProductView;

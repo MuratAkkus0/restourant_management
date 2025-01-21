@@ -39,11 +39,13 @@ function HomeView() {
               <Button
                 text="Try It for Free"
                 type="button"
+                size="lg"
                 onBtnClick={() => navigate('/register')}
               />
               <Button
                 text="Discover More"
                 type="button"
+                size="lg"
                 onBtnClick={() => {
                   console.log('scroll');
                   featuresRef.current?.scrollIntoView({ behavior: 'smooth' });

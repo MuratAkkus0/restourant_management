@@ -68,6 +68,7 @@ const RegisterForm = () => {
         city: data.city,
         country: countryVal,
         companyName: data.companyName,
+        imgBase64: '',
       };
       await registerWithEmailPass(registerData);
     } catch (error: any) {

@@ -1,6 +1,7 @@
 import { db } from '@/firebase/FirebaseConfig';
 import { ValidateAccessKeyFunc } from '@/types/models/services/RegisterAccessKeysFeaturesModels';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import { deactiveAccessKey } from './deactiveRegisterAccessKey';
 
 export const validateAccessKey: ValidateAccessKeyFunc = async ({
   accessKey,
@@ -22,12 +23,14 @@ export const validateAccessKey: ValidateAccessKeyFunc = async ({
     // get docs data
     const data = docSnap.data();
     if (!data.isValid) {
+      deactiveAccessKey(accessKey, companyId);
       throw new Error(
         'This register link is not valid. Please request another link by admin.'
       );
     }
 
     if (new Date() > data.expiresAt.toDate()) {
+      deactiveAccessKey(accessKey, companyId);
       throw new Error(
         'This access key is not more valid! Please request another access key by admin.'
       );

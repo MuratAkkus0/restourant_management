@@ -1,4 +1,5 @@
 export enum AppUserRoles {
+  BOSS = 'boss',
   ADMIN = 'admin',
   PERSONAL = 'personal',
   CUSTOMER = 'customer',

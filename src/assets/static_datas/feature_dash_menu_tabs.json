@@ -21,7 +21,6 @@
     "label": "Orders",
     "route": "orders",
     "icon": "MdShoppingCart",
-    "isInDevProccess": true,
     "subMenu": [
       { "label": "All Orders", "route": "all-orders", "icon": "MdListAlt" },
       {
@@ -95,7 +94,6 @@
     "label": "Financials",
     "route": "financials",
     "icon": "MdAttachMoney",
-    "isInDevProccess": true,
     "subMenu": [
       {
         "label": "Cash Register",
@@ -123,7 +121,6 @@
     "label": "Reports",
     "route": "reports",
     "icon": "MdAssessment",
-    "isInDevProccess": true,
     "subMenu": [
       {
         "label": "Sales Reports",
@@ -151,7 +148,6 @@
     "label": "Customer Management",
     "route": "customer-management",
     "icon": "MdGroups",
-    "isInDevProccess": true,
     "subMenu": [
       {
         "label": "Customer List",
@@ -191,7 +187,6 @@
     "label": "Table Management",
     "route": "table-management",
     "icon": "MdTableRestaurant",
-    "isInDevProccess": true,
     "subMenu": [
       {
         "label": "Table Layout",
@@ -217,7 +212,7 @@
     "subMenu": [
       {
         "label": "Company Information",
-        "route": "company-info",
+        "route": "company-information",
         "icon": "MdInfo"
       },
       {
@@ -227,7 +222,7 @@
       },
       {
         "label": "Access Control & Permissions",
-        "route": "access-control",
+        "route": "access-control-permissions",
         "icon": "MdLock"
       },
       {

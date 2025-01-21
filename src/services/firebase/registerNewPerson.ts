@@ -68,6 +68,7 @@ const createUserInCompanyDoc: createUserInCompanyDocFunc = async (
     name: data.name,
     surname: data.surname,
     email: data.email,
+    imgBase64: data.imgBase64,
   });
 };
 

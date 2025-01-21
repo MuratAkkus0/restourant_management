@@ -8,4 +8,5 @@ export interface PersonalRegisterFormProps {
   touched: FormikTouched;
   isSubmitting: FormikState;
   handleSubmit: CallableFunction;
+  setFieldValue: CallableFunction;
 }

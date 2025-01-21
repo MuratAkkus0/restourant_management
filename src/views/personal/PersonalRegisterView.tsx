@@ -30,6 +30,7 @@ function PersonalRegister() {
       email: '',
       pass: '',
       passConfirm: '',
+      imgBase64: '',
     },
     validationSchema: PersonalRegisterFormSchema,
     onSubmit: onSubmit,
@@ -44,6 +45,7 @@ function PersonalRegister() {
     isSubmitting,
     handleSubmit,
     setSubmitting,
+    setFieldValue,
   } = formik;
 
   useEffect(() => {
@@ -89,11 +91,9 @@ function PersonalRegister() {
         navigate('/login');
         toast.success('Registration successful. You can now log in.');
       } catch (error: any) {
-        // Tüm hataları burada ele al
         console.error('Error during registration:', error);
         toast.error(`An error occurred: ${error.message}`);
       } finally {
-        // Loading state'leri sıfırla
         dispatch(setIsAppLoading(false));
         dispatch(setIsLoading(false));
         setSubmitting(false);
@@ -113,6 +113,7 @@ function PersonalRegister() {
         isSubmitting={isSubmitting}
         touched={touched}
         values={values}
+        setFieldValue={setFieldValue}
       />
     </FormPagesesContainer>
   );
