@@ -19,7 +19,7 @@ const AdminProductListView = () => {
           iconSize={25}
           textSize="base"
         />
-        <div className="flex-1 flex flex-col gap-4 bg-white rounded-lg p-4">
+        <div className="flex-1 overflow-y-auto flex flex-col gap-4 bg-white rounded-lg p-2 sm:p-3 lg:p-4">
           {/* card */}
           <ProductCard
             cardImgSrc={testImg}

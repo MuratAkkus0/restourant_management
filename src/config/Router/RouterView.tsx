@@ -18,6 +18,7 @@ import AdminPersonalManagementView from '@/views/admin/AdminPersonalManagementVi
 import { AdminPersonalListView } from '@/views/admin/AdminPersonalListView';
 import AdminProductView from '@/views/admin/AdminProductView';
 import AdminProductListView from '@/views/admin/AdminProductListView';
+import AdminAddProductView from '@/views/admin/AdminAddProductView';
 
 function Router() {
   return (
@@ -76,10 +77,7 @@ function Router() {
             {/* Product Management Section */}
             <Route path="product-management" element={<AdminProductView />}>
               <Route path="product-list" element={<AdminProductListView />} />
-              <Route
-                path="add-update"
-                element={<div>Add or Update Products</div>}
-              />
+              <Route path="add-update" element={<AdminAddProductView />} />
               <Route
                 path="product-inventory"
                 element={<div>Product Inventory</div>}

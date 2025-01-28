@@ -1,10 +1,11 @@
 export interface SearchableDropdownProps {
-  countryList: { name: string; code: string }[];
-  onCountrySelect: (country: string) => void;
+  dataList: { name: string; code: string }[];
+  defaultValue?: string;
+  onDataSelect: (data: string) => void;
 }
 export interface DropdownSearchProps {
-  countryList: { name: string; code: string }[];
-  onCountrySelect: (country: string) => void;
+  dataList: { name: string; code: string }[];
+  onDataSelect: (data: string) => void;
   isDropdownOpen: boolean;
   setSelectedCountry: CallableFunction;
   setDropdownOpen: CallableFunction;

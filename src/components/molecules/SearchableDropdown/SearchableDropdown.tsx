@@ -4,11 +4,12 @@ import DropdownSearch from './DropdownSearch';
 import FunctionalArrowUpDownIcon from '@/components/atoms/FunctionalArrowUpDownIcon';
 
 const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
-  countryList,
-  onCountrySelect,
+  dataList,
+  defaultValue = 'Germany',
+  onDataSelect,
 }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState<string>('Germany');
+  const [selectedCountry, setSelectedCountry] = useState<string>(defaultValue);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleOutsideClick = (e: MouseEvent) => {
@@ -35,15 +36,15 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
         onClick={() => setDropdownOpen(!isDropdownOpen)}
       >
         <span className="text-gray-700">
-          {selectedCountry || 'Select a country'}
+          {selectedCountry || 'Select a data'}
         </span>
         <FunctionalArrowUpDownIcon willItTurn={true} isOpen={isDropdownOpen} />
       </div>
 
       <DropdownSearch
-        countryList={countryList}
+        dataList={dataList}
         isDropdownOpen={isDropdownOpen}
-        onCountrySelect={onCountrySelect}
+        onDataSelect={onDataSelect}
         setDropdownOpen={setDropdownOpen}
         setSelectedCountry={setSelectedCountry}
       />

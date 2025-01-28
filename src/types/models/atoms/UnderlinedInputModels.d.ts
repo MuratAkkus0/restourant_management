@@ -4,10 +4,12 @@ export type UnderlinedInputBaseProps = {
   inputValue?: string;
   onInputChange?: ChangeEventHandler<HTMLInputElement>;
   onInputBlur?: FocusEventHandler<HTMLInputElement>;
-  inputType?: string;
+  inputType?: 'text' | 'password' | 'number';
   inputPlaceHolder?: string;
   errors?: FormikErrors<{ [key: string]: string }>;
   touched?: FormikTouched<{ [key: string]: boolean }>;
+  isMultiline?: boolean;
+  className?: string;
 };
 
 export type UnderlinedInputProps =
@@ -17,6 +19,7 @@ export type UnderlinedInputProps =
       onClickIcon?: MouseEventHandler<SVGAElement>;
       Icon: IconType;
       SecondIcon?: IconType;
+      iconPosition?: 'left' | 'right';
     })
   | (UnderlinedInputBaseProps & {
       hasIcon?: false;
@@ -24,4 +27,5 @@ export type UnderlinedInputProps =
       onClickIcon?: never;
       Icon?: never;
       SecondIcon?: never;
+      iconPosition?: never;
     });

@@ -117,8 +117,8 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
           Select Country :
         </label>
         <SearchableDropdown
-          countryList={countryList}
-          onCountrySelect={setSelectedCountry}
+          dataList={countryList}
+          onDataSelect={setSelectedCountry}
         />
       </div>
       <div className="flex gap-4">

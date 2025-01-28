@@ -3,31 +3,31 @@ import DropdownResultList from './DropdownResultList';
 import { DropdownSearchProps } from '@/types/models/molecules/SearchableDropdownModels';
 
 const DropdownSearch: React.FC<DropdownSearchProps> = ({
-  countryList,
+  dataList,
   isDropdownOpen,
   setSelectedCountry,
   setDropdownOpen,
-  onCountrySelect,
+  onDataSelect,
 }) => {
   const [query, setQuery] = useState<string>('');
-  const [filteredCountries, setFilteredCountries] = useState(countryList);
+  const [filteredCountries, setFilteredCountries] = useState(dataList);
 
   useEffect(() => {
     if (query) {
-      const filtered = countryList.filter((country) =>
-        country.name.toLowerCase().includes(query.toLowerCase())
+      const filtered = dataList.filter((data) =>
+        data.name.toLowerCase().includes(query.toLowerCase())
       );
       setFilteredCountries(filtered);
     } else {
-      setFilteredCountries(countryList);
+      setFilteredCountries(dataList);
     }
-  }, [query, countryList]);
+  }, [query, dataList]);
 
-  const handleSelectCountry = (country: { name: string; code: string }) => {
-    setSelectedCountry(country.name);
+  const handleSelectCountry = (data: { name: string; code: string }) => {
+    setSelectedCountry(data.name);
     setQuery('');
     setDropdownOpen(false);
-    onCountrySelect(country.code);
+    onDataSelect(data.code);
   };
   return (
     <>
@@ -38,7 +38,7 @@ const DropdownSearch: React.FC<DropdownSearchProps> = ({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full p-3 rounded-lg border-b border-gray-300"
-            placeholder="Search for a country"
+            placeholder="Search..."
           />
           <DropdownResultList
             filteredCountries={filteredCountries}

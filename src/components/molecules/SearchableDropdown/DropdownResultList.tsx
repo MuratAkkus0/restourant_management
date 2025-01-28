@@ -1,4 +1,4 @@
-import { DropdownResultListProps } from "@/types/models/molecules/SearchableDropdownModels";
+import { DropdownResultListProps } from '@/types/models/molecules/SearchableDropdownModels';
 
 const DropdownResultList: React.FC<DropdownResultListProps> = ({
   filteredCountries,
@@ -8,13 +8,13 @@ const DropdownResultList: React.FC<DropdownResultListProps> = ({
     <>
       <ul className="max-h-60 overflow-y-auto">
         {filteredCountries.length > 0 ? (
-          filteredCountries.map((country) => (
+          filteredCountries.map((data) => (
             <li
-              key={country.code}
-              onClick={() => handleSelectCountry(country)}
+              key={data.code}
+              onClick={() => handleSelectCountry(data)}
               className="p-2 sm:p-3 hover:bg-gray-200 cursor-pointer border-b border-gray-100 shadow-sm"
             >
-              {country.name}
+              {data.name}
             </li>
           ))
         ) : (

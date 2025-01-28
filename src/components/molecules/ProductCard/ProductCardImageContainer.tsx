@@ -5,7 +5,7 @@ const ProductCardImageContainer: React.FC<ContainerBaseProps> = ({
 }) => {
   return (
     <>
-      <div className="flex-[8] flex-shrink-0 w-full h-full flex gap-2 justify-center items-center overflow-hidden">
+      <div className="flex-[8] shrink-0 w-full h-full flex gap-2 justify-center items-center border-b overflow-hidden">
         {children}
       </div>
     </>
