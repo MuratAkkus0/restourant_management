@@ -4,7 +4,7 @@ export type UnderlinedInputBaseProps = {
   inputValue?: string;
   onInputChange?: ChangeEventHandler<HTMLInputElement>;
   onInputBlur?: FocusEventHandler<HTMLInputElement>;
-  inputType?: 'text' | 'password' | 'number';
+  inputType?: 'text' | 'password' | 'number' | 'email';
   inputPlaceHolder?: string;
   errors?: FormikErrors<{ [key: string]: string }>;
   touched?: FormikTouched<{ [key: string]: boolean }>;
