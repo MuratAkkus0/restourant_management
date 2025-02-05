@@ -9,7 +9,7 @@ import ProductCardImageContainer from '@/components/molecules/ProductCard/Produc
 import UnderlinedInput from '@/components/atoms/UnderlinedInput';
 import { useFormik } from 'formik';
 import SearchableDropdown from '@/components/molecules/SearchableDropdown/SearchableDropdown';
-import { MdOutlinePriceChange } from 'react-icons/md';
+import { MdEuro } from 'react-icons/md';
 import FileUploadInput from '@/components/atoms/FileUploadInput';
 import { CiImageOn } from 'react-icons/ci';
 import SideBySideInputContainer from '@/components/templates/SideBySideInputContainer';
@@ -22,9 +22,9 @@ const AdminAddProductView = () => {
 
   const formik = useFormik({
     initialValues: {
-      productName: '',
+      productTitle: '',
       productDesc: '',
-      productPrice: '',
+      productPrice: 0.0,
       productImg: '',
     },
     onSubmit: onSubmit,
@@ -44,103 +44,116 @@ const AdminAddProductView = () => {
 
   return (
     <>
-      <div className="h-full flex flex-col sm:flex-row sm:justify-center overflow-y-auto gap-4 p-4 bg-white rounded-lg">
-        <form
-          action="#"
-          className="max-sm:shrink-0 border-t border-gray-100 p-4 rounded-lg shadow-lg flex flex-col overflow-y-auto gap-4"
-        >
-          <FileUploadInput
-            fieldKey="productImg"
-            setFieldValue={setFieldValue}
-          />
-          <SearchableDropdown
-            defaultValue="Select a category..."
-            onDataSelect={() => {}}
-            dataList={[
-              { name: 'Fast Food', code: 'FF' },
-              { name: 'Kebap', code: 'KBP' },
-              { name: 'Soup', code: 'SP' },
-            ]}
-          />
-          <SideBySideInputContainer
-            left={
-              <UnderlinedInput
-                inputId="productName"
-                labelText="Product Name"
-                inputValue={values.productName}
-                onInputChange={handleChange}
-                onInputBlur={handleBlur}
-                errors={errors}
-                touched={touched}
-              />
-            }
-            right={
-              <UnderlinedInput
-                labelText="Price"
-                inputValue={values.productPrice}
-                onInputChange={handleChange}
-                onInputBlur={handleBlur}
-                inputId={'productPrice'}
-                inputType="number"
-                hasIcon={true}
-                iconPosition="left"
-                Icon={MdOutlinePriceChange}
-                errors={errors}
-                touched={touched}
-              />
-            }
-            slotType={SideBySideInputContainerSlotWidths.smallRightSlot}
-            isByMdScreensInputsGrid={true}
-          />
-
-          <UnderlinedInput
-            inputId="productDesc"
-            labelText="Product Description"
-            inputValue={values.productDesc}
-            onInputChange={handleChange}
-            onInputBlur={handleBlur}
-            isMultiline={true}
-            errors={errors}
-            touched={touched}
-          />
-          <Button text="Add Product" type="submit" />
-        </form>
-
-        <div className="flex flex-col items-center justify-center sm:p-3 md:p-4 lg:p-7 xl:p-10">
-          <Title className="p-2" size="xs" position="left">
-            Product Preview :
-          </Title>
-          <ProductCardContainer>
-            <ProductCardImageContainer>
-              {values.productImg.length ? (
-                <img
-                  className="min-w-full max-w-full "
-                  src={values.productImg}
+      <div className="h-full flex justify-center overflow-y-auto gap-4 sm:p-4">
+        <div className="h-[60%] lg:h-[64%] xl:h-[67%] flex flex-col gap-4 max-md:items-center md:flex-row md:flex-wrap md:justify-center md:items-start">
+          <form
+            action="#"
+            className="h-full md:flex-[1] shrink-0 md:max-w-[95%] bg-white max-md:shrink-0 border-t border-gray-100 p-4 rounded-lg shadow-lg flex flex-col items-center justify-center overflow-y-auto gap-4"
+          >
+            <FileUploadInput
+              fieldKey="productImg"
+              setFieldValue={setFieldValue}
+            />
+            <SearchableDropdown
+              defaultValue="Select a category..."
+              onDataSelect={() => {}}
+              dataList={[
+                { name: 'Fast Food', code: 'FF' },
+                { name: 'Kebap', code: 'KBP' },
+                { name: 'Soup', code: 'SP' },
+              ]}
+            />
+            <SideBySideInputContainer
+              left={
+                <UnderlinedInput
+                  inputId="productTitle"
+                  labelText="Title"
+                  inputValue={values.productTitle}
+                  onInputChange={handleChange}
+                  onInputBlur={handleBlur}
+                  errors={errors}
+                  touched={touched}
                 />
-              ) : (
-                <div className="w-full h-full flex flex-col gap-4 justify-center items-center">
-                  <CiImageOn className="size-40" color="#dfdfdf" />
-                </div>
-              )}
-            </ProductCardImageContainer>
-            <ProductCardDetailsActionsContainer>
-              <ProductCardDetails>
-                <Title position="left" size="xs" className="line-clamp-1">
-                  {values.productName.length
-                    ? values.productName
-                    : 'Example Product Name'}
-                </Title>
-                <Pharagrapf size="2xs" className="line-clamp-2">
-                  {values.productDesc.length
-                    ? values.productDesc
-                    : 'Example Product Description...'}
-                </Pharagrapf>
-              </ProductCardDetails>
-              <ProductCardActions>
-                <Button size="2xs" text="Edit" />
-              </ProductCardActions>
-            </ProductCardDetailsActionsContainer>
-          </ProductCardContainer>
+              }
+              right={
+                <UnderlinedInput
+                  labelText="Price"
+                  inputValue={values.productPrice.toString()}
+                  onInputChange={handleChange}
+                  onInputBlur={handleBlur}
+                  inputId={'productPrice'}
+                  inputType="number"
+                  hasIcon={true}
+                  iconPosition="right"
+                  Icon={MdEuro}
+                  iconSize={20}
+                  errors={errors}
+                  touched={touched}
+                />
+              }
+              slotType={SideBySideInputContainerSlotWidths.smallRightSlot}
+              isByMdScreensInputsGrid={true}
+            />
+
+            <UnderlinedInput
+              inputId="productDesc"
+              labelText="Description"
+              inputValue={values.productDesc}
+              onInputChange={handleChange}
+              onInputBlur={handleBlur}
+              isMultiline={true}
+              errors={errors}
+              touched={touched}
+            />
+            <Button text="Add Product" type="submit" />
+          </form>
+
+          <div className="h-fit md:h-full w-full md:flex-[1] shrink-0 bg-white shadow-lg rounded-lg flex flex-col items-center justify-center md:justify-center p-4">
+            <Title
+              className="p-2 underline underline-offset-4"
+              size="xs"
+              position="left"
+            >
+              Preview :
+            </Title>
+            <ProductCardContainer>
+              <ProductCardImageContainer>
+                {values.productImg.length ? (
+                  <img
+                    className="min-w-full max-w-full "
+                    src={values.productImg}
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col gap-4 justify-center items-center">
+                    <CiImageOn
+                      className="min-w-full max-w-full size-40"
+                      color="#dfdfdf"
+                    />
+                  </div>
+                )}
+              </ProductCardImageContainer>
+              <ProductCardDetailsActionsContainer>
+                <ProductCardDetails>
+                  <Title position="left" size="xs" className="line-clamp-1">
+                    {values.productTitle.length
+                      ? values.productTitle
+                      : 'Example Product Name'}
+                  </Title>
+                  <Pharagrapf size="2xs" className="line-clamp-2">
+                    {values.productDesc.length
+                      ? values.productDesc
+                      : 'Example Product Description...'}
+                  </Pharagrapf>
+                  <Pharagrapf size="xs" className="text-right mt-2">
+                    {values.productPrice > 0 ? values.productPrice : '0.00'} €
+                  </Pharagrapf>
+                </ProductCardDetails>
+                <ProductCardActions>
+                  <Button size="2xs" text="Edit" />
+                </ProductCardActions>
+              </ProductCardDetailsActionsContainer>
+            </ProductCardContainer>
+          </div>
         </div>
       </div>
     </>
