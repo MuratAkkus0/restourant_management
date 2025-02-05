@@ -12,6 +12,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   cardImgSrc,
   cardTitle,
   cardDetails,
+  cardPrice,
   children,
   onDelBtnClick,
 }) => {
@@ -34,6 +35,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </Title>
             <Pharagrapf size="xs" className="text-gray-400 line-clamp-2">
               {cardDetails}
+            </Pharagrapf>
+            <Pharagrapf size="xs" className="text-right mt-2">
+              {cardPrice} €
             </Pharagrapf>
           </ProductCardDetails>
           <ProductCardActions>{children}</ProductCardActions>
