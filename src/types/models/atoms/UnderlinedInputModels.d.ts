@@ -18,6 +18,7 @@ export type UnderlinedInputProps =
       showIcon?: boolean;
       onClickIcon?: MouseEventHandler<SVGAElement>;
       Icon: IconType;
+      iconSize?: number;
       SecondIcon?: IconType;
       iconPosition?: 'left' | 'right';
     })
@@ -26,6 +27,7 @@ export type UnderlinedInputProps =
       showIcon?: never;
       onClickIcon?: never;
       Icon?: never;
+      iconSize?: never;
       SecondIcon?: never;
       iconPosition?: never;
     });
