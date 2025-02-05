@@ -1,6 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import DashMenu from '../../components/organisms/dashboard/DashMenu';
 import { useEffect } from 'react';
+import AdminPanelsPagesContainer from '@/components/templates/AdminPanelsPagesContainer';
 
 function AdminPanelView() {
   const navigate = useNavigate();
@@ -11,7 +12,9 @@ function AdminPanelView() {
   return (
     <div className="w-full h-full flex pl-4 md:pl-0 md:gap-5">
       <DashMenu />
-      <Outlet />
+      <AdminPanelsPagesContainer>
+        <Outlet />
+      </AdminPanelsPagesContainer>
     </div>
   );
 }
