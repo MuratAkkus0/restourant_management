@@ -17,6 +17,7 @@ function UnderlinedInput(props: UnderlinedInputProps) {
     showIcon = true,
     onClickIcon,
     Icon,
+    iconSize = 26,
     iconPosition = 'right',
     SecondIcon,
     className = 'w-full',
@@ -56,7 +57,7 @@ function UnderlinedInput(props: UnderlinedInputProps) {
             type={
               hasIcon ? (!changeIconByClick ? 'text' : inputType) : inputType
             }
-            className={`w-full border-b py-1 focus:outline-none transition-[border-color] text-base placeholder:text-base placeholder:text-gray-300 placeholder:font-light ${errors && errorMessage && isTouched ? 'border-b-red-600' : 'focus:border-gray-500 '} ${hasIcon ? (iconPosition == 'left' ? 'pl-10' : 'pr-10') : ''}`}
+            className={`w-full apperance-none border-b py-1 focus:outline-none transition-[border-color] text-base placeholder:text-base placeholder:text-gray-300 placeholder:font-light ${errors && errorMessage && isTouched ? 'border-b-red-600' : 'focus:border-gray-500 '} ${hasIcon ? (iconPosition == 'left' ? 'pl-10' : 'pr-10') : ''}`}
             placeholder={inputPlaceHolder}
           />
         ) : (
@@ -80,11 +81,11 @@ function UnderlinedInput(props: UnderlinedInputProps) {
             className={`absolute text-2xl w-8 h-8 flex items-center justify-center rounded-full cursor-pointer hover:bg-gray-50 transition-colors duration-300 active:scale-95`}
           >
             {changeIconByClick ? (
-              Icon && <Icon size={26} onClick={handleIconChange} />
+              Icon && <Icon size={iconSize} onClick={handleIconChange} />
             ) : SecondIcon ? (
-              <SecondIcon size={26} onClick={handleIconChange} />
+              <SecondIcon size={iconSize} onClick={handleIconChange} />
             ) : (
-              Icon && <Icon size={26} />
+              Icon && <Icon size={iconSize} />
             )}
           </div>
         )}
