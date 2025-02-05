@@ -29,6 +29,23 @@
     ]
   },
   {
+    "label": "Category Management",
+    "route": "category-management",
+    "icon": "MdCategory",
+    "subMenu": [
+      {
+        "label": "Category List",
+        "route": "category-list",
+        "icon": "MdViewList"
+      },
+      {
+        "label": "Add/Update Categories",
+        "route": "add-update",
+        "icon": "MdAddBox"
+      }
+    ]
+  },
+  {
     "label": "Promotions",
     "route": "promotions",
     "icon": "MdLocalOffer",
