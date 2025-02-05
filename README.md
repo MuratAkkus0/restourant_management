@@ -1,1 +1,1 @@
-Manegio V1.0
+Manegio V1.0 with basic functions
