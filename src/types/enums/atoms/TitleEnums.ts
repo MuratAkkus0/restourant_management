@@ -9,7 +9,7 @@ export enum TitleTextSizes {
 }
 
 export enum TitlePositions {
-  left = 'text-left',
-  center = 'text-center',
-  right = 'text-right',
+  left = 'text-left self-start',
+  center = 'text-center self-center',
+  right = 'text-right self-end',
 }
