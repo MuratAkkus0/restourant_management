@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import LoginView from '../../views/LoginView';
 import HomeView from '../../views/HomeView';
-import AdminOverviewView from '../../views/admin/AdminOverviewView';
 import AdminPanelView from '../../views/admin/AdminPanelView';
 import RootView from '../../views/RootView';
 import NotFoundView from '../../views/NotFoundView';
@@ -9,9 +8,9 @@ import AdminRegisterView from '@/views/admin/AdminRegisterView';
 import ProtectedRoutes from './ProtectedRoutes';
 import { AppUserRoles } from '@/types/enums/AuthEnums';
 import AboutUsView from '@/views/AboutUsView';
-import AdminProductView from '@/views/admin/AdminProductView';
 import AdminProductListView from '@/views/admin/AdminProductListView';
 import AdminAddProductView from '@/views/admin/AdminAddProductView';
+import { AdminAddCategoryView } from '@/views/admin/AdminAddCategoryView';
 
 function Router() {
   return (
@@ -30,7 +29,7 @@ function Router() {
         >
           <Route path="/admin" element={<AdminPanelView />}>
             {/* Overview Section */}
-            <Route path="overview" element={<AdminOverviewView />}>
+            <Route path="overview">
               <Route
                 path="todays-orders"
                 element={<div>Orders Overview</div>}
@@ -43,21 +42,23 @@ function Router() {
             </Route>
 
             {/* Product Management Section */}
-            <Route path="product-management" element={<AdminProductView />}>
+            <Route path="product-management">
               <Route path="product-list" element={<AdminProductListView />} />
               <Route path="add-update" element={<AdminAddProductView />} />
               <Route
                 path="product-inventory"
                 element={<div>Product Inventory</div>}
               />
-              <Route
-                path="top-selling"
-                element={<div>Top-Selling Products</div>}
-              />
+            </Route>
+
+            {/* Category Management Section */}
+            <Route path="category-management">
+              <Route path="category-list" element={<div>Category List</div>} />
+              <Route path="add-update" element={<AdminAddCategoryView />} />
             </Route>
 
             {/* Promotions Section */}
-            <Route path="promotions" element={<div>Promotions</div>}>
+            <Route path="promotions">
               <Route
                 path="discounts-offers"
                 element={<div>Discounts and Offers</div>}
@@ -69,7 +70,7 @@ function Router() {
             </Route>
 
             {/* Settings Section */}
-            <Route path="settings" element={<div>Settings</div>}>
+            <Route path="settings">
               <Route
                 path="company-info"
                 element={<div>Company Information</div>}
