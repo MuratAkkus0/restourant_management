@@ -1,7 +1,7 @@
 import { MouseEventHandler } from 'react';
 
 export interface ProductCardProps {
-  cardImgSrc: string;
+  cardImgSrc?: string | null;
   cardTitle: string;
   cardDetails: string;
   cardPrice: number;

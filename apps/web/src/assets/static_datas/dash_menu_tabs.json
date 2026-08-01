@@ -46,6 +46,18 @@
     ]
   },
   {
+    "label": "Menu & QR Code",
+    "route": "menu",
+    "icon": "MdQrCode2",
+    "subMenu": [
+      {
+        "label": "Publish & QR Code",
+        "route": "publish",
+        "icon": "MdQrCode2"
+      }
+    ]
+  },
+  {
     "label": "Promotions",
     "route": "promotions",
     "icon": "MdLocalOffer",
@@ -71,6 +83,11 @@
         "label": "Company Information",
         "route": "company-info",
         "icon": "MdInfo"
+      },
+      {
+        "label": "Staff & Access Control",
+        "route": "access-control",
+        "icon": "MdPeople"
       }
     ]
   },

@@ -7,6 +7,7 @@ import ProductCardDetailsActionsContainer from '@/components/molecules/ProductCa
 import ProductCardDetails from '@/components/molecules/ProductCard/ProductCardDetails';
 import ProductCardActions from '@/components/molecules/ProductCard/ProductCardActions';
 import { ProductCardProps } from '@/types/models/molecules/ProductCardModels';
+import { CiImageOn } from 'react-icons/ci';
 
 const ProductCard: React.FC<ProductCardProps> = ({
   cardImgSrc,
@@ -21,11 +22,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <ProductCardContainer>
         <StickyDeleteBtn onClick={onDelBtnClick} />
         <ProductCardImageContainer>
-          <img
-            className="w-full group-hover:scale-105 transition duration-300"
-            src={cardImgSrc}
-            alt="test"
-          />
+          {cardImgSrc ? (
+            <img
+              className="w-full group-hover:scale-105 transition duration-300"
+              src={cardImgSrc}
+              alt={cardTitle}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gray-50">
+              <CiImageOn className="size-16" color="#dfdfdf" />
+            </div>
+          )}
         </ProductCardImageContainer>
         <ProductCardDetailsActionsContainer>
           {/* Title and Details */}
