@@ -1,7 +1,9 @@
 import * as yup from 'yup';
 const reqMes = 'This field is required!';
 const passwordRules = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?.,&-_]{8,}$/;
-const nameRules = /^[A-Za-z ]+$/;
+// Accepts unicode letters (e.g. umlauts, accents), spaces, apostrophes and
+// hyphens so names like "Müller", "Öztürk" or "O'Brien-Schröder" validate.
+const nameRules = /^[\p{L}][\p{L} '-]*$/u;
 export const RegisterFormSchema = yup.object().shape({
   name: yup
     .string()
