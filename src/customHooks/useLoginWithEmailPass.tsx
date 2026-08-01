@@ -43,13 +43,15 @@ export const useLoginWithEmailPass = () => {
           // redirect user
           if (userInfo.role === AppUserRoles.ADMIN) {
             navigate('/admin');
-            console.log('aktive');
+            dispatch(setIsAppLoading(false));
+            toast.success(`Login successful! Welcome ${userData.displayName}`);
           } else {
-            navigate('/personal/dashboard');
+            // There is no personal/customer dashboard yet - send them home
+            // instead of a route that 404s, and be explicit about why.
+            navigate('/');
+            dispatch(setIsAppLoading(false));
+            toast.info('Your account does not have a dashboard yet.');
           }
-          console.log(userData);
-          dispatch(setIsAppLoading(false));
-          toast.success(`Login successful! Welcome ${userData.displayName}`);
         } else {
           throw new Error('company not found');
         }
