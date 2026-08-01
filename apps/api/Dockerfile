@@ -1,6 +1,10 @@
 # Built from the monorepo root: `docker build -f apps/api/Dockerfile .`
 FROM node:20-slim AS base
-RUN corepack enable
+# Prisma's engines need libssl at runtime, which node:20-slim doesn't ship.
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+# Pin the exact pnpm version so corepack never auto-downloads a newer
+# release that requires a newer Node than this base image ships.
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
 WORKDIR /repo
 
 FROM base AS deps
@@ -19,6 +23,7 @@ RUN pnpm --filter=@manegio/api build
 FROM base AS runtime
 ENV NODE_ENV=production
 WORKDIR /repo
+COPY --from=build /repo/package.json /repo/pnpm-workspace.yaml ./
 COPY --from=build /repo/node_modules /repo/node_modules
 COPY --from=build /repo/packages/shared /repo/packages/shared
 COPY --from=build /repo/apps/api /repo/apps/api

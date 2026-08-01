@@ -17,4 +17,6 @@ RUN pnpm --filter=@manegio/shared build
 
 WORKDIR /repo/apps/web
 EXPOSE 5173
-CMD ["pnpm", "dev", "--", "--host"]
+# Called directly (rather than via the "dev" script) so `--host` reliably
+# reaches vite and it binds to 0.0.0.0, not just localhost inside the container.
+CMD ["pnpm", "exec", "vite", "--host"]
