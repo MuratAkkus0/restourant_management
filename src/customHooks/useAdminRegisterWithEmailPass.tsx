@@ -16,9 +16,6 @@ export const useAdminRegisterWithEmailPass = () => {
       await registerWithEmailPass(data);
       toast.success('Register successfull !');
       navigate('/login');
-    } catch (error: any) {
-      console.log(error);
-      throw error;
     } finally {
       dispatch(setIsLoading(false));
       dispatch(setIsAppLoading(false));

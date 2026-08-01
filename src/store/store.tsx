@@ -18,8 +18,7 @@ const persistConfig = {
   key: 'root',
   version: 1,
   debug: true,
-  writeFailHandler: (e: Error) => {
-    console.error('Persisting data process failed : ', e);
+  writeFailHandler: () => {
     toast.error('An unknown error occured during saving data process !');
   },
   storage,

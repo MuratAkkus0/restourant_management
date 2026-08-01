@@ -19,7 +19,6 @@ const FunctionalCopyText: React.FC<FunctionalCopyTextProps> = ({
       const newPosition = { x: clientX, y: clientY };
       setPosition(newPosition);
       navigator.clipboard.writeText(text);
-      console.log(position);
       setShow(true);
       setTimeout(() => {
         setShow(false);

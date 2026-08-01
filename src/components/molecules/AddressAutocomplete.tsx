@@ -61,8 +61,7 @@ const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
         .get(api)
         .then((res) => res.data)
         .then((data: NominatimResponse[]) => setSuggestions(data))
-        .catch((error) => {
-          console.error('Openstreetmap Nominatim API Error: ', error);
+        .catch(() => {
           setSuggestions([]);
         });
     } else {

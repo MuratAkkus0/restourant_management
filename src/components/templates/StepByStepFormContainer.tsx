@@ -21,7 +21,6 @@ function StepByStepFormContainer({
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(Object.keys(errors));
     if (Object.keys(errors).length >= 0) {
       handleSubmit(e);
     } else {

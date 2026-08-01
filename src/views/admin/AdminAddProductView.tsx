@@ -16,9 +16,7 @@ import SideBySideInputContainer from '@/components/templates/SideBySideInputCont
 import { SideBySideInputContainerSlotWidths } from '@/types/enums/SideBySideInputContainerEnums';
 
 const AdminAddProductView = () => {
-  const onSubmit = () => {
-    console.log('product card submitted.');
-  };
+  const onSubmit = () => {};
 
   const formik = useFormik({
     initialValues: {

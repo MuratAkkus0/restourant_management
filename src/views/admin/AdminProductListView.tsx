@@ -23,9 +23,7 @@ const AdminProductListView = () => {
             cardDetails=" This is a test description. This is a test description. This is a test
           description. This is a test description. This is a test description."
             cardPrice={1.99}
-            onDelBtnClick={() => {
-              console.log('del btn clicked.');
-            }}
+            onDelBtnClick={() => {}}
           >
             <ProductCardActions>
               <Button text="Edit" size="base" />

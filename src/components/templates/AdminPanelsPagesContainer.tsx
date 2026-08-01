@@ -9,7 +9,6 @@ const AdminPanelsPagesContainer: FC<{ children: ReactNode }> = ({
   const [logoSize, setLogoSize] = useState(LogoSizes.normal);
   const windowSize = useWindowSizes();
   useEffect(() => {
-    console.log(windowSize);
     if (windowSize[0] >= 768) {
       setLogoSize(LogoSizes.big);
     }

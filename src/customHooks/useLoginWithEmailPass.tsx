@@ -63,7 +63,6 @@ export const useLoginWithEmailPass = () => {
       const errCode = err.code
         ? err.code.charAt(0).toUpperCase() + err.code.slice(1)
         : err.message;
-      console.error(errCode);
       toast.error(errCode);
     }
   };

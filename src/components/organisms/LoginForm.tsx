@@ -36,7 +36,6 @@ function LoginForm() {
     try {
       loginWithEmailPass(email, pass);
     } catch (error: any) {
-      console.error(error);
       toast.error(error.code);
     } finally {
       setSubmitting(false);

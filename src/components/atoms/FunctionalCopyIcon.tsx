@@ -17,7 +17,6 @@ const FunctionalCopyIcon: React.FC<FunctionalCopyIconProps> = ({
 }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const handleIconClick = (e: MouseEvent<HTMLDivElement>) => {
-    console.log('clicked');
     const newPosition = { x: e.clientX, y: e.clientY };
     setPosition(newPosition);
   };
@@ -32,7 +31,7 @@ const FunctionalCopyIcon: React.FC<FunctionalCopyIconProps> = ({
         onClick={onIconClick ?? handleIconClick}
         className={`${className} w-9 h-9 bg-white rounded border flex items-center justify-center cursor-pointer`}
       >
-        <IoIosCopy onClick={() => console.log('svg')} size={iconSize} />
+        <IoIosCopy size={iconSize} />
       </div>
     </>
   );

@@ -72,7 +72,6 @@ const RegisterForm = () => {
       };
       await registerWithEmailPass(registerData);
     } catch (error: any) {
-      console.log(error);
       toast.error(error.message);
     } finally {
       setSubmitting(false);

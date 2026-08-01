@@ -18,7 +18,6 @@ function App() {
   useEffect(() => {
     dispatch(setIsLoading(true));
     const checkAuth = onAuthStateChanged(auth, async (currentUser) => {
-      console.log(currentUser);
       if (currentUser) {
         const usersRef = doc(db, 'usersCompanies', currentUser.uid);
         const userDocSnap = await getDoc(usersRef);

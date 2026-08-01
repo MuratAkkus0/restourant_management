@@ -47,7 +47,6 @@ function HomeView() {
                 type="button"
                 size="lg"
                 onBtnClick={() => {
-                  console.log('scroll');
                   featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
                 }}
               />
