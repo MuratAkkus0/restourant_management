@@ -5,7 +5,7 @@ export const LoginFormSchema = yup.object().shape({
   email: yup.string().email().required(reqMes),
   pass: yup
     .string()
-    .min(6, 'Password have to be min. 6 character!')
+    .min(8, 'Password have to be min. 8 characters!')
     .max(18, 'Password have to be max. 18 character.')
     .matches(
       passwordRules,
