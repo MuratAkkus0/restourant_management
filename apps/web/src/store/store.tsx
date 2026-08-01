@@ -1,49 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
 import appConfigReducer from './slices/appConfigSlice';
-import onAuthChangeStateReducer from './slices/onAuthChangeState';
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { toast } from 'sonner';
+import authReducer from './slices/authSlice';
+import { apiClient } from './api/apiClient';
 
-const persistConfig = {
-  key: 'root',
-  version: 1,
-  debug: true,
-  writeFailHandler: () => {
-    toast.error('An unknown error occured during saving data process !');
-  },
-  storage,
-  whiteList: ['onAuthChangeState'],
-};
-
-const persistedReducer = persistReducer(
-  persistConfig,
-  onAuthChangeStateReducer
-);
-
+// No redux-persist here: the access token must never touch localStorage
+// (see authSlice.ts). Session restoration across page reloads goes through
+// the httpOnly refresh cookie instead - see App.tsx's bootstrap effect.
 const store = configureStore({
   reducer: {
     appConfigSlice: appConfigReducer,
-    onAuthChangeState: persistedReducer,
+    auth: authReducer,
+    [apiClient.reducerPath]: apiClient.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiClient.middleware),
 });
 
-export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export default store;

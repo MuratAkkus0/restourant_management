@@ -1,46 +1,37 @@
 import Logo from '../molecules/Logo';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { GrFormView, GrFormViewHide } from 'react-icons/gr';
-import { LoginFormSchema } from '../../schemas/LoginFormSchema';
+import { loginSchema } from '@manegio/shared';
 import { toast } from 'sonner';
-import { useLoginWithEmailPass } from '@/customHooks/useLoginWithEmailPass';
+import { useLoginMutation } from '@/store/api/authApi';
+import { zodToFormikValidate } from '@/utils/zodToFormikValidate';
+import { getErrorMessage } from '@/utils/getErrorMessage';
 import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
 import Button from '../atoms/Button';
 import UnderlinedInput from '../atoms/UnderlinedInput';
 import Pharagrapf from '../atoms/Pharagrapf';
-import { LoginFormOnSubmitParams } from '@/types/models/organisms/LoginFormModels';
 
 function LoginForm() {
-  const loginWithEmailPass = useLoginWithEmailPass();
+  const [login] = useLoginMutation();
+  const navigate = useNavigate();
 
-  const {
-    values,
-    handleSubmit,
-    handleBlur,
-    handleChange,
-    touched,
-    errors,
-    isSubmitting,
-    setSubmitting,
-  } = useFormik({
-    initialValues: {
-      email: '',
-      pass: '',
-    },
-    validationSchema: LoginFormSchema,
-    onSubmit: onSubmit,
-  });
-
-  function onSubmit({ email, pass }: LoginFormOnSubmitParams) {
-    try {
-      loginWithEmailPass(email, pass);
-    } catch (error: any) {
-      toast.error(error.code);
-    } finally {
-      setSubmitting(false);
-    }
-  }
+  const { values, handleSubmit, handleBlur, handleChange, touched, errors, isSubmitting, setSubmitting } =
+    useFormik({
+      initialValues: { email: '', password: '' },
+      validate: zodToFormikValidate(loginSchema),
+      onSubmit: async ({ email, password }) => {
+        try {
+          await login({ email, password }).unwrap();
+          toast.success('Login successful! Welcome back.');
+          navigate('/admin');
+        } catch (error) {
+          toast.error(getErrorMessage(error, 'Login failed.'));
+        } finally {
+          setSubmitting(false);
+        }
+      },
+    });
 
   return (
     <form
@@ -49,15 +40,11 @@ function LoginForm() {
       action="#"
     >
       <div className="w-full h-fit flex justify-center">
-        <Logo
-          FontSize={FontSizes.semiRegular}
-          LogoSize={LogoSizes.semiRegular}
-        />
+        <Logo FontSize={FontSizes.semiRegular} LogoSize={LogoSizes.semiRegular} />
       </div>
       <div className="flex flex-col flex-shrink-0 flex-1 gap-4">
         <h3 className="mx-auto text-2xl font-medium sm:text-3xl">Login</h3>
 
-        {/* Email Input */}
         <UnderlinedInput
           labelText="Email"
           inputValue={values.email}
@@ -70,13 +57,12 @@ function LoginForm() {
           touched={touched}
         />
 
-        {/* Password Input */}
         <UnderlinedInput
           labelText="Password"
-          inputValue={values.pass}
+          inputValue={values.password}
           onInputChange={handleChange}
           onInputBlur={handleBlur}
-          inputId="pass"
+          inputId="password"
           inputType={'password'}
           inputPlaceHolder="Please enter your password..."
           errors={errors}
@@ -86,24 +72,15 @@ function LoginForm() {
           SecondIcon={GrFormView}
         />
 
-        {/* Register Link */}
         <Pharagrapf size="2xs" className="w-full h-2 sm:text-sm">
           Don't have an account yet?{' '}
-          <Link
-            to="/register"
-            className="underline underline-offset-1 text-blue-500"
-          >
+          <Link to="/register" className="underline underline-offset-1 text-blue-500">
             Register with email.
           </Link>
         </Pharagrapf>
 
-        {/* Login Button */}
         <div className="flex flex-col items-center gap-5 mt-6">
-          <Button
-            isSubmitInProgress={isSubmitting}
-            type="submit"
-            text="Login"
-          />
+          <Button isSubmitInProgress={isSubmitting} type="submit" text="Login" />
         </div>
       </div>
     </form>

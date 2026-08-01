@@ -5,20 +5,17 @@ import { RootState } from '@/store/store';
 import { Navigate } from 'react-router-dom';
 
 function LoginView() {
-  const userId = useSelector(
-    (store: RootState) => store.onAuthChangeState.user.uid
-  );
-  if (userId) {
-    return <Navigate to={'/'} />;
-  } else {
-    return (
-      <>
-        <FormPagesesContainer>
-          <LoginForm />
-        </FormPagesesContainer>
-      </>
-    );
+  const status = useSelector((store: RootState) => store.auth.status);
+  if (status === 'authenticated') {
+    return <Navigate to={'/admin'} />;
   }
+  return (
+    <>
+      <FormPagesesContainer>
+        <LoginForm />
+      </FormPagesesContainer>
+    </>
+  );
 }
 
 export default LoginView;

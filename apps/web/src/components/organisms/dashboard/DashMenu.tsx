@@ -5,14 +5,21 @@ import DashMenuList from './DashMenuList';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { TbLogout2 } from 'react-icons/tb';
-import { useLogout } from '@/customHooks/useLogout';
+import { useLogoutMutation } from '@/store/api/authApi';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 function DashMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
-  const userData = useSelector(
-    (store: RootState) => store.onAuthChangeState.user
-  );
-  const logout = useLogout();
+  const user = useSelector((store: RootState) => store.auth.user);
+  const [logout] = useLogoutMutation();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    toast.success('Logged out successfully.');
+    navigate('/login');
+  };
 
   return (
     <>
@@ -42,12 +49,12 @@ function DashMenu() {
 
         <div className="h-full overflow-y-auto flex-shrink-0 flex flex-col justify-between gap-2 items-center">
           <UserCircleCardWithName
-            fullName={userData.displayName ?? ''}
-            imgUrl={userData.photoURL ?? ''}
+            fullName={user ? `${user.firstName} ${user.lastName}` : ''}
+            greetingText={user?.companyName}
           />
           <DashMenuList />
           <div
-            onClick={() => logout()}
+            onClick={handleLogout}
             className="w-full flex justify-end items-center gap-1 px-4 cursor-pointer"
           >
             <span className="flex items-center gap-1 cursor-pointer">

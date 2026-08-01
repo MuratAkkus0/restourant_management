@@ -1,58 +1,25 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import RouterView from './config/Router/RouterView.tsx';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth, db } from './firebase/FirebaseConfig.tsx';
-import { doc, getDoc } from 'firebase/firestore';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout, setAuthState } from './store/slices/onAuthChangeState.tsx';
-import { setIsLoading } from './store/slices/onAuthChangeState.tsx';
-import { RootState } from './store/store.tsx';
 import Loading from './components/atoms/Loading.tsx';
+import { RootState } from './store/store.tsx';
+import { useBootstrapSessionMutation } from './store/api/authApi.ts';
 
 function App() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(
-    (store: RootState) => store.appConfigSlice.isLoading
-  );
+  const status = useSelector((store: RootState) => store.auth.status);
+  const [bootstrapSession] = useBootstrapSessionMutation();
 
+  // Restores the session on every fresh page load using the httpOnly
+  // refresh cookie - there is nothing sensitive to read from localStorage,
+  // by design (see authSlice.ts).
   useEffect(() => {
-    dispatch(setIsLoading(true));
-    const checkAuth = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        const usersRef = doc(db, 'usersCompanies', currentUser.uid);
-        const userDocSnap = await getDoc(usersRef);
-        if (userDocSnap.exists()) {
-          const userData = userDocSnap.data();
-          dispatch(
-            setAuthState({
-              user: {
-                uid: currentUser.uid,
-                email: currentUser.email,
-                displayName: currentUser.displayName,
-                photoURL: currentUser.photoURL,
-              },
-              role: userData.role,
-              companyId: userData.companyId,
-              loading: false,
-            })
-          );
-          dispatch(setIsLoading(false));
-        } else {
-          dispatch(setIsLoading(false));
-          dispatch(logout());
-        }
-      } else {
-        dispatch(setIsLoading(false));
-        dispatch(logout());
-      }
-    });
-
-    return () => checkAuth();
-  }, [dispatch]);
+    bootstrapSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
-      {isLoading && <Loading />}
+      {status === 'checking' && <Loading />}
       <RouterView />
     </>
   );

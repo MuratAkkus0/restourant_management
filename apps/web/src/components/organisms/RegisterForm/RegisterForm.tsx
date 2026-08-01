@@ -1,199 +1,141 @@
-import { FormikValues, useFormik } from 'formik';
-import { RegisterFormSchema } from '../../../schemas/RegisterFormSchema';
+import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+import { registerSchema } from '@manegio/shared';
 import Logo from '../../molecules/Logo';
-import { useState } from 'react';
 import { GrFormView, GrFormViewHide } from 'react-icons/gr';
-import AddressAutocomplete from '../../molecules/AddressAutocomplete';
 import UnderlinedInput from '../../atoms/UnderlinedInput';
 import SideBySideInputContainer from '../../templates/SideBySideInputContainer';
 import FormTitle from '../../atoms/FormTitle';
-import StepByStepFormContainer from '../../templates/StepByStepFormContainer';
+import Button from '../../atoms/Button';
 import { toast } from 'sonner';
-import { useAdminRegisterWithEmailPass } from '@/customHooks/useAdminRegisterWithEmailPass';
-import { UnderlinedInputProps } from '@/types/models/atoms/UnderlinedInputModels';
+import { useRegisterMutation } from '@/store/api/authApi';
+import { zodToFormikValidate } from '@/utils/zodToFormikValidate';
+import { getErrorMessage } from '@/utils/getErrorMessage';
 import { FontSizes, LogoSizes } from '@/types/enums/LogoEnums';
-import { RegisterServiceProps } from '@/types/models/services/RegisterNewPersonalModels';
-import { AppUserRoles } from '@/types/enums/AuthEnums';
 
 const RegisterForm = () => {
-  const [countryVal, setCountryVal] = useState('');
-  const registerWithEmailPass = useAdminRegisterWithEmailPass();
+  const [register] = useRegisterMutation();
+  const navigate = useNavigate();
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      surname: '',
-      email: '',
-      pass: '',
-      passConfirm: '',
-      street: '',
-      houseNo: '',
-      state: '',
-      postalCode: '',
-      city: '',
-      companyName: '',
-    },
-    validationSchema: RegisterFormSchema,
-    onSubmit: onSubmit,
-  });
+  const { values, handleBlur, handleChange, handleSubmit, touched, errors, isSubmitting, setSubmitting } =
+    useFormik({
+      initialValues: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        passwordConfirm: '',
+        companyName: '',
+      },
+      validate: zodToFormikValidate(registerSchema),
+      onSubmit: async (data) => {
+        try {
+          await register(data).unwrap();
+          toast.success(`Welcome to Manegio, ${data.companyName} is ready to go!`);
+          navigate('/admin');
+        } catch (error) {
+          toast.error(getErrorMessage(error, 'Registration failed.'));
+        } finally {
+          setSubmitting(false);
+        }
+      },
+    });
 
-  const {
-    values,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    touched,
-    errors,
-    isSubmitting,
-    setSubmitting,
-  } = formik;
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="container max-w-md lg:rounded-lg px-4 py-8 flex flex-col gap-4 text-lg bg-white lg:border lg:shadow-md sm:max-w-lg md:max-w-xl lg:max-w-3xl lg:py-8 xl:py-10"
+    >
+      <div className="w-full h-fit flex justify-center">
+        <Logo FontSize={FontSizes.semiRegular} LogoSize={LogoSizes.semiRegular} />
+      </div>
+      <FormTitle titleText="Create your restaurant's account" />
 
-  async function onSubmit(data: FormikValues) {
-    try {
-      data.name = `${(data.name.charAt(0).toUpperCase() + data.name.slice(1).toLowerCase()).trim()}`;
-      data.surname = `${(data.surname.charAt(0).toUpperCase() + data.surname.slice(1).toLowerCase()).trim()}`;
-      data.companyName = `${(data.companyName.charAt(0).toUpperCase() + data.companyName.slice(1)).trim()}`;
-      data.country = countryVal;
-
-      const registerData: RegisterServiceProps = {
-        name: data.name,
-        surname: data.surname,
-        email: data.email,
-        pass: data.pass,
-        role: AppUserRoles.ADMIN,
-        street: data.street,
-        houseNo: data.houseNo,
-        state: data.state,
-        postalCode: data.postalCode,
-        city: data.city,
-        country: countryVal,
-        companyName: data.companyName,
-        imgBase64: '',
-      };
-      await registerWithEmailPass(registerData);
-    } catch (error: any) {
-      toast.error(error.message);
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
-  const formFields: UnderlinedInputProps[] = [
-    {
-      labelText: 'Email',
-      inputValue: values.email,
-      inputId: 'email',
-      inputType: 'text',
-      inputPlaceHolder: 'Please enter your email...',
-      hasIcon: false,
-    },
-    {
-      labelText: 'Password',
-      inputValue: values.pass,
-      inputId: 'pass',
-      inputType: 'password',
-      inputPlaceHolder: 'Please enter your pass...',
-      hasIcon: true,
-      Icon: GrFormViewHide,
-      SecondIcon: GrFormView,
-    },
-    {
-      labelText: 'Confirm Password',
-      inputValue: values.passConfirm,
-      inputId: 'passConfirm',
-      inputType: 'password',
-      inputPlaceHolder: 'Please confirm your password...',
-      hasIcon: true,
-      Icon: GrFormViewHide,
-      SecondIcon: GrFormView,
-    },
-  ];
-
-  const step1 = (
-    <div className="flex flex-col gap-4 w-full h-full">
       <SideBySideInputContainer
         isByMdScreensInputsGrid={true}
         left={
           <UnderlinedInput
-            labelText={'Name'}
-            inputValue={values.name}
+            labelText="First name"
+            inputValue={values.firstName}
             onInputChange={handleChange}
             onInputBlur={handleBlur}
-            inputId={'name'}
-            inputPlaceHolder={'Your name...'}
+            inputId="firstName"
+            inputPlaceHolder="Your first name..."
             errors={errors}
             touched={touched}
           />
         }
         right={
           <UnderlinedInput
-            labelText={'Surname'}
-            inputValue={values.surname}
+            labelText="Last name"
+            inputValue={values.lastName}
             onInputChange={handleChange}
             onInputBlur={handleBlur}
-            inputId={'surname'}
-            inputPlaceHolder={'Your surname...'}
+            inputId="lastName"
+            inputPlaceHolder="Your last name..."
             errors={errors}
             touched={touched}
           />
         }
       />
-      {formFields.map((item, index) => {
-        return item.hasIcon ? (
-          <UnderlinedInput
-            key={index}
-            labelText={item.labelText}
-            inputValue={item.inputValue}
-            inputType={item.inputType}
-            onInputChange={handleChange}
-            onInputBlur={handleBlur}
-            inputId={item.inputId}
-            inputPlaceHolder={item.inputPlaceHolder}
-            errors={errors}
-            touched={touched}
-            hasIcon={item.hasIcon}
-            Icon={item.Icon}
-            SecondIcon={item.SecondIcon}
-          />
-        ) : (
-          <UnderlinedInput
-            key={index}
-            labelText={item.labelText}
-            inputValue={item.inputValue}
-            inputType={item.inputType}
-            onInputChange={handleChange}
-            onInputBlur={handleBlur}
-            inputId={item.inputId}
-            inputPlaceHolder={item.inputPlaceHolder}
-            errors={errors}
-            touched={touched}
-          />
-        );
-      })}
-    </div>
-  );
 
-  const step2 = (
-    <AddressAutocomplete setCountryVal={setCountryVal} formik={formik} />
-  );
-
-  return (
-    <>
-      <StepByStepFormContainer
-        formLogo={
-          <Logo
-            FontSize={FontSizes.semiRegular}
-            LogoSize={LogoSizes.semiRegular}
-          />
-        }
-        formTitle={<FormTitle titleText="Register" />}
-        isSubmitting={isSubmitting}
-        submitButtonText="Register"
-        formAllStepComponents={[step1, step2]}
-        handleSubmit={handleSubmit}
+      <UnderlinedInput
+        labelText="Company name"
+        inputValue={values.companyName}
+        onInputChange={handleChange}
+        onInputBlur={handleBlur}
+        inputId="companyName"
+        inputPlaceHolder="e.g. Trattoria Bella"
         errors={errors}
+        touched={touched}
       />
-    </>
+
+      <UnderlinedInput
+        labelText="Email"
+        inputValue={values.email}
+        onInputChange={handleChange}
+        onInputBlur={handleBlur}
+        inputId="email"
+        inputType="email"
+        inputPlaceHolder="Please enter your email..."
+        errors={errors}
+        touched={touched}
+      />
+
+      <UnderlinedInput
+        labelText="Password"
+        inputValue={values.password}
+        onInputChange={handleChange}
+        onInputBlur={handleBlur}
+        inputId="password"
+        inputType="password"
+        inputPlaceHolder="Please enter your password..."
+        errors={errors}
+        touched={touched}
+        hasIcon={true}
+        Icon={GrFormViewHide}
+        SecondIcon={GrFormView}
+      />
+
+      <UnderlinedInput
+        labelText="Confirm password"
+        inputValue={values.passwordConfirm}
+        onInputChange={handleChange}
+        onInputBlur={handleBlur}
+        inputId="passwordConfirm"
+        inputType="password"
+        inputPlaceHolder="Please confirm your password..."
+        errors={errors}
+        touched={touched}
+        hasIcon={true}
+        Icon={GrFormViewHide}
+        SecondIcon={GrFormView}
+      />
+
+      <div className="flex flex-col items-center gap-5 mt-4">
+        <Button isSubmitInProgress={isSubmitting} type="submit" text="Register" />
+      </div>
+    </form>
   );
 };
 
