@@ -12,6 +12,18 @@ dist
 dist-ssr
 *.local
 
+# Prisma generated client
+apps/api/src/generated
+apps/api/prisma/dev.db
+
+# Uploaded media (mounted volume in docker-compose)
+apps/api/uploads/*
+!apps/api/uploads/.gitkeep
+
+# Test/coverage output
+coverage
+*.tsbuildinfo
+
 # Environment variables
 .env
 .env.local

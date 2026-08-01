@@ -1,0 +1,174 @@
+// Manegio API - Prisma schema
+// Multi-tenant model: every domain row that isn't a User carries a
+// companyId, and every query in the service layer is scoped by it.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  STAFF
+}
+
+model Company {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  phone       String?
+  logoUrl     String?
+  street      String?
+  houseNo     String?
+  postalCode  String?
+  city        String?
+  state       String?
+  country     String?
+  isMenuPublished Boolean @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  memberships  Membership[]
+  categories   Category[]
+  products     Product[]
+  openingHours OpeningHour[]
+  invites      Invite[]
+
+  @@map("companies")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  memberships   Membership[]
+  refreshTokens RefreshToken[]
+
+  @@map("users")
+}
+
+// Join table between User and Company. A user's role is only ever set here,
+// server-side (registration or invite acceptance) - never taken from a
+// client-supplied field.
+model Membership {
+  id        String   @id @default(cuid())
+  userId    String
+  companyId String
+  role      Role
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, companyId])
+  @@index([companyId])
+  @@map("memberships")
+}
+
+// Refresh tokens are stored hashed (never the raw token) so a leaked DB dump
+// can't be replayed directly. Rotated on every /auth/refresh call.
+model RefreshToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  companyId String
+  name      String
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  company  Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  products Product[]
+
+  @@unique([companyId, name])
+  @@index([companyId])
+  @@map("categories")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  companyId   String
+  categoryId  String?
+  name        String
+  description String?
+  priceCents  Int
+  imageUrl    String?
+  isPublished Boolean  @default(false)
+  position    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  company  Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@unique([companyId, name])
+  @@index([companyId])
+  @@index([categoryId])
+  @@map("products")
+}
+
+enum Weekday {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+model OpeningHour {
+  id        String  @id @default(cuid())
+  companyId String
+  dayOfWeek Weekday
+  isClosed  Boolean @default(true)
+  opensAt   String?
+  closesAt  String?
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, dayOfWeek])
+  @@map("opening_hours")
+}
+
+// Server-issued invite: role and email are fixed at creation time by an
+// OWNER/ADMIN. Accepting the invite (auth.service#acceptInvite) creates the
+// new user + membership using this row's role - the invitee never supplies one.
+model Invite {
+  id         String    @id @default(cuid())
+  companyId  String
+  email      String
+  role       Role
+  tokenHash  String    @unique
+  expiresAt  DateTime
+  acceptedAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId])
+  @@map("invites")
+}

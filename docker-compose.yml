@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: manegio-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: manegio
+      POSTGRES_PASSWORD: manegio
+      POSTGRES_DB: manegio
+    ports:
+      - "5433:5432"
+    volumes:
+      - manegio-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U manegio -d manegio"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: manegio-api
+    restart: unless-stopped
+    env_file:
+      - ./apps/api/.env
+    environment:
+      DATABASE_URL: postgresql://manegio:manegio@db:5432/manegio?schema=public
+    ports:
+      - "4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - manegio-uploads:/repo/apps/api/uploads
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: manegio-web
+    restart: unless-stopped
+    env_file:
+      - ./apps/web/.env
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+
+volumes:
+  manegio-db-data:
+  manegio-uploads:
