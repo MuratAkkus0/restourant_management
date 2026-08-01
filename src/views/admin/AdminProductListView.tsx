@@ -5,10 +5,6 @@ import { FaThList } from 'react-icons/fa';
 import testImg from '@/assets/images/Login_page_side.jpg';
 import ProductCardActions from '@/components/molecules/ProductCard/ProductCardActions';
 
-export interface AdminProductListViewProps {
-  a: string;
-}
-
 const AdminProductListView = () => {
   return (
     <>
