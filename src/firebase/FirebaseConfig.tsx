@@ -9,14 +9,19 @@ import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//
+// These values come from environment variables (see .env.example). Firebase
+// web config values are public client identifiers by design - they are not
+// secrets - but they are kept out of source control here for hygiene and so
+// each environment (dev/staging/prod) can point at its own Firebase project.
 const firebaseConfig = {
-  apiKey: 'AIzaSyA4eIN3R00Yl_-D0pRvbFhTFkd-Pu8znRY',
-  authDomain: 'restourant-management.firebaseapp.com',
-  projectId: 'restourant-management',
-  storageBucket: 'restourant-management.firebasestorage.app',
-  messagingSenderId: '577668575123',
-  appId: '1:577668575123:web:2545c2b87b80d0a6f78266',
-  measurementId: 'G-CHCREPZG0M',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
