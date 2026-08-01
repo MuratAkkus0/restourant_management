@@ -14,9 +14,5 @@
   {
     "menuName": "Dashboard",
     "redirectTo": "/user"
-  },
-  {
-    "menuName": "About Us",
-    "redirectTo": "/about-us"
   }
 ]

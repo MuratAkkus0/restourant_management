@@ -7,7 +7,6 @@ import NotFoundView from '../../views/NotFoundView';
 import AdminRegisterView from '@/views/admin/AdminRegisterView';
 import ProtectedRoutes from './ProtectedRoutes';
 import { AppUserRoles } from '@/types/enums/AuthEnums';
-import AboutUsView from '@/views/AboutUsView';
 import AdminProductListView from '@/views/admin/AdminProductListView';
 import AdminAddProductView from '@/views/admin/AdminAddProductView';
 import { AdminAddCategoryView } from '@/views/admin/AdminAddCategoryView';
@@ -19,7 +18,6 @@ function Router() {
       <Routes>
         <Route element={<RootView />}>
           <Route index path="/" element={<HomeView />} />
-          <Route path="/about-us" element={<AboutUsView />} />
         </Route>
 
         <Route path="/register" element={<AdminRegisterView />} />
