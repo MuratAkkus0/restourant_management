@@ -1,26 +1,26 @@
 [
   {
     "question": "How does the QR-based ordering system work?",
-    "answer": "Customers scan the QR code on their table to view the menu, place orders, and even make payments—all from their smartphones. It’s simple, fast, and hassle-free."
+    "answer": "Customers scan the QR code on their table to view the menu on their smartphone. Placing orders and payments directly from that menu is on the roadmap and not available yet."
   },
   {
     "question": "Can I customize the menu displayed to customers?",
-    "answer": "Yes! Admins can easily add, remove, or edit items in the menu via the dashboard, ensuring customers always see the latest options."
+    "answer": "Menu and category management screens exist in the admin panel today; full add/edit/remove functionality for menu items is still being built."
   },
   {
     "question": "What kind of analytics does the dashboard provide?",
-    "answer": "The dashboard includes detailed reports on sales, revenue, top-performing items, and staff performance, presented with clear visualizations."
+    "answer": "The admin dashboard currently shows a sample orders chart. Real sales, revenue and staff performance reporting is planned but not implemented yet."
   },
   {
     "question": "Is the system secure for customer data and transactions?",
-    "answer": "Absolutely. We use advanced encryption and secure authentication methods to protect all data and transactions."
+    "answer": "Authentication is handled through Firebase, and Firestore security rules restrict each account to its own data. There is no payment processing in the app yet."
   },
   {
     "question": "Can I integrate this system with my existing POS?",
-    "answer": "Yes, our system supports integrations with popular POS platforms. Contact our support team for assistance with setup."
+    "answer": "POS integration is on the roadmap and does not exist yet."
   },
   {
     "question": "What happens if the internet goes down?",
-    "answer": "The system offers offline support for basic operations, ensuring your restaurant continues to function without interruptions."
+    "answer": "The app requires an internet connection today; there is no offline mode."
   }
 ]
