@@ -43,7 +43,7 @@ export const AdminAddCategoryView = () => {
           <div className="flex-[1] flex justify-center items-center bg-white w-full rounded-lg shadow-md border-t p-4">
             <div className="w-full h-full">
               <div className="flex justify-between items-center gap-2 sm:gap-4 px-4 w-full h-14 border-t border-t-gray-100 shadow-md">
-                <div>Icecekler</div>
+                <div>Beverages</div>
                 <div className="flex justify-end gap-2">
                   <div>
                     <MdDeleteForever className="size-[1.37rem] md:size-[1.65rem]" />

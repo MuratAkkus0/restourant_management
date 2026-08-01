@@ -3,11 +3,11 @@ import { Chart } from 'react-google-charts';
 
 function AdminOverviewView() {
   const data = [
-    ['Personal', 'Complated Order', { role: 'style' }],
-    ['Ali', 12, '#b87333'],
-    ['Veli', 30, 'silver'],
-    ['Mert', 20, 'gold'],
-    ['Cengiz', 29, 'color: #e5e4e2'],
+    ['Staff Member', 'Completed Orders', { role: 'style' }],
+    ['Staff A', 12, '#b87333'],
+    ['Staff B', 30, 'silver'],
+    ['Staff C', 20, 'gold'],
+    ['Staff D', 29, 'color: #e5e4e2'],
   ];
   return (
     <AdminPanelsPagesContainer>
