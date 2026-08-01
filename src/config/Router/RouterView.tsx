@@ -11,6 +11,7 @@ import AboutUsView from '@/views/AboutUsView';
 import AdminProductListView from '@/views/admin/AdminProductListView';
 import AdminAddProductView from '@/views/admin/AdminAddProductView';
 import { AdminAddCategoryView } from '@/views/admin/AdminAddCategoryView';
+import ComingSoonView from '@/views/admin/ComingSoonView';
 
 function Router() {
   return (
@@ -32,13 +33,16 @@ function Router() {
             <Route path="overview">
               <Route
                 path="todays-orders"
-                element={<div>Orders Overview</div>}
+                element={<ComingSoonView title="Orders Overview" />}
               />
               <Route
                 path="monthly-reports"
-                element={<div>Monthly Reports</div>}
+                element={<ComingSoonView title="Monthly Reports" />}
               />
-              <Route path="key-metrics" element={<div>Key Metrics</div>} />
+              <Route
+                path="key-metrics"
+                element={<ComingSoonView title="Key Metrics" />}
+              />
             </Route>
 
             {/* Product Management Section */}
@@ -47,13 +51,16 @@ function Router() {
               <Route path="add-update" element={<AdminAddProductView />} />
               <Route
                 path="product-inventory"
-                element={<div>Product Inventory</div>}
+                element={<ComingSoonView title="Product Inventory" />}
               />
             </Route>
 
             {/* Category Management Section */}
             <Route path="category-management">
-              <Route path="category-list" element={<div>Category List</div>} />
+              <Route
+                path="category-list"
+                element={<ComingSoonView title="Category List" />}
+              />
               <Route path="add-update" element={<AdminAddCategoryView />} />
             </Route>
 
@@ -61,11 +68,11 @@ function Router() {
             <Route path="promotions">
               <Route
                 path="discounts-offers"
-                element={<div>Discounts and Offers</div>}
+                element={<ComingSoonView title="Discounts and Offers" />}
               />
               <Route
                 path="campaign-management"
-                element={<div>Campaign Management</div>}
+                element={<ComingSoonView title="Campaign Management" />}
               />
             </Route>
 
@@ -73,19 +80,23 @@ function Router() {
             <Route path="settings">
               <Route
                 path="company-info"
-                element={<div>Company Information</div>}
+                element={<ComingSoonView title="Company Information" />}
               />
               <Route
                 path="pos-integration"
-                element={<div>POS Integration</div>}
+                element={<ComingSoonView title="POS Integration" />}
               />
               <Route
                 path="access-control"
-                element={<div>Access Control & Permissions</div>}
+                element={
+                  <ComingSoonView title="Access Control & Permissions" />
+                }
               />
               <Route
                 path="notification-preferences"
-                element={<div>Notification Preferences</div>}
+                element={
+                  <ComingSoonView title="Notification Preferences" />
+                }
               />
             </Route>
           </Route>
